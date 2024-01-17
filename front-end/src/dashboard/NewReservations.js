@@ -20,6 +20,10 @@ function NewReservations({ reservations, setReservations }) {
     setFormData({ ...formData, [target.name]: target.value });
   };
 
+  const handleNumberChange = ({ target }) => {
+    setFormData({ ...formData, [target.name]: Number(target.value) });
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log("submit pressed", formData);
@@ -107,7 +111,7 @@ function NewReservations({ reservations, setReservations }) {
             min="1"
             id="people"
             className="mb-4"
-            onChange={handleChange}
+            onChange={handleNumberChange}
             required
           />
         </>

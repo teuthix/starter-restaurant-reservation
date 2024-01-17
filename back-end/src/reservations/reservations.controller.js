@@ -79,25 +79,27 @@ function isValidTime(req, res, next) {
 }
 
 function isValidTimeFormat(timeString) {
-  console.log(timeString, "TIMESTRING");
+  // console.log(timeString, "TIMESTRING");
   const timeFormatRegex = /^(0[0-9]|1[0-9]):[0-5][0-9]$/;
   return timeFormatRegex.test(timeString);
 }
 
 function isValidPeople(req, res, next) {
   const { people } = req.body.data;
-
-  if (isNaN(people) || people < 1) {
+  // console.log(people, Number.isInteger(people));
+  console.log(typeof people);
+  if (!Number.isInteger(people) || people < 1) {
     return next({
       status: 400,
       message: `Invalid number of people`,
+      error: "Invalid number of people",
     });
   }
 
   next();
 }
 
-// function isValidPeople(peopleString) {
+// function isValidPeopleFormat(peopleString) {
 //   const peopleFormatRegex = /^[0-9]$/;
 //   return peopleFormatRegex.test(peopleString);
 // }
@@ -134,8 +136,8 @@ module.exports = {
     hasOnlyValidProperties,
     hasRequiredProperties,
     isValidDate,
-    isValidPeople,
     isValidTime,
+    isValidPeople,
     asyncErrorBoundary(create),
   ],
 };
