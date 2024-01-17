@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { listReservations } from "../utils/api";
-import ErrorAlert from "../layout/ErrorAlert";
+import ListReservations from "./ListReservations";
 
 /**
  * Defines the dashboard page.
@@ -8,30 +9,57 @@ import ErrorAlert from "../layout/ErrorAlert";
  *  the date for which the user wants to view reservations.
  * @returns {JSX.Element}
  */
-function Dashboard({ date }) {
+function Dashboard({ date, setDate }) {
   const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null);
+  const history = useHistory();
+  const location = useLocation();
 
+  // handleDateChange changes date in the url, passed into ListReservations
+  const handleDateChange = (newDate) => {
+    setDate(newDate);
+
+    history.push({
+      pathname: location.pathname,
+      search: `?date=${newDate}`,
+    });
+  };
+
+  //added reservations to useEffect due to error
   useEffect(loadDashboard, [date]);
+
+  // if no search in url, make it today's date
+  useEffect(() => {
+    if (!location.search) {
+      history.push({
+        pathname: location.pathname,
+        search: `?date=${date}`,
+      });
+    }
+  }, [date, history, location.pathname, location.search]);
 
   function loadDashboard() {
     const abortController = new AbortController();
     setReservationsError(null);
+    // console.log("inside loadDashboard", reservations);
     listReservations({ date }, abortController.signal)
       .then(setReservations)
       .catch(setReservationsError);
     return () => abortController.abort();
   }
 
+  console.log(reservations);
+
   return (
-    <main>
-      <h1>Dashboard</h1>
-      <div className="d-md-flex mb-3">
-        <h4 className="mb-0">Reservations for date</h4>
-      </div>
-      <ErrorAlert error={reservationsError} />
-      {JSON.stringify(reservations)}
-    </main>
+    <>
+      <ListReservations
+        reservations={reservations}
+        date={date}
+        setDate={setDate}
+        reservationsError={reservationsError}
+        handleDateChange={handleDateChange}
+      />
+    </>
   );
 }
 
