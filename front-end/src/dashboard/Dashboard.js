@@ -9,8 +9,8 @@ import ListReservations from "./ListReservations";
  *  the date for which the user wants to view reservations.
  * @returns {JSX.Element}
  */
-function Dashboard({ date, setDate }) {
-  const [reservations, setReservations] = useState([]);
+function Dashboard({ date, setDate, reservations, setReservations }) {
+  // const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null);
   const history = useHistory();
   const location = useLocation();
@@ -36,7 +36,7 @@ function Dashboard({ date, setDate }) {
   };
 
   //added reservations to useEffect due to error
-  useEffect(loadDashboard, [date]);
+  useEffect(loadDashboard, [date, setReservations]);
 
   function loadDashboard() {
     const abortController = new AbortController();
