@@ -6,7 +6,7 @@ function list(date) {
   if (date) {
     query = query.where({ reservation_date: date });
   }
-  console.log(date, "in service");
+
   return query;
 }
 

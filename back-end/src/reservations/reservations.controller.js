@@ -80,7 +80,6 @@ function isValidTime(req, res, next) {
 }
 
 function isValidTimeFormat(timeString) {
-  // console.log(timeString, "TIMESTRING");
   const timeFormatRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
   console.log(timeString, timeFormatRegex.test(timeString));
   return timeFormatRegex.test(timeString);
@@ -88,8 +87,6 @@ function isValidTimeFormat(timeString) {
 
 function isValidPeople(req, res, next) {
   const { people } = req.body.data;
-  // console.log(people, Number.isInteger(people));
-  // console.log(typeof people);
   if (!Number.isInteger(people) || people < 1) {
     return next({
       status: 400,
@@ -101,17 +98,10 @@ function isValidPeople(req, res, next) {
   next();
 }
 
-// function isValidPeopleFormat(peopleString) {
-//   const peopleFormatRegex = /^[0-9]$/;
-//   return peopleFormatRegex.test(peopleString);
-// }
-
 // if route has date query, then return reservations for that date
 // else, return all reservation order by reservation time;
 async function hasDate(req, res, next) {
   const dateParam = req.query.date;
-
-  // console.log(dateParam, "Test");
   if (dateParam) {
     res.locals.date = dateParam;
   }
@@ -120,9 +110,6 @@ async function hasDate(req, res, next) {
 }
 
 async function list(req, res) {
-  // const showParam = req.query.date;
-
-  console.log(res.locals.date, "Test");
   const data = await reservationsService.list(res.locals.date);
   res.json({ data });
 }
