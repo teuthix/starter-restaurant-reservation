@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { createReservation } from "../utils/api";
 
-function NewReservations({ reservations, setReservations }) {
+function NewReservations({ setDate, reservations, setReservations }) {
   const initialForm = {
     first_name: "",
     last_name: "",
@@ -16,7 +16,6 @@ function NewReservations({ reservations, setReservations }) {
   const [formData, setFormData] = useState({ ...initialForm });
 
   const handleChange = ({ target }) => {
-    // console.log(target.name);
     setFormData({ ...formData, [target.name]: target.value });
   };
 
@@ -31,8 +30,9 @@ function NewReservations({ reservations, setReservations }) {
     try {
       const newReservation = await createReservation(formData);
       console.log("new reservation is", newReservation);
+      setDate(formData.reservation_date);
       setReservations([...reservations, newReservation]);
-      // history.push(`/dashboard?date=${formData.reservation_date}`);
+      history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
       console.log("error----> ", error);
     }
@@ -115,11 +115,9 @@ function NewReservations({ reservations, setReservations }) {
         </>
         <div className="d-flex">
           <div>
-            <Link to={`/dashboard?date=${formData.reservation_date}`}>
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </Link>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
             <button
               type="button"
               className="btn btn-secondary"

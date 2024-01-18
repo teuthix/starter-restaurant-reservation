@@ -70,7 +70,6 @@ function isValidTime(req, res, next) {
   const { reservation_time } = req.body.data;
 
   if (!isValidTimeFormat(reservation_time)) {
-    console.log(typeof reservation_time);
     return next({
       status: 400,
       message: `Invalid reservation_time format`,
@@ -81,7 +80,6 @@ function isValidTime(req, res, next) {
 
 function isValidTimeFormat(timeString) {
   const timeFormatRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
-  console.log(timeString, timeFormatRegex.test(timeString));
   return timeFormatRegex.test(timeString);
 }
 

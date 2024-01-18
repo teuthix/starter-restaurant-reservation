@@ -27,6 +27,7 @@ function Routes() {
       </Route>
       <Route path="/reservations/new">
         <NewReservations
+          setDate={setDate}
           reservations={reservations}
           setReservations={setReservations}
         />
