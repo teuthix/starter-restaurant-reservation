@@ -32,12 +32,10 @@ function NewReservations({ reservations, setReservations }) {
       const newReservation = await createReservation(formData);
       console.log("new reservation is", newReservation);
       setReservations([...reservations, newReservation]);
+      history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
       console.log("error----> ", error);
     }
-    // console.log("new Reservation", newReservation);
-    // setReservations([...reservations, newReservation]);
-    // setFormData({ ...initialForm });
   };
 
   return (

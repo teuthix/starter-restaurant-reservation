@@ -15,6 +15,16 @@ function Dashboard({ date, setDate }) {
   const history = useHistory();
   const location = useLocation();
 
+  // if no search in url, make it today's date
+  useEffect(() => {
+    if (!location.search) {
+      history.push({
+        pathname: location.pathname,
+        search: `?date=${date}`,
+      });
+    }
+  }, [date, history, location.pathname, location.search]);
+
   // handleDateChange changes date in the url, passed into ListReservations
   const handleDateChange = (newDate) => {
     setDate(newDate);
@@ -27,16 +37,6 @@ function Dashboard({ date, setDate }) {
 
   //added reservations to useEffect due to error
   useEffect(loadDashboard, [date]);
-
-  // if no search in url, make it today's date
-  useEffect(() => {
-    if (!location.search) {
-      history.push({
-        pathname: location.pathname,
-        search: `?date=${date}`,
-      });
-    }
-  }, [date, history, location.pathname, location.search]);
 
   function loadDashboard() {
     const abortController = new AbortController();
