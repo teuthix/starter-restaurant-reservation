@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../utils/api";
 import ConstraintViolated from "./ConstraintViolated";
-import { today } from "../utils/date-time";
+// import { today } from "../utils/date-time";
 
 function NewReservations({ setDate, reservations, setReservations }) {
   const initialForm = {
@@ -16,7 +16,7 @@ function NewReservations({ setDate, reservations, setReservations }) {
 
   const history = useHistory();
   const [formData, setFormData] = useState({ ...initialForm });
-  const [constraints, setConstraints] = useState([]);
+  // const [constraints, setConstraints] = useState([]);
   // if constraints are violated, push violating constraint into array,
   // if constraints.length, alert renders and submit does not occur
 
@@ -28,42 +28,42 @@ function NewReservations({ setDate, reservations, setReservations }) {
     setFormData({ ...formData, [target.name]: Number(target.value) });
   };
 
-  const checkDate = () => {
-    let todayString = today();
-    let todayYear = Number.parseInt(todayString.slice(0, 4));
-    let todayMonth = Number.parseInt(todayString.slice(5, 7));
-    let todayDay = Number.parseInt(todayString.slice(8, 10));
+  // const checkDate = () => {
+  //   let todayString = today();
+  //   let todayYear = Number.parseInt(todayString.slice(0, 4));
+  //   let todayMonth = Number.parseInt(todayString.slice(5, 7));
+  //   let todayDay = Number.parseInt(todayString.slice(8, 10));
 
-    let newResDate = formData.reservation_date;
-    let resYear = Number.parseInt(newResDate.slice(0, 4));
-    let resMonth = Number.parseInt(newResDate.slice(5, 7));
-    let resDay = Number.parseInt(newResDate.slice(8, 10));
-    // console.log(resYear, resMonth, resDay);
+  //   let newResDate = formData.reservation_date;
+  //   let resYear = Number.parseInt(newResDate.slice(0, 4));
+  //   let resMonth = Number.parseInt(newResDate.slice(5, 7));
+  //   let resDay = Number.parseInt(newResDate.slice(8, 10));
+  //   // console.log(resYear, resMonth, resDay);
 
-    // check if year is equal to or greater than today(), if yes,
-    // check if month is equal to or greater than today(), if yes,
-    // check if day is equal to or greater than today(), if yes, set constraints to false
-    if (resYear >= todayYear && resMonth >= todayMonth && resDay >= todayDay) {
-      return;
-    } else {
-      setConstraints([...constraints, "invalidDate"]);
-    }
-  };
+  //   // check if year is equal to or greater than today(), if yes,
+  //   // check if month is equal to or greater than today(), if yes,
+  //   // check if day is equal to or greater than today(), if yes, set constraints to false
+  //   if (resYear >= todayYear && resMonth >= todayMonth && resDay >= todayDay) {
+  //     return;
+  //   } else {
+  //     setConstraints([...constraints, "invalidDate"]);
+  //   }
+  // };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     // console.log("submit pressed", formData);
-    checkDate();
+    // checkDate();
     // if (constraints) {
-    //   try {
-    //     const newReservation = await createReservation(formData);
-    //     console.log("new reservation is", newReservation);
-    //     setDate(formData.reservation_date);
-    //     setReservations([...reservations, newReservation]);
-    //     history.push(`/dashboard?date=${formData.reservation_date}`);
-    //   } catch (error) {
-    //     console.log("error----> ", error);
-    //   }
+    try {
+      const newReservation = await createReservation(formData);
+      console.log("new reservation is", newReservation);
+      setDate(formData.reservation_date);
+      setReservations([...reservations, newReservation]);
+      history.push(`/dashboard?date=${formData.reservation_date}`);
+    } catch (error) {
+      console.log("error----> ", error);
+    }
     // }
   };
 
@@ -142,10 +142,10 @@ function NewReservations({ setDate, reservations, setReservations }) {
             required
           />
         </>
-        <ConstraintViolated
+        {/* <ConstraintViolated
           constraints={constraints}
           // setConstraints={setConstraints}
-        />
+        /> */}
         <div className="d-flex">
           <div>
             <button type="submit" className="btn btn-primary">
