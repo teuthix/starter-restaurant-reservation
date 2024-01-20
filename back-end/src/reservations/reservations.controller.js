@@ -98,7 +98,7 @@ function isValidPeople(req, res, next) {
 
 // if route has date query, then return reservations for that date
 // else, return all reservation order by reservation time;
-async function hasDate(req, res, next) {
+function hasDate(req, res, next) {
   const dateParam = req.query.date;
   if (dateParam) {
     res.locals.date = dateParam;
@@ -107,31 +107,50 @@ async function hasDate(req, res, next) {
   next();
 }
 
-async function isDateInPast(req, res, next) {
-  const { reservation_date } = req.body.data;
+function isDateInPast(reservedDate) {
+  // const { reservation_date } = req.body.data;
   // Create a new Date object for today
   const today = new Date();
-  const reservedDate = new Date(reservation_date);
+  // const reservedDate = new Date(reservation_date);
 
   // console.log(reservation_date, reservedDate);
   if (today > reservedDate) {
-    return next({
-      status: 400,
-      message: `reservation date must be in the future`,
-    });
+    return true;
+  } else {
+    return false;
   }
-  next();
 }
 
-async function isDateTuesday(req, res, next) {
-  const { reservation_date } = req.body.data;
+function isDateTuesday(reservedDate) {
+  // const { reservation_date } = req.body.data;
 
-  const reservedDate = new Date(reservation_date);
+  // const reservedDate = new Date(reservation_date);
   console.log(reservedDate, reservedDate.getDay());
   if (reservedDate.getUTCDay() == 2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function nonPastNonTues(req, res, next) {
+  const { reservation_date } = req.body.data;
+  const reservedDate = new Date(reservation_date);
+
+  if (isDateInPast(reservedDate) && isDateTuesday(reservedDate)) {
     return next({
       status: 400,
-      message: `closed on Tuesday`,
+      message: `Reservation is not in future and is on a closed Tuesday`,
+    });
+  } else if (isDateInPast(reservedDate)) {
+    return next({
+      status: 400,
+      message: `Reservation is not in the future`,
+    });
+  } else if (isDateTuesday(reservedDate)) {
+    return next({
+      status: 400,
+      message: `Reservation is on a closed day`,
     });
   }
   next();
@@ -155,8 +174,9 @@ module.exports = {
     isValidDate,
     isValidTime,
     isValidPeople,
-    isDateInPast,
-    isDateTuesday,
+    // isDateInPast,
+    // isDateTuesday,
+    nonPastNonTues,
     asyncErrorBoundary(create),
   ],
 };
