@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../utils/api";
-// import ConstraintViolated from "./ConstraintViolated";
 
 function NewReservations({ setDate, reservations, setReservations }) {
   const initialForm = {

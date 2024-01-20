@@ -107,32 +107,6 @@ function hasDate(req, res, next) {
   next();
 }
 
-// function isDateInPast(reservedDate) {
-// const { reservation_date } = req.body.data;
-// Create a new Date object for today
-// const today = new Date();
-// const reservedDate = new Date(reservation_date);
-
-// console.log(reservation_date, reservedDate);
-//   if (today > reservedDate) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-// function isDateTuesday(reservedDate) {
-// const { reservation_date } = req.body.data;
-
-// const reservedDate = new Date(reservation_date);
-//   console.log(reservedDate, reservedDate.getDay());
-//   if (reservedDate.getUTCDay() == 2) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
 function nonPastNonTues(req, res, next) {
   const { reservation_date } = req.body.data;
   const reservedDate = new Date(reservation_date);
@@ -174,8 +148,6 @@ module.exports = {
     isValidDate,
     isValidTime,
     isValidPeople,
-    // isDateInPast,
-    // isDateTuesday,
     nonPastNonTues,
     asyncErrorBoundary(create),
   ],

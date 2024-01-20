@@ -1,7 +1,6 @@
 // import React from "react";
 
 function DashList({ date, reservations }) {
-  //   console.log(reservations[0]);
   const eachReservation = reservations.map((eachRes, index) => {
     return (
       <div key={index}>
