@@ -130,6 +130,43 @@ function nonPastNonTues(req, res, next) {
   next();
 }
 
+function eligibleTimeframe(req, res, next) {
+  const { reservation_date, reservation_time } = req.body.data;
+  const reservedTime = new Date(reservation_date + "T" + reservation_time);
+  const reservedHours = reservedTime.getUTCHours();
+  const reservedMinutes = reservedTime.getUTCMinutes();
+
+  const now = new Date();
+  const nowHours = now.getUTCHours();
+  const nowMinutes = now.getUTCMinutes();
+
+  const errors = [];
+
+  console.log(now, reservedTime, "0000000000");
+  if (
+    (reservedHours < 10 && reservedMinutes < 30) ||
+    (reservedHours > 21 && reservedMinutes > 30)
+  ) {
+    errors.push("Outside of opening hours");
+  }
+
+  if (
+    nowHours > reservedHours ||
+    (nowHours > reservedHours && nowMinutes > reservedMinutes)
+  ) {
+    errors.push("Reservation must not be in past");
+  }
+
+  if (errors.length) {
+    return next({
+      status: 400,
+      message: errors.join("; "),
+    });
+  }
+
+  next();
+}
+
 async function list(req, res) {
   const data = await reservationsService.list(res.locals.date);
   res.json({ data });
@@ -149,6 +186,7 @@ module.exports = {
     isValidTime,
     isValidPeople,
     nonPastNonTues,
+    eligibleTimeframe,
     asyncErrorBoundary(create),
   ],
 };
