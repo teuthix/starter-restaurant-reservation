@@ -107,6 +107,40 @@ async function hasDate(req, res, next) {
   next();
 }
 
+async function isDateInPast(req, res, next) {
+  const { reservation_date } = req.body.data;
+  // Create a new Date object for today
+  const today = new Date();
+  const reservedDate = new Date(reservation_date);
+
+  console.log(reservation_date, reservedDate);
+  if (today > reservedDate) {
+    return next({
+      status: 400,
+      message: `reservation date must be in the future`,
+    });
+  }
+  next();
+}
+
+async function isDateTuesday(req, res, next) {
+  const { reservation_date } = req.body.data;
+
+  const reservedDate = new Date(reservation_date);
+  // console.log(
+  //   reservedDate.toString().slice(0, 3),
+  //   typeof reservedDate.toString()
+  // );
+
+  if (reservedDate.toString().slice(0, 3) == "Tue") {
+    return next({
+      status: 400,
+      message: `Invalid date, closed on Tuesday`,
+    });
+  }
+  next();
+}
+
 async function list(req, res) {
   const data = await reservationsService.list(res.locals.date);
   res.json({ data });
@@ -125,6 +159,8 @@ module.exports = {
     isValidDate,
     isValidTime,
     isValidPeople,
+    isDateInPast,
+    isDateTuesday,
     asyncErrorBoundary(create),
   ],
 };
