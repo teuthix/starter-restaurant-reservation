@@ -107,52 +107,52 @@ function hasDate(req, res, next) {
   next();
 }
 
-function isDateInPast(reservedDate) {
-  // const { reservation_date } = req.body.data;
-  // Create a new Date object for today
-  const today = new Date();
-  // const reservedDate = new Date(reservation_date);
+// function isDateInPast(reservedDate) {
+// const { reservation_date } = req.body.data;
+// Create a new Date object for today
+// const today = new Date();
+// const reservedDate = new Date(reservation_date);
 
-  // console.log(reservation_date, reservedDate);
-  if (today > reservedDate) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// console.log(reservation_date, reservedDate);
+//   if (today > reservedDate) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
-function isDateTuesday(reservedDate) {
-  // const { reservation_date } = req.body.data;
+// function isDateTuesday(reservedDate) {
+// const { reservation_date } = req.body.data;
 
-  // const reservedDate = new Date(reservation_date);
-  console.log(reservedDate, reservedDate.getDay());
-  if (reservedDate.getUTCDay() == 2) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// const reservedDate = new Date(reservation_date);
+//   console.log(reservedDate, reservedDate.getDay());
+//   if (reservedDate.getUTCDay() == 2) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 function nonPastNonTues(req, res, next) {
   const { reservation_date } = req.body.data;
   const reservedDate = new Date(reservation_date);
+  const today = new Date();
+  const errors = [];
 
-  if (isDateInPast(reservedDate) && isDateTuesday(reservedDate)) {
+  if (reservedDate.getUTCDay() == 2) {
+    errors.push("Restaurant is closed on Tuesdays");
+  }
+  if (today > reservedDate) {
+    errors.push("Reservation must be made for a future date");
+  }
+
+  if (errors.length > 0) {
     return next({
       status: 400,
-      message: `Reservation is not in future and is on a closed Tuesday`,
-    });
-  } else if (isDateInPast(reservedDate)) {
-    return next({
-      status: 400,
-      message: `Reservation is not in the future`,
-    });
-  } else if (isDateTuesday(reservedDate)) {
-    return next({
-      status: 400,
-      message: `Reservation is on a closed day`,
+      message: errors.join("; "),
     });
   }
+
   next();
 }
 
