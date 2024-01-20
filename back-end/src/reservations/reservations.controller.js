@@ -142,7 +142,6 @@ function eligibleTimeframe(req, res, next) {
 
   const errors = [];
 
-  console.log(now, reservedTime, "0000000000");
   if (
     (reservedHours < 10 && reservedMinutes < 30) ||
     (reservedHours > 21 && reservedMinutes > 30)
