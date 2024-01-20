@@ -128,7 +128,7 @@ async function isDateTuesday(req, res, next) {
 
   const reservedDate = new Date(reservation_date);
   console.log(reservedDate, reservedDate.getDay());
-  if (reservedDate.toString().slice(0, 3) !== "Tue") {
+  if (reservedDate.getUTCDay() == 2) {
     return next({
       status: 400,
       message: `closed on Tuesday`,
