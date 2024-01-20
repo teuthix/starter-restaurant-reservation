@@ -113,7 +113,7 @@ async function isDateInPast(req, res, next) {
   const today = new Date();
   const reservedDate = new Date(reservation_date);
 
-  console.log(reservation_date, reservedDate);
+  // console.log(reservation_date, reservedDate);
   if (today > reservedDate) {
     return next({
       status: 400,
@@ -127,15 +127,11 @@ async function isDateTuesday(req, res, next) {
   const { reservation_date } = req.body.data;
 
   const reservedDate = new Date(reservation_date);
-  // console.log(
-  //   reservedDate.toString().slice(0, 3),
-  //   typeof reservedDate.toString()
-  // );
-
-  if (reservedDate.toString().slice(0, 3) == "Tue") {
+  console.log(reservedDate, reservedDate.getDay());
+  if (reservedDate.toString().slice(0, 3) !== "Tue") {
     return next({
       status: 400,
-      message: `Invalid date, closed on Tuesday`,
+      message: `closed on Tuesday`,
     });
   }
   next();
