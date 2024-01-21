@@ -22,8 +22,7 @@ function hasOnlyValidProperties(req, res, next) {
 }
 
 function isValidTableName(req, res, next) {
-  const { table_name } = req.body.table_name;
-  console.log(table_name, typeof table_name, "INSIDE VALID TABLE NAME");
+  const { table_name } = req.body.data;
 
   if (!table_name || table_name.length == 1) {
     return next({
@@ -40,7 +39,6 @@ async function list(req, res) {
 }
 
 async function create(req, res) {
-  console.log(req.body.data);
   const data = await tablesService.create(req.body.data);
   res.status(201).json({ data });
 }
