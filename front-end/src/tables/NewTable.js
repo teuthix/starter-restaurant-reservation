@@ -9,12 +9,12 @@ function NewTable() {
       <form className="d-flex flex-column mx-4 pt-4">
         <>
           <label htmlFor="table_name">Table Name:</label>
-          <input name="table_name" />
+          <input name="table_name" type="text" minLength="2" required />
         </>
 
         <>
           <label htmlFor="capacity">Capacity:</label>
-          <input name="capacity" />
+          <input name="capacity" type="number" min="1" required />
         </>
 
         <div className="d-flex">
