@@ -35,7 +35,7 @@ function isValidTableName(req, res, next) {
 
 function isValidCapacity(req, res, next) {
   const { capacity } = req.body.data;
-  console.log(capacity, typeof capacity, isNaN(capacity));
+  //   console.log(capacity, typeof capacity, isNaN(capacity));
 
   if (typeof capacity !== "number") {
     return next({
@@ -47,7 +47,9 @@ function isValidCapacity(req, res, next) {
 }
 
 async function list(req, res) {
+  //   console.log("in list");
   const data = await tablesService.list();
+  //   console.log(data, "data");
   res.json({ data });
 }
 
