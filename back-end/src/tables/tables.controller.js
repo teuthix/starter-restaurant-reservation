@@ -33,6 +33,19 @@ function isValidTableName(req, res, next) {
   next();
 }
 
+function isValidCapacity(req, res, next) {
+  const { capacity } = req.body.data;
+  console.log(capacity, typeof capacity, isNaN(capacity));
+
+  if (typeof capacity !== "number") {
+    return next({
+      status: 400,
+      message: "capacity issue",
+    });
+  }
+  next();
+}
+
 async function list(req, res) {
   const data = await tablesService.list();
   res.json({ data });
@@ -49,6 +62,7 @@ module.exports = {
     hasRequiredProperties,
     hasOnlyValidProperties,
     isValidTableName,
+    isValidCapacity,
     asyncErrorBoundary(create),
   ],
 };
