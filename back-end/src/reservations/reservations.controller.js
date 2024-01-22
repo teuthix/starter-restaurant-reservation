@@ -166,6 +166,16 @@ function eligibleTimeframe(req, res, next) {
   next();
 }
 
+// async function idExists(req, res, next) {
+
+// }
+
+async function read(req, res) {
+  // console.log(req.params.reservation_id);
+  const data = await reservationsService.read(req.params.reservation_id);
+  res.status(200).json({ data });
+}
+
 async function list(req, res) {
   const data = await reservationsService.list(res.locals.date);
   res.json({ data });
@@ -188,4 +198,5 @@ module.exports = {
     eligibleTimeframe,
     asyncErrorBoundary(create),
   ],
+  read: [asyncErrorBoundary(read)],
 };
