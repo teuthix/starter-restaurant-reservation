@@ -11,7 +11,31 @@ function create(newTable) {
     .then((createdTable) => createdTable[0]);
 }
 
+function read(table_id) {
+  return knex("tables").select("*").where({ table_id: table_id }).first();
+}
+
+async function update(tableUpdate) {
+  await knex("tables as t")
+    .where({ reservation_id: tableUpdate.reservation_id })
+    .update(tableUpdate);
+
+  return await knex("tables as t")
+    .join("reservations as r", "t.reservation_id", "r.reservation_id")
+    .select(
+      "r.reservation_id",
+      "t.table_id",
+      "t.table_name",
+      "t.capacity",
+      "r.people"
+    )
+    .where({ "t.reservation_id": tableUpdate.reservation_id })
+    .first();
+}
+
 module.exports = {
   list,
   create,
+  read,
+  update,
 };

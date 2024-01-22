@@ -46,6 +46,25 @@ function isValidCapacity(req, res, next) {
   next();
 }
 
+const seatRequiredProperties = hasProperties("reservation_id", "capacity");
+const SEAT_PROPERTIES = ["reservation_id", "capacity"];
+
+async function reservationIdExists(req, res, next) {
+  const table = await tablesService.read(req.params.table_id);
+
+  if (table) {
+    res.locals.table = table;
+    return next();
+  }
+
+  next({ status: 404, message: "reservation_id not found" });
+}
+
+// async function enoughCapacity(req, res, next) {
+//     // if people > capacity, 400
+//     // if
+// }
+
 async function list(req, res) {
   //   console.log("in list");
   const data = await tablesService.list();
@@ -58,6 +77,20 @@ async function create(req, res) {
   res.status(201).json({ data });
 }
 
+async function update(req, res) {
+  //   const { reservation_id } = req.body.data;
+  //   const data = await tablesService.read(reservation_id);
+  //   console.log({ data });
+  //   res.status(200).json({ data });
+  const updatedSeat = {
+    ...res.locals.table,
+    ...req.body.data,
+    table_id: res.locals.table.table_id,
+  };
+  const data = await tablesService.update(updatedSeat);
+  res.status(200).json({ data });
+}
+
 module.exports = {
   list: [asyncErrorBoundary(list)],
   create: [
@@ -66,5 +99,11 @@ module.exports = {
     isValidTableName,
     isValidCapacity,
     asyncErrorBoundary(create),
+  ],
+  update: [
+    seatRequiredProperties,
+    hasOnlyValidProperties,
+    reservationIdExists,
+    asyncErrorBoundary(update),
   ],
 };
