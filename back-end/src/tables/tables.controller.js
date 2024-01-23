@@ -21,6 +21,7 @@ function hasOnlyValidProperties(req, res, next) {
   next();
 }
 
+// used in create
 function isValidTableName(req, res, next) {
   const { table_name } = req.body.data;
 
@@ -33,6 +34,7 @@ function isValidTableName(req, res, next) {
   next();
 }
 
+// used in create
 function isValidCapacity(req, res, next) {
   const { capacity } = req.body.data;
   //   console.log(capacity, typeof capacity, isNaN(capacity));
@@ -46,13 +48,15 @@ function isValidCapacity(req, res, next) {
   next();
 }
 
-const seatRequiredProperties = hasProperties("reservation_id", "capacity");
-const SEAT_PROPERTIES = ["reservation_id", "capacity"];
+// removed capacity for now
+const seatRequiredProperties = hasProperties("reservation_id");
 
+// used in update
 async function reservationIdExists(req, res, next) {
   const table = await tablesService.read(req.params.table_id);
+  console.log(req.params.table_id, table, table.reservation_id);
 
-  if (table) {
+  if (table && table.reservation_id !== null) {
     res.locals.table = table;
     return next();
   }
@@ -102,8 +106,7 @@ module.exports = {
   ],
   update: [
     seatRequiredProperties,
-    hasOnlyValidProperties,
-    reservationIdExists,
+    asyncErrorBoundary(reservationIdExists),
     asyncErrorBoundary(update),
   ],
 };

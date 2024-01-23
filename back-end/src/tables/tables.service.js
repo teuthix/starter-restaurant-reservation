@@ -11,8 +11,8 @@ function create(newTable) {
     .then((createdTable) => createdTable[0]);
 }
 
-function read(table_id) {
-  return knex("tables").select("*").where({ table_id: table_id }).first();
+function read(tableId) {
+  return knex("tables").select("*").where({ table_id: tableId }).first();
 }
 
 async function update(tableUpdate) {

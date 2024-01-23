@@ -171,9 +171,19 @@ function eligibleTimeframe(req, res, next) {
 // }
 
 async function read(req, res) {
-  // console.log(req.params.reservation_id);
-  const data = await reservationsService.read(req.params.reservation_id);
-  res.status(200).json({ data });
+  try {
+    const data = await reservationsService.read(req.params.reservation_id);
+    console.log(req.params.reservation_id, data);
+    if (!data) {
+      return next({
+        status: 404,
+        message: "reservation_id does not exist in database",
+      });
+    }
+    res.status(200).json({ data });
+  } catch (error) {
+    next(error);
+  }
 }
 
 async function list(req, res) {
