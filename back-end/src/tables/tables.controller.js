@@ -51,36 +51,32 @@ function isValidCapacity(req, res, next) {
 // removed capacity for now
 const seatRequiredProperties = hasProperties("reservation_id");
 
-// used in update
-async function reservationIdExists(req, res, next) {
+async function tableExists(req, res, next) {
   const table = await tablesService.read(req.params.table_id);
-  //   console.log(req.params.table_id, table, table.reservation_id);
-
-  // if table exists
   if (table) {
     res.locals.table = table;
-    console.log(table, table.reservation_id, "reservation id in table");
-
-    // if table has a reservation_id
-    if (table.reservation_id) {
-      //   console.log(table.reservation_id, "in if with reserv id");
-      return next();
-    }
-    // if no table.reservation_id ?
-    return next({
-      status: 404,
-      message: `reservation_id ${table.reservation_id} not found`,
-    });
+    next();
   }
-  //   console.log(table, "no table?");
-  // if table doesn't exist?
-  next();
+  next({ status: 400, message: "table does not exist" });
 }
 
-// async function enoughCapacity(req, res, next) {
-//     // if people > capacity, 400
-//     // if
-// }
+// used in update
+function reservationIdExists(req, res, next) {
+  console.log(req.body.data);
+  if (req.body.data.reservation_id) {
+    next();
+  }
+  next({
+    status: 404,
+    message: `reservation Id ${req.body.data.reservation_id} does not exist`,
+  });
+}
+
+async function enoughCapacity(req, res, next) {
+  // if people > capacity, 400
+  console.log(res.locals.table);
+  next();
+}
 
 async function list(req, res) {
   //   console.log("in list");
@@ -119,7 +115,9 @@ module.exports = {
   ],
   update: [
     seatRequiredProperties,
-    asyncErrorBoundary(reservationIdExists),
+    asyncErrorBoundary(tableExists),
+    reservationIdExists,
+    asyncErrorBoundary(enoughCapacity),
     asyncErrorBoundary(update),
   ],
 };
