@@ -166,24 +166,24 @@ function eligibleTimeframe(req, res, next) {
   next();
 }
 
-// async function idExists(req, res, next) {
-
-// }
+async function idExists(req, res, next) {
+  const reservation = await reservationsService.read(req.params.reservation_id);
+  console.log(req.params.reservation_id, reservation);
+  if (reservation) {
+    console.log("in if");
+    res.locals.reservation = reservation;
+    return next();
+  }
+  console.log("not in if");
+  next({
+    status: 404,
+    message: `${req.params.reservation_id} does not exist in database`,
+  });
+}
 
 async function read(req, res) {
-  try {
-    const data = await reservationsService.read(req.params.reservation_id);
-    console.log(req.params.reservation_id, data);
-    if (!data) {
-      return next({
-        status: 404,
-        message: "reservation_id does not exist in database",
-      });
-    }
-    res.status(200).json({ data });
-  } catch (error) {
-    next(error);
-  }
+  const { reservation: data } = res.locals;
+  res.status(200).json({ data });
 }
 
 async function list(req, res) {
@@ -208,5 +208,5 @@ module.exports = {
     eligibleTimeframe,
     asyncErrorBoundary(create),
   ],
-  read: [asyncErrorBoundary(read)],
+  read: [asyncErrorBoundary(idExists), read],
 };
