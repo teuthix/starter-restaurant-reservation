@@ -54,14 +54,27 @@ const seatRequiredProperties = hasProperties("reservation_id");
 // used in update
 async function reservationIdExists(req, res, next) {
   const table = await tablesService.read(req.params.table_id);
-  console.log(req.params.table_id, table, table.reservation_id);
+  //   console.log(req.params.table_id, table, table.reservation_id);
 
-  if (table && table.reservation_id !== null) {
+  // if table exists
+  if (table) {
     res.locals.table = table;
-    return next();
-  }
+    console.log(table, table.reservation_id, "reservation id in table");
 
-  next({ status: 404, message: "reservation_id not found" });
+    // if table has a reservation_id
+    if (table.reservation_id) {
+      //   console.log(table.reservation_id, "in if with reserv id");
+      return next();
+    }
+    // if no table.reservation_id ?
+    return next({
+      status: 404,
+      message: `reservation_id ${table.reservation_id} not found`,
+    });
+  }
+  //   console.log(table, "no table?");
+  // if table doesn't exist?
+  next();
 }
 
 // async function enoughCapacity(req, res, next) {

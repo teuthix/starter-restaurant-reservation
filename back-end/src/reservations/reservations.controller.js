@@ -168,13 +168,10 @@ function eligibleTimeframe(req, res, next) {
 
 async function idExists(req, res, next) {
   const reservation = await reservationsService.read(req.params.reservation_id);
-  console.log(req.params.reservation_id, reservation);
   if (reservation) {
-    console.log("in if");
     res.locals.reservation = reservation;
     return next();
   }
-  console.log("not in if");
   next({
     status: 404,
     message: `${req.params.reservation_id} does not exist in database`,
