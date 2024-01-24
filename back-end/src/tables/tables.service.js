@@ -14,8 +14,8 @@ function create(newTable) {
 function read(reservationId) {
   return knex("tables as t")
     .join("reservations as r", "t.reservation_id", "r.reservation_id")
-    .select("t.*", "r.people")
-    .where({ reservation_id: reservationId })
+    .select("t.*", "r.*")
+    .where({ "r.reservation_id": reservationId })
     .first();
 }
 

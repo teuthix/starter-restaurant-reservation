@@ -62,10 +62,12 @@ const seatRequiredProperties = hasProperties("reservation_id");
 // }
 
 // used in update
-function reservationIdExists(req, res, next) {
-  //   console.log(req.body.data);
-  if (req.body.data.reservation_id) {
-    next();
+async function reservationIdExists(req, res, next) {
+  //   console.log(req.body.data, "before table");
+  const table = await tablesService.read(req.body.data.reservation_id);
+  console.log(req.body.data, table, "table");
+  if (table) {
+    return next();
   }
   next({
     status: 404,
@@ -76,9 +78,9 @@ function reservationIdExists(req, res, next) {
 async function enoughCapacity(req, res, next) {
   // if people > capacity, 400
   // how do i get people
-  //   console.log(req.body.data);
+  //   console.log(req.body.data, req.body.data.reservation_id);
   const table = await tablesService.read(req.body.data.reservation_id);
-  console.log({ table });
+  //   console.log(table);
   next();
 }
 
