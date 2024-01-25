@@ -1,4 +1,5 @@
 const tablesService = require("./tables.service");
+const reservationsService = require("../reservations/reservations.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const hasProperties = require("../errors/hasProperties");
 const hasRequiredProperties = hasProperties("table_name", "capacity");
@@ -48,25 +49,27 @@ function isValidCapacity(req, res, next) {
   next();
 }
 
-// removed capacity for now
 const seatRequiredProperties = hasProperties("reservation_id");
 
-// async function tableExists(req, res, next) {
-//   console.log(req.body.data, req.params.table_id);
-//   const table = await tablesService.read(req.params.table_id);
-//   if (table) {
-//     res.locals.table = table;
-//     next();
-//   }
-//   next({ status: 400, message: "table does not exist" });
-// }
+async function tableExists(req, res, next) {
+  //   console.log(req.body.data, req.params.table_id);
+  const table = await tablesService.read(req.params.table_id);
+  if (table) {
+    res.locals.table = table;
+    return next();
+  }
+  next({ status: 400, message: "table does not exist" });
+}
 
 // used in update
 async function reservationIdExists(req, res, next) {
   //   console.log(req.body.data, "before table");
-  const table = await tablesService.read(req.body.data.reservation_id);
-  console.log(req.body.data, table, "table");
-  if (table) {
+  const reservation = await reservationsService.read(
+    req.body.data.reservation_id
+  );
+  //   console.log(reservation);
+  if (reservation) {
+    res.locals.reservation = reservation;
     return next();
   }
   next({
@@ -78,8 +81,13 @@ async function reservationIdExists(req, res, next) {
 async function enoughCapacity(req, res, next) {
   // if people > capacity, 400
   // how do i get people
-  //   console.log(req.body.data, req.body.data.reservation_id);
-  const table = await tablesService.read(req.body.data.reservation_id);
+  const table = await tablesService.read(req.params.table_id);
+  if (table.capacity < res.locals.reservation.people) {
+    next({
+      status: 400,
+      message: "not enough capacity",
+    });
+  }
   //   console.log(table);
   next();
 }
@@ -97,10 +105,6 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
-  //   const { reservation_id } = req.body.data;
-  //   const data = await tablesService.read(reservation_id);
-  //   console.log({ data });
-  //   res.status(200).json({ data });
   const updatedSeat = {
     ...res.locals.table,
     ...req.body.data,
@@ -121,9 +125,9 @@ module.exports = {
   ],
   update: [
     seatRequiredProperties,
-    // asyncErrorBoundary(tableExists),
-    reservationIdExists,
+    asyncErrorBoundary(reservationIdExists),
     asyncErrorBoundary(enoughCapacity),
+    asyncErrorBoundary(tableExists),
     asyncErrorBoundary(update),
   ],
 };

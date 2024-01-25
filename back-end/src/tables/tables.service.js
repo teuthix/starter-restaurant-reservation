@@ -11,12 +11,8 @@ function create(newTable) {
     .then((createdTable) => createdTable[0]);
 }
 
-function read(reservationId) {
-  return knex("tables as t")
-    .join("reservations as r", "t.reservation_id", "r.reservation_id")
-    .select("t.*", "r.*")
-    .where({ "r.reservation_id": reservationId })
-    .first();
+function read(tableId) {
+  return knex("tables").select("*").where({ table_id: tableId }).first();
 }
 
 async function update(tableUpdate) {
