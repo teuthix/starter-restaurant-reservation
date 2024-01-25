@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { listReservations } from "../utils/api";
+import { listReservations, listTables } from "../utils/api";
 import ListReservations from "./ListReservations";
+import TableList from "../tables/TablesList";
 
 /**
  * Defines the dashboard page.
@@ -9,7 +10,14 @@ import ListReservations from "./ListReservations";
  *  the date for which the user wants to view reservations.
  * @returns {JSX.Element}
  */
-function Dashboard({ date, setDate, reservations, setReservations }) {
+function Dashboard({
+  date,
+  setDate,
+  reservations,
+  setReservations,
+  tables,
+  setTables,
+}) {
   // const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null);
   const history = useHistory();
@@ -37,6 +45,7 @@ function Dashboard({ date, setDate, reservations, setReservations }) {
 
   //added reservations to useEffect due to error
   useEffect(loadDashboard, [date, setReservations]);
+  useEffect(loadTables, [date, setTables]);
 
   function loadDashboard() {
     const abortController = new AbortController();
@@ -47,17 +56,39 @@ function Dashboard({ date, setDate, reservations, setReservations }) {
     return () => abortController.abort();
   }
 
-  console.log(reservations);
+  async function loadTables() {
+    const abortController = new AbortController();
+    try {
+      const response = await listTables();
+      setTables(response);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      abortController.abort();
+    }
+  }
+
+  // console.log(reservations);
 
   return (
     <>
-      <ListReservations
-        reservations={reservations}
-        date={date}
-        setDate={setDate}
-        reservationsError={reservationsError}
-        handleDateChange={handleDateChange}
-      />
+      <h1>Dashboard</h1>
+
+      <div className="d-flex flex-row pt-4">
+        <div className="mx-5">
+          <ListReservations
+            reservations={reservations}
+            date={date}
+            setDate={setDate}
+            reservationsError={reservationsError}
+            handleDateChange={handleDateChange}
+          />
+        </div>
+        <div>
+          <h4>Tables</h4>
+          <TableList tables={tables} />
+        </div>
+      </div>
     </>
   );
 }

@@ -40,6 +40,8 @@ function Routes() {
           setDate={setDate}
           reservations={reservations}
           setReservations={setReservations}
+          tables={tables}
+          setTables={setTables}
         />
       </Route>
       <Route path="/tables/new">

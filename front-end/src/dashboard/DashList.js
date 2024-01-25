@@ -12,6 +12,13 @@ function DashList({ date, reservations }) {
           <p>reservation time: {eachRes.reservation_time}</p>
           <p>number of people: {eachRes.people}</p>
         </div>
+        <a
+          href={`/reservations/${eachRes.reservation_id}/seat`}
+          type="button"
+          className="btn btn-primary"
+        >
+          Seat
+        </a>
       </div>
     );
   });
