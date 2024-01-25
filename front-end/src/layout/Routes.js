@@ -17,6 +17,7 @@ import { today } from "../utils/date-time";
 function Routes() {
   const [date, setDate] = useState(today());
   const [reservations, setReservations] = useState([]);
+  const [tables, setTables] = useState([]);
 
   return (
     <Switch>
@@ -42,7 +43,7 @@ function Routes() {
         />
       </Route>
       <Route path="/tables/new">
-        <NewTable />
+        <NewTable tables={tables} setTables={setTables} />
       </Route>
       <Route>
         <NotFound />
