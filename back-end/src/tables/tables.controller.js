@@ -63,12 +63,10 @@ async function tableExists(req, res, next) {
 
 // used in update
 async function reservationIdExists(req, res, next) {
-  //   console.log(req.body.data, "before table");
   const reservation = await reservationsService.read(
     req.body.data.reservation_id
   );
-  //   console.log(reservation);
-  if (reservation) {
+  if (reservation && reservation.isSeated == false) {
     res.locals.reservation = reservation;
     return next();
   }
@@ -78,24 +76,34 @@ async function reservationIdExists(req, res, next) {
   });
 }
 
-async function enoughCapacity(req, res, next) {
+function enoughCapacity(req, res, next) {
   // if people > capacity, 400
   // how do i get people
-  const table = await tablesService.read(req.params.table_id);
-  if (table.capacity < res.locals.reservation.people) {
-    next({
+  const { capacity } = res.locals.table;
+  const { people } = res.locals.reservation;
+  if (capacity < people) {
+    return next({
       status: 400,
       message: "not enough capacity",
     });
   }
-  //   console.log(table);
+  next();
+}
+
+async function isTableOccupied(req, res, next) {
+  //   console.log(res.locals.table);
+  const { isOccupied } = res.locals.table;
+  if (isOccupied == true) {
+    return next({
+      status: 400,
+      message: "table is already occupied",
+    });
+  }
   next();
 }
 
 async function list(req, res) {
-  //   console.log("in list");
   const data = await tablesService.list();
-  //   console.log(data, "data");
   res.json({ data });
 }
 
@@ -109,6 +117,7 @@ async function update(req, res) {
     ...res.locals.table,
     ...req.body.data,
     table_id: res.locals.table.table_id,
+    isOccupied: "true",
   };
   const data = await tablesService.update(updatedSeat);
   res.status(200).json({ data });
@@ -126,8 +135,9 @@ module.exports = {
   update: [
     seatRequiredProperties,
     asyncErrorBoundary(reservationIdExists),
-    asyncErrorBoundary(enoughCapacity),
     asyncErrorBoundary(tableExists),
+    enoughCapacity,
+    asyncErrorBoundary(isTableOccupied),
     asyncErrorBoundary(update),
   ],
 };
