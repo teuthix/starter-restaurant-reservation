@@ -1,5 +1,5 @@
 function TableList({ tables }) {
-  console.log(tables);
+  //   console.log(tables);
   const eachTable = tables.map((eaTable, index) => {
     return (
       <div key={index}>
