@@ -98,7 +98,8 @@ export async function createTable(table, signal) {
 }
 
 export async function updateTable(tableUpdate, signal) {
-  const url = `${API_BASE_URL}/tables/:table_id/seat`;
+  const { table_id } = tableUpdate;
+  const url = `${API_BASE_URL}/tables/${table_id}/seat`;
   const options = {
     method: "PUT",
     headers,
