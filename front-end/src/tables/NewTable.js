@@ -16,6 +16,10 @@ function NewTable({ tables, setTables }) {
     setFormData({ ...formData, [target.name]: target.value });
   };
 
+  const handleNumberChange = ({ target }) => {
+    setFormData({ ...formData, [target.name]: Number(target.value) });
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -50,7 +54,7 @@ function NewTable({ tables, setTables }) {
             name="capacity"
             type="number"
             min="1"
-            onChange={handleChange}
+            onChange={handleNumberChange}
             required
           />
         </>
