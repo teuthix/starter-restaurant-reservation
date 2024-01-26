@@ -93,6 +93,7 @@ function enoughCapacity(req, res, next) {
 async function isTableOccupied(req, res, next) {
   //   console.log(res.locals.table);
   const { isOccupied } = res.locals.table;
+  //   console.log(isOccupied);
   if (isOccupied == true) {
     return next({
       status: 400,
@@ -120,6 +121,7 @@ async function update(req, res) {
     isOccupied: "true",
   };
   const data = await tablesService.update(updatedSeat);
+  //   console.log(data);
   res.status(200).json({ data });
 }
 

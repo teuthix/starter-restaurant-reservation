@@ -16,21 +16,11 @@ function read(tableId) {
 }
 
 async function update(tableUpdate) {
-  await knex("tables as t")
-    .where({ reservation_id: tableUpdate.reservation_id })
-    .update(tableUpdate);
-
-  return await knex("tables as t")
-    .join("reservations as r", "t.reservation_id", "r.reservation_id")
-    .select(
-      "r.reservation_id",
-      "t.table_id",
-      "t.table_name",
-      "t.capacity",
-      "r.people"
-    )
-    .where({ "t.reservation_id": tableUpdate.reservation_id })
-    .first();
+  await knex("tables")
+    .select("*")
+    .where({ table_id: tableUpdate.table_id })
+    .update(tableUpdate, "*")
+    .then((updatedTables) => updatedTables[0]);
 }
 
 module.exports = {
