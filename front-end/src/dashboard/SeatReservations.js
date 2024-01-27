@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { listTables, updateTable } from "../utils/api";
 
 function SeatReservation({ tables, setTables }) {
   const param = useParams();
+  const history = useHistory();
   const [selectedTable, setSelectedTable] = useState("");
   useEffect(loadTables, [setTables]);
 
@@ -31,9 +32,15 @@ function SeatReservation({ tables, setTables }) {
     e.preventDefault();
     console.log("selected", selectedTable);
     try {
-      const update = { reservation_id: param, table_id: selectedTable };
-      const updatedTable = await updateTable(update);
-      setTables(...tables, updatedTable);
+      // const update = { reservation_id: param, table_id: selectedTable };
+      const { reservation_id } = param;
+      const updatedTable = await updateTable(
+        Number(reservation_id),
+        selectedTable
+      );
+      console.log("success", updatedTable);
+      //   setTables(...tables, updatedTable);
+      history.push("/dashboard");
     } catch (error) {
       console.error(error);
     }
