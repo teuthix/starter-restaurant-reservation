@@ -1,14 +1,13 @@
 function TableList({ tables }) {
-  //   console.log(tables);
-  const eachTable = tables.map((eaTable, index) => {
+  const eachTable = tables.map((table, index) => {
     return (
       <div key={index}>
-        <h5>{eaTable.table_name}</h5>
-        <p>Capacity: {eaTable.capacity}</p>
-        {eaTable && eaTable.isOccupied ? (
-          <p data-table-id-status={eaTable.table_id}>Occuppied</p>
+        <h5>{table.table_name}</h5>
+        <p>Capacity: {table.capacity}</p>
+        {table && table.isOccupied ? (
+          <p data-table-id-status={table.table_id}>Occupied</p>
         ) : (
-          <p data-table-id-status={eaTable.table_id}>Free</p>
+          <p data-table-id-status={table.table_id}>Free</p>
         )}
       </div>
     );

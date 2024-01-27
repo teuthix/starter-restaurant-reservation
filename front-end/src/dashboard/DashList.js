@@ -14,10 +14,9 @@ function DashList({ date, reservations }) {
         </div>
         <a
           href={`/reservations/${eachRes.reservation_id}/seat`}
-          type="button"
           className="btn btn-primary"
         >
-          Seat
+          <button type="button">Seat</button>
         </a>
       </div>
     );

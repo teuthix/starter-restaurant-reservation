@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createTable } from "../utils/api";
 
-function NewTable({ tables, setTables }) {
+function NewTable({ tables, setTables, date }) {
   const initialForm = {
     table_name: "",
     capacity: "",
@@ -24,9 +24,9 @@ function NewTable({ tables, setTables }) {
     e.preventDefault();
     try {
       const newTable = await createTable(formData);
-      console.log("new reservation is", newTable);
+      console.log("new table is", newTable);
       setTables([...tables, newTable]);
-      history.push(`/dashboard`);
+      history.push(`/dashboard?date=${date}`);
     } catch (error) {
       // setShowError(error);
       console.log("error----> ", error);

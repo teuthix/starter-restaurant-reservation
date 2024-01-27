@@ -49,7 +49,7 @@ function Routes() {
         />
       </Route>
       <Route path="/tables/new">
-        <NewTable tables={tables} setTables={setTables} />
+        <NewTable tables={tables} setTables={setTables} date={date} />
       </Route>
       <Route>
         <NotFound />
