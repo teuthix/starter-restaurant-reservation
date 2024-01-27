@@ -254,12 +254,19 @@ describe("US-04 - Seat reservation - E2E", () => {
 
       const hrefSelector = `[href="/reservations/${reservation.reservation_id}/seat"]`;
 
-      const hrefValue = await page.evaluate((hrefSelector) => {
-        const element = document.querySelector(hrefSelector);
-        return element ? element.getAttribute("href") : null;
-      }, hrefSelector);
+      await page.waitForSelector(hrefSelector);
 
-      console.log("Actual href:", hrefValue);
+      await page.screenshot({
+        path: ".screenshots/us-04-dashboard-seat-button-after.png",
+        fullPage: true,
+      });
+
+      const containsSeat = await page.evaluate((hrefSelector) => {
+        return document
+          .querySelector(hrefSelector)
+          .innerText.toLowerCase()
+          .includes("seat");
+      }, hrefSelector);
 
       expect(containsSeat).toBe(true);
     });
