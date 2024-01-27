@@ -88,7 +88,7 @@ function Dashboard({
         </div>
         <div>
           <h4>Tables</h4>
-          <TableList tables={tables} />
+          <TableList tables={tables} setTables={setTables} />
         </div>
       </div>
     </>
