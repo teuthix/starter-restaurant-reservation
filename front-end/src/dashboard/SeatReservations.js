@@ -6,19 +6,18 @@ function SeatReservation({ tables, setTables }) {
   const param = useParams();
   const history = useHistory();
   const [selectedTable, setSelectedTable] = useState("");
-  useEffect(loadTables, [setTables]);
 
-  async function loadTables() {
-    const abortController = new AbortController();
-    try {
-      const response = await listTables();
-      setTables(response);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      abortController.abort();
+  useEffect(() => {
+    async function loadTables() {
+      try {
+        const response = await listTables();
+        setTables(response);
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
+    loadTables();
+  }, [setTables]);
 
   const tableOptions = tables.map((table) => {
     return (

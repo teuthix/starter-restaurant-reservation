@@ -43,32 +43,34 @@ function Dashboard({
     });
   };
 
-  //added reservations to useEffect due to error
-  useEffect(loadDashboard, [date, setReservations]);
-  useEffect(loadTables, [date, setTables]);
-
-  function loadDashboard() {
-    const abortController = new AbortController();
-    setReservationsError(null);
-    listReservations({ date }, abortController.signal)
-      .then(setReservations)
-      .catch(setReservationsError);
-    return () => abortController.abort();
-  }
-
-  async function loadTables() {
-    const abortController = new AbortController();
-    try {
-      const response = await listTables();
-      setTables(response);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      abortController.abort();
+  useEffect(() => {
+    async function fetchReservations() {
+      try {
+        const response = await listReservations({ date });
+        setReservations(response);
+        setReservationsError(null);
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
+    fetchReservations();
+  }, [date, setReservations]);
 
-  // console.log(reservations);
+  useEffect(() => {
+    async function loadTables() {
+      const abortController = new AbortController();
+      try {
+        const response = await listTables();
+        setTables(response);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        abortController.abort();
+      }
+    }
+
+    loadTables();
+  }, [date, setTables]);
 
   return (
     <>
