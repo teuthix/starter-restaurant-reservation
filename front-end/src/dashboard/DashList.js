@@ -12,6 +12,7 @@ function DashList({ date, reservations }) {
         <div>
           <p>reservation date: {reservation.reservation_date}</p>
           <p>reservation time: {reservation.reservation_time}</p>
+          <p>mobile number: {reservation.mobile_number}</p>
           <p>number of people: {reservation.people}</p>
         </div>
         <Link to={`/reservations/${reservation_id}/seat`}>
