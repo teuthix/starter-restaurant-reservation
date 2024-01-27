@@ -130,40 +130,35 @@ function nonPastNonTues(req, res, next) {
   next();
 }
 
-function eligibleTimeframe(req, res, next) {
+function nonPast(req, res, next) {
   const { reservation_date, reservation_time } = req.body.data;
-  const reservedTime = new Date(reservation_date + "T" + reservation_time);
-  const reservedHours = reservedTime.getUTCHours();
-  const reservedMinutes = reservedTime.getUTCMinutes();
-
-  const now = new Date();
-  const nowHours = now.getUTCHours();
-  const nowMinutes = now.getUTCMinutes();
-
-  const errors = [];
-
-  if (
-    (reservedHours < 10 && reservedMinutes < 30) ||
-    (reservedHours > 21 && reservedMinutes > 30)
-  ) {
-    errors.push("Outside of opening hours");
-  }
-
-  if (
-    nowHours > reservedHours ||
-    (nowHours > reservedHours && nowMinutes > reservedMinutes)
-  ) {
-    errors.push("Reservation must not be in past");
-  }
-
-  if (errors.length) {
+  const reservation = new Date(`${reservation_date} EST`).setHours(
+    reservation_time.substring(0, 2),
+    reservation_time.substring(3)
+  );
+  const now = Date.now();
+  if (reservation > now) {
+    return next();
+  } else {
     return next({
       status: 400,
-      message: errors.join("; "),
+      message: "Reservation must not be in past",
     });
   }
+}
 
-  next();
+function duringOpenHours(req, res, next) {
+  const { reservation_time } = req.body.data;
+  const reservation =
+    reservation_time.substring(0, 2) + reservation_time.substring(3);
+  if (reservation > 1030 && reservation < 2130) {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: "Outside of opening hours",
+    });
+  }
 }
 
 async function idExists(req, res, next) {
@@ -202,7 +197,9 @@ module.exports = {
     isValidTime,
     isValidPeople,
     nonPastNonTues,
-    eligibleTimeframe,
+    // eligibleTimeframe,
+    nonPast,
+    duringOpenHours,
     asyncErrorBoundary(create),
   ],
   read: [asyncErrorBoundary(idExists), read],
