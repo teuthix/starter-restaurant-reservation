@@ -23,9 +23,14 @@ async function update(tableUpdate) {
     .then((updatedTables) => updatedTables[0]);
 }
 
+async function destroy(table_id) {
+  return knex("tables").where({ table_id }).del();
+}
+
 module.exports = {
   list,
   create,
   read,
   update,
+  delete: destroy,
 };
