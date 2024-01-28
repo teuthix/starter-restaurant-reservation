@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function DashList({ date, reservations }) {
-  const eachReservation = reservations.map((reservation, index) => {
+  const eachReservation = reservations.map((reservation) => {
     const { reservation_id } = reservation;
     return (
-      <div key={index}>
+      <div key={reservation_id}>
         <h5>
           {reservation.first_name} {reservation.last_name}
         </h5>
