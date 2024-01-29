@@ -10,7 +10,8 @@ const hasRequiredProperties = hasProperties(
   "mobile_number",
   "reservation_date",
   "reservation_time",
-  "people"
+  "people",
+  "status"
 );
 
 const VALID_PROPERTIES = [
@@ -20,6 +21,7 @@ const VALID_PROPERTIES = [
   "reservation_date",
   "reservation_time",
   "people",
+  "status",
 ];
 
 function hasOnlyValidProperties(req, res, next) {
@@ -38,6 +40,7 @@ function hasOnlyValidProperties(req, res, next) {
   next();
 }
 
+// used in CREATE / POST
 function isValidDate(req, res, next) {
   const { reservation_date } = req.body.data;
 
@@ -52,6 +55,7 @@ function isValidDate(req, res, next) {
   next();
 }
 
+// used in CREATE / POST
 function isValidDateFormat(dateString) {
   // RegExp to match the format YYYY-MM-DD
   const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
@@ -66,6 +70,7 @@ function isValidDateFormat(dateString) {
   return !isNaN(parsedDate.getTime());
 }
 
+// used in CREATE / POST
 function isValidTime(req, res, next) {
   const { reservation_time } = req.body.data;
 
@@ -78,11 +83,13 @@ function isValidTime(req, res, next) {
   next();
 }
 
+// used in CREATE / POST
 function isValidTimeFormat(timeString) {
   const timeFormatRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
   return timeFormatRegex.test(timeString);
 }
 
+// used in CREATE / POST
 function isValidPeople(req, res, next) {
   const { people } = req.body.data;
   if (!Number.isInteger(people) || people < 1) {
@@ -96,6 +103,7 @@ function isValidPeople(req, res, next) {
   next();
 }
 
+// used in LIST / GET
 // if route has date query, then return reservations for that date
 // else, return all reservation order by reservation time;
 function hasDate(req, res, next) {
@@ -107,6 +115,7 @@ function hasDate(req, res, next) {
   next();
 }
 
+// used in CREATE / POST
 function nonPastNonTues(req, res, next) {
   const { reservation_date } = req.body.data;
   const reservedDate = new Date(reservation_date);
@@ -130,6 +139,7 @@ function nonPastNonTues(req, res, next) {
   next();
 }
 
+// used in CREATE / POST
 function nonPast(req, res, next) {
   const { reservation_date, reservation_time } = req.body.data;
   const reservation = new Date(`${reservation_date} EST`).setHours(
@@ -147,6 +157,7 @@ function nonPast(req, res, next) {
   }
 }
 
+// used in CREATE / POST
 function duringOpenHours(req, res, next) {
   const { reservation_time } = req.body.data;
   const reservation =
@@ -159,6 +170,19 @@ function duringOpenHours(req, res, next) {
       message: "Outside of opening hours",
     });
   }
+}
+
+// used in CREATE / POST
+function status(req, res, next) {
+  const { status } = req.body.data;
+  // console.log(status);
+  if (status === "seated" || status === "finished") {
+    return next({
+      status: 400,
+      message: `Status is ${status}`,
+    });
+  }
+  next();
 }
 
 async function idExists(req, res, next) {
@@ -184,6 +208,7 @@ async function list(req, res) {
 }
 
 async function create(req, res) {
+  // console.log("in create");
   const data = await reservationsService.create(req.body.data);
   res.status(201).json({ data });
 }
@@ -197,9 +222,9 @@ module.exports = {
     isValidTime,
     isValidPeople,
     nonPastNonTues,
-    // eligibleTimeframe,
     nonPast,
     duringOpenHours,
+    status,
     asyncErrorBoundary(create),
   ],
   read: [asyncErrorBoundary(idExists), read],
