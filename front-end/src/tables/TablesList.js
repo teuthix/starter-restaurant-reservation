@@ -1,16 +1,23 @@
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { deleteTable } from "../utils/api";
 
 function TableList({ tables, setTables }) {
+  const history = useHistory();
+
   const handleFinish = async (e) => {
     const text =
       "Is this table ready to seat new guests? This cannot be undone.";
+    const deleteId = e.target.value;
+
     if (window.confirm(text)) {
-      console.log(e.target.value);
-      const deleteId = e.target.value;
+      // console.log("clicked ok", deleteId);
       await deleteTable(deleteId);
-      setTables((currentTables) => {
-        currentTables.filter((table) => table.table_id !== deleteId);
-      });
+      console.log(tables);
+      setTables((currentTables) =>
+        currentTables.filter((table) => table.table_id !== deleteId)
+      );
+      // history.go(0);
     }
   };
 
