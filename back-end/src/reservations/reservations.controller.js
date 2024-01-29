@@ -185,6 +185,31 @@ function status(req, res, next) {
   next();
 }
 
+// used in UPDATE / PUT
+function statusIsKnown(req, res, next) {
+  const { status } = req.body.data;
+  console.log(status);
+  if (status !== "booked" && status !== "seated" && status !== "finished") {
+    return next({
+      status: 400,
+      message: `Status ${status}`,
+    });
+  }
+  next();
+}
+
+async function isStatusCurrentlyFinished(req, res, next) {
+  const reservation = await reservationsService.read(req.params.reservation_id);
+  if (reservation.status == "finished") {
+    return next({
+      status: 400,
+      message: "reservation already finished",
+    });
+  }
+  next();
+}
+
+// used in used in READ / GET and UPDATE / PUT
 async function idExists(req, res, next) {
   const reservation = await reservationsService.read(req.params.reservation_id);
   if (reservation) {
@@ -208,9 +233,18 @@ async function list(req, res) {
 }
 
 async function create(req, res) {
-  // console.log("in create");
   const data = await reservationsService.create(req.body.data);
   res.status(201).json({ data });
+}
+
+async function update(req, res) {
+  const updateReservation = {
+    ...req.body.data,
+    reservation_id: req.params.reservation_id,
+  };
+  // console.log("in update", updateReservation);
+  const data = await reservationsService.update(updateReservation);
+  res.status(200).json({ data });
 }
 
 module.exports = {
@@ -228,4 +262,10 @@ module.exports = {
     asyncErrorBoundary(create),
   ],
   read: [asyncErrorBoundary(idExists), read],
+  update: [
+    asyncErrorBoundary(idExists),
+    statusIsKnown,
+    asyncErrorBoundary(isStatusCurrentlyFinished),
+    asyncErrorBoundary(update),
+  ],
 };
