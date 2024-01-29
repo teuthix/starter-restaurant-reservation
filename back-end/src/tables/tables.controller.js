@@ -134,7 +134,7 @@ async function seatReservation(req, res, next) {
   const reservation = await reservationsService.read(
     req.body.data.reservation_id
   );
-  console.log(req.body.data, reservation);
+  // console.log(req.body.data, reservation);
   if (reservation.status == "seated") {
     return next({
       status: 400,
@@ -143,6 +143,15 @@ async function seatReservation(req, res, next) {
   } else {
     reservationsService.update({ ...reservation, status: "seated" });
   }
+  next();
+}
+
+// DELETE changes status in reservations
+async function changeReserveStatusToFinished(req, res, next) {
+  const reservation = await reservationsService.read(
+    req.body.data.reservation_id
+  );
+  reservationsService.update({ ...reservation, status: "finished" });
   next();
 }
 
@@ -197,6 +206,7 @@ module.exports = {
     asyncErrorBoundary(tableIdExists),
     asyncErrorBoundary(tableExists),
     isTableIdOccupied,
+    asyncErrorBoundary(changeReserveStatusToFinished),
     destroy,
   ],
 };

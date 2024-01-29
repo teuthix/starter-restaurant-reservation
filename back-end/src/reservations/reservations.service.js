@@ -6,7 +6,7 @@ function list(date) {
   if (date) {
     query = query.where({ reservation_date: date });
   }
-
+  query = query.whereNot({ status: "finished" });
   return query;
 }
 

@@ -222,6 +222,10 @@ async function idExists(req, res, next) {
   });
 }
 
+function excludeFinished(req, res, next) {
+  next();
+}
+
 async function read(req, res) {
   const { reservation: data } = res.locals;
   res.status(200).json({ data });
@@ -248,7 +252,7 @@ async function update(req, res) {
 }
 
 module.exports = {
-  list: [hasDate, asyncErrorBoundary(list)],
+  list: [hasDate, excludeFinished, asyncErrorBoundary(list)],
   create: [
     hasOnlyValidProperties,
     hasRequiredProperties,
