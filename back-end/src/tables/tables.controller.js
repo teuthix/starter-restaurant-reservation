@@ -129,6 +129,23 @@ function isTableIdOccupied(req, res, next) {
   next();
 }
 
+// for PUT status change
+async function seatReservation(req, res, next) {
+  const reservation = await reservationsService.read(
+    req.body.data.reservation_id
+  );
+  console.log(req.body.data, reservation);
+  if (reservation.status == "seated") {
+    return next({
+      status: 400,
+      message: "reservation already seated",
+    });
+  } else {
+    reservationsService.update({ ...reservation, status: "seated" });
+  }
+  next();
+}
+
 async function list(req, res) {
   const data = await tablesService.list();
   res.json({ data });
@@ -173,6 +190,7 @@ module.exports = {
     asyncErrorBoundary(tableExists),
     enoughCapacity,
     isTableOccupied,
+    asyncErrorBoundary(seatReservation),
     asyncErrorBoundary(update),
   ],
   destroy: [

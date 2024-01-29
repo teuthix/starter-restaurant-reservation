@@ -188,7 +188,7 @@ function status(req, res, next) {
 // used in UPDATE / PUT
 function statusIsKnown(req, res, next) {
   const { status } = req.body.data;
-  console.log(status);
+  // console.log(status);
   if (status !== "booked" && status !== "seated" && status !== "finished") {
     return next({
       status: 400,
