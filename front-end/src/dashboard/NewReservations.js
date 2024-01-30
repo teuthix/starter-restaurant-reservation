@@ -31,6 +31,7 @@ function NewReservations({ setDate, reservations, setReservations }) {
       console.log("new reservation is", newReservation);
       setDate(formData.reservation_date);
       setReservations([...reservations, newReservation]);
+      // window.location.href = `/dashboard?date=${formData.reservation_date}`;
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
       setShowError(error);

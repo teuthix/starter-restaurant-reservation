@@ -1,9 +1,9 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { deleteTable } from "../utils/api";
 
 function TableList({ tables, setTables }) {
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleFinish = async (e) => {
     const text =

@@ -253,8 +253,8 @@ describe("US-04 - Seat reservation - E2E", () => {
       });
 
       const hrefSelector = `[href="/reservations/${reservation.reservation_id}/seat"]`;
-
       await page.waitForSelector(hrefSelector);
+      console.log("made it past waitForSeleßctor");
 
       await page.screenshot({
         path: ".screenshots/us-04-dashboard-seat-button-after.png",
