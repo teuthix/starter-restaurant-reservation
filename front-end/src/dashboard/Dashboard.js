@@ -32,15 +32,15 @@ function Dashboard({
       });
       console.log(date, "no search");
     } else if (location.search.includes("?date=")) {
-      history.push({
-        pathname: location.pathname,
-        search: `?date=${date}`,
-      });
-      console.log(date, "has date to search");
-      // const queryDate = new URLSearchParams(location.search).get("date");
-      // setDate(today() || queryDate);
+      // history.push({
+      //   pathname: location.pathname,
+      //   search: `?date=${date}`,
+      // });
+      // console.log(date, "has date to search");
+      const queryDate = new URLSearchParams(location.search).get("date");
+      setDate(queryDate);
     }
-  }, [date, history, location.pathname, location.search]);
+  }, [date, setDate, history, location.pathname, location.search]);
 
   // handleDateChange changes date in the url, passed into ListReservations
   const handleDateChange = (newDate) => {

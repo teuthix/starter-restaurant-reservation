@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function DashList({ date, reservations }) {
+function DashList({ reservations }) {
   const eachReservation = reservations.map((reservation) => {
     const { reservation_id } = reservation;
     return (

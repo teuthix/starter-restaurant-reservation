@@ -31,7 +31,7 @@ function ListReservations({
         <h4 className="mb-0">Reservations for {date}</h4>
       </div>
       <ErrorAlert error={reservationsError} />
-      <DashList date={date} reservations={reservations} />
+      <DashList reservations={reservations} />
       {/* {JSON.stringify(reservations)} */}
       <div>
         <button className="btn btn-secondary" onClick={handlePrevious}>
