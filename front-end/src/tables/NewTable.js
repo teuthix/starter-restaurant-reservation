@@ -10,7 +10,6 @@ function NewTable({ tables, setTables, date }) {
 
   const history = useHistory();
   const [formData, setFormData] = useState({ ...initialForm });
-  console.log(formData);
 
   const handleChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });

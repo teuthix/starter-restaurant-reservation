@@ -11,9 +11,7 @@ function TableList({ tables, setTables }) {
     const deleteId = e.target.value;
 
     if (window.confirm(text)) {
-      // console.log("clicked ok", deleteId);
       await deleteTable(deleteId);
-      console.log(tables);
       setTables((currentTables) =>
         currentTables.filter((table) => table.table_id !== deleteId)
       );

@@ -38,7 +38,6 @@ function isValidTableName(req, res, next) {
 // used in create
 function isValidCapacity(req, res, next) {
   const { capacity } = req.body.data;
-  //   console.log(capacity, typeof capacity, isNaN(capacity));
 
   if (typeof capacity !== "number") {
     return next({
@@ -52,7 +51,6 @@ function isValidCapacity(req, res, next) {
 const seatRequiredProperties = hasProperties("reservation_id");
 
 async function tableExists(req, res, next) {
-  //   console.log(req.body.data, req.params.table_id);
   const table = await tablesService.read(req.params.table_id);
   if (table) {
     res.locals.table = table;
@@ -77,7 +75,6 @@ async function reservationIdExists(req, res, next) {
 }
 
 async function tableIdExists(req, res, next) {
-  // console.log(req.params.table_id);
   const tableId = await tablesService.read(req.params.table_id);
   if (tableId) {
     res.locals.table_id = tableId;
@@ -105,9 +102,7 @@ function enoughCapacity(req, res, next) {
 
 // for update
 function isTableOccupied(req, res, next) {
-  //   console.log(res.locals.table);
   const { isOccupied } = res.locals.table;
-  //   console.log(isOccupied);
   if (isOccupied == true) {
     return next({
       status: 400,
@@ -134,7 +129,6 @@ async function seatReservation(req, res, next) {
   const reservation = await reservationsService.read(
     req.body.data.reservation_id
   );
-  // console.log(req.body.data, reservation);
   if (reservation.status == "seated") {
     return next({
       status: 400,
@@ -173,7 +167,6 @@ async function update(req, res) {
     isOccupied: "true",
   };
   const data = await tablesService.update(updatedSeat);
-  //   console.log(data);
   res.status(200).json({ data });
 }
 

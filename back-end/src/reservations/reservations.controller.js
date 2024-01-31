@@ -175,7 +175,6 @@ function duringOpenHours(req, res, next) {
 // used in CREATE / POST
 function status(req, res, next) {
   const { status } = req.body.data;
-  // console.log(status);
   if (status === "seated" || status === "finished") {
     return next({
       status: 400,
@@ -188,7 +187,6 @@ function status(req, res, next) {
 // used in UPDATE / PUT
 function statusIsKnown(req, res, next) {
   const { status } = req.body.data;
-  // console.log(status);
   if (status !== "booked" && status !== "seated" && status !== "finished") {
     return next({
       status: 400,
@@ -246,7 +244,6 @@ async function update(req, res) {
     ...req.body.data,
     reservation_id: req.params.reservation_id,
   };
-  // console.log("in update", updateReservation);
   const data = await reservationsService.update(updateReservation);
   res.status(200).json({ data });
 }

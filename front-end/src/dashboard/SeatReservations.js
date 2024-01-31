@@ -29,7 +29,6 @@ function SeatReservation({ tables, setTables }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("selected", selectedTable);
     try {
       // const update = { reservation_id: param, table_id: selectedTable };
       const { reservation_id } = param;
@@ -37,7 +36,6 @@ function SeatReservation({ tables, setTables }) {
         Number(reservation_id),
         selectedTable
       );
-      console.log("success", updatedTable);
       //   setTables(...tables, updatedTable);
       history.push("/dashboard");
     } catch (error) {

@@ -25,17 +25,16 @@ function NewReservations({ setDate, reservations, setReservations }) {
   };
 
   const submitHandler = async (e) => {
+    console.log("in submithandler");
     e.preventDefault();
     try {
       const newReservation = await createReservation(formData);
       console.log("new reservation is", newReservation);
       setDate(formData.reservation_date);
       setReservations([...reservations, newReservation]);
-      // window.location.href = `/dashboard?date=${formData.reservation_date}`;
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
       setShowError(error);
-      console.log("error----> ", error);
     }
   };
 
