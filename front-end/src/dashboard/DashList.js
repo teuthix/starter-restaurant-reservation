@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 function DashList({ date, reservations }) {
   const eachReservation = reservations.map((reservation) => {
-    // const { reservation_id } = reservation;
+    const { reservation_id } = reservation;
     return (
-      <div key={reservation.reservation_id}>
+      <div key={reservation_id}>
         <h5>
           {reservation.first_name} {reservation.last_name}
         </h5>
@@ -16,13 +16,13 @@ function DashList({ date, reservations }) {
           <p>number of people: {reservation.people}</p>
         </div>
         <Link to={`/reservations/${reservation.reservation_id}/seat`}>
-          <a
+          <button
             href={`/reservations/${reservation.reservation_id}/seat`}
             type="button"
             className="btn btn-primary"
           >
             Seat
-          </a>
+          </button>
         </Link>
       </div>
     );

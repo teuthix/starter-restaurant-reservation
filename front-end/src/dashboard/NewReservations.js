@@ -28,9 +28,9 @@ function NewReservations({ setDate, reservations, setReservations }) {
     console.log("in submithandler");
     e.preventDefault();
     try {
+      setDate(formData.reservation_date);
       const newReservation = await createReservation(formData);
       console.log("new reservation is", newReservation);
-      setDate(formData.reservation_date);
       setReservations([...reservations, newReservation]);
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {

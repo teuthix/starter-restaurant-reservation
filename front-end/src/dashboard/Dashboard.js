@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { listReservations, listTables } from "../utils/api";
 import ListReservations from "./ListReservations";
 import TableList from "../tables/TablesList";
+import { today } from "../utils/date-time";
 
 /**
  * Defines the dashboard page.
@@ -18,7 +19,6 @@ function Dashboard({
   tables,
   setTables,
 }) {
-  // const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null);
   const history = useHistory();
   const location = useLocation();
@@ -28,8 +28,17 @@ function Dashboard({
     if (!location.search) {
       history.push({
         pathname: location.pathname,
+        search: `?date=${today()}`,
+      });
+      console.log(date, "no search");
+    } else if (location.search.includes("?date=")) {
+      history.push({
+        pathname: location.pathname,
         search: `?date=${date}`,
       });
+      console.log(date, "has date to search");
+      // const queryDate = new URLSearchParams(location.search).get("date");
+      // setDate(today() || queryDate);
     }
   }, [date, history, location.pathname, location.search]);
 
