@@ -30,13 +30,8 @@ function SeatReservation({ tables, setTables }) {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      // const update = { reservation_id: param, table_id: selectedTable };
       const { reservation_id } = param;
-      const updatedTable = await updateTable(
-        Number(reservation_id),
-        selectedTable
-      );
-      //   setTables(...tables, updatedTable);
+      await updateTable(Number(reservation_id), selectedTable);
       history.push("/dashboard");
     } catch (error) {
       console.error(error);
