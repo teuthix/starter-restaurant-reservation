@@ -10,8 +10,8 @@ const hasRequiredProperties = hasProperties(
   "mobile_number",
   "reservation_date",
   "reservation_time",
-  "people"
-  // "status"
+  "people",
+  "status"
 );
 
 const VALID_PROPERTIES = [
@@ -21,7 +21,7 @@ const VALID_PROPERTIES = [
   "reservation_date",
   "reservation_time",
   "people",
-  // "status",
+  "status",
 ];
 
 function hasOnlyValidProperties(req, res, next) {

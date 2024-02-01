@@ -10,6 +10,7 @@ function NewReservations({ setDate, reservations, setReservations }) {
     reservation_date: "",
     reservation_time: "",
     people: "",
+    status: "booked",
   };
 
   const history = useHistory();
