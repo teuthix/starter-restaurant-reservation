@@ -144,15 +144,15 @@ function isTableIdOccupied(req, res, next) {
 }
 
 // DELETE changes status in reservations
-// async function changeReserveStatusToFinished(req, res, next) {
-//   console.log(res.locals.table, "00000000000000000");
+async function changeReserveStatusToFinished(req, res, next) {
+  console.log(res.locals.table, "00000000000000000");
 
-//   const reservation = await reservationsService.read(
-//     res.locals.table.reservation_id
-//   );
-//   reservationsService.update({ ...reservation, status: "finished" });
-//   next();
-// }
+  const reservation = await reservationsService.read(
+    res.locals.table.reservation_id
+  );
+  reservationsService.update({ ...reservation, status: "finished" });
+  next();
+}
 
 async function list(req, res) {
   const data = await tablesService.list();
@@ -204,7 +204,7 @@ module.exports = {
     asyncErrorBoundary(tableIdExists),
     asyncErrorBoundary(tableExists),
     isTableIdOccupied,
-    // asyncErrorBoundary(changeReserveStatusToFinished),
+    asyncErrorBoundary(changeReserveStatusToFinished),
     destroy,
   ],
 };
