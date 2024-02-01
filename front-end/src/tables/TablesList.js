@@ -12,7 +12,6 @@ function TableList({ tables, setTables }) {
 
     if (window.confirm(text)) {
       await finishTable(deleteId);
-      console.log("deleted");
       setTables((currentTables) =>
         currentTables.filter((table) => table.table_id !== deleteId)
       );

@@ -30,7 +30,6 @@ function Dashboard({
         pathname: location.pathname,
         search: `?date=${today()}`,
       });
-      console.log(date, "no search");
     } else if (location.search.includes("?date=")) {
       const queryDate = new URLSearchParams(location.search).get("date");
       setDate(queryDate);

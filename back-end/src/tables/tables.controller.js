@@ -156,7 +156,6 @@ async function list(req, res) {
 
 async function create(req, res) {
   const data = await tablesService.create(req.body.data);
-  // console.log(data);
   res.status(201).json({ data });
 }
 

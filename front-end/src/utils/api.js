@@ -63,7 +63,6 @@ export async function listReservations(params, signal) {
   Object.entries(params).forEach(([key, value]) =>
     url.searchParams.append(key, value.toString())
   );
-  // console.log("inside listReservations");
   return await fetchJson(url, { headers, signal }, [])
     .then(formatReservationDate)
     .then(formatReservationTime);
@@ -71,7 +70,6 @@ export async function listReservations(params, signal) {
 
 export async function createReservation(reservation, signal) {
   const url = `${API_BASE_URL}/reservations`;
-  // console.log(JSON.stringify(stripReservations(reservations)), "2");
   const options = {
     method: "POST",
     headers,
@@ -98,8 +96,6 @@ export async function createTable(table, signal) {
 }
 
 export async function updateTable(reservationId, tableId, signal) {
-  // const { reservation_id } = reservationId;
-  console.log(reservationId);
   const url = `${API_BASE_URL}/tables/${tableId}/seat`;
   const options = {
     method: "PUT",
@@ -119,7 +115,5 @@ export async function updateTable(reservationId, tableId, signal) {
 export async function finishTable(table_id) {
   const url = `${API_BASE_URL}/tables/${table_id}/seat`;
   const options = { method: "DELETE" };
-  const finished = await fetchJson(url, options, {});
-  console.log(finished, "00000000000000");
-  return finished;
+  return await fetchJson(url, options, {});
 }
