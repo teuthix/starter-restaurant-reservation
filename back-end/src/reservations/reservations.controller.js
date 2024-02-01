@@ -208,7 +208,6 @@ function searchNumber(req, res, next) {
     res.locals.mobile_number = mobileNumberParam;
     // console.log(res.locals.mobile_number, "00000000000");
   }
-
   next();
 }
 
@@ -218,16 +217,13 @@ async function read(req, res) {
 }
 
 async function list(req, res) {
-  const data = await reservationsService.list(res.locals.date);
-  res.json({ data });
-}
-
-async function search(req, res) {
   if (res.locals.mobile_number) {
     const data = await reservationsService.search(res.locals.mobile_number);
     res.json({ data });
+  } else {
+    const data = await reservationsService.list(res.locals.date);
+    res.json({ data });
   }
-  next();
 }
 
 async function create(req, res) {
@@ -245,12 +241,7 @@ async function update(req, res) {
 }
 
 module.exports = {
-  list: [
-    hasDate,
-    searchNumber,
-    asyncErrorBoundary(search),
-    asyncErrorBoundary(list),
-  ],
+  list: [hasDate, searchNumber, asyncErrorBoundary(list)],
   create: [
     hasRequiredProperties,
     isValidDate,
