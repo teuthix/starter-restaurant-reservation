@@ -50,6 +50,7 @@ function isValidCapacity(req, res, next) {
 
 const seatRequiredProperties = hasProperties("reservation_id");
 
+// UPDATE DELETE
 async function tableExists(req, res, next) {
   const table = await tablesService.read(req.params.table_id);
   if (table) {
@@ -74,6 +75,7 @@ async function reservationIdExists(req, res, next) {
   });
 }
 
+// DELETE
 async function tableIdExists(req, res, next) {
   const tableId = await tablesService.read(req.params.table_id);
   if (tableId) {
@@ -112,18 +114,6 @@ function isTableOccupied(req, res, next) {
   next();
 }
 
-// for delete
-function isTableIdOccupied(req, res, next) {
-  const { isOccupied } = res.locals.table;
-  if (isOccupied == false) {
-    return next({
-      status: 400,
-      message: "table is not occupied",
-    });
-  }
-  next();
-}
-
 // for PUT status change
 async function seatReservation(req, res, next) {
   const reservation = await reservationsService.read(
@@ -140,14 +130,29 @@ async function seatReservation(req, res, next) {
   next();
 }
 
-// DELETE changes status in reservations
-async function changeReserveStatusToFinished(req, res, next) {
-  const reservation = await reservationsService.read(
-    req.body.data.reservation_id
-  );
-  reservationsService.update({ ...reservation, status: "finished" });
+// DELETE ::  if table is not occupied, return 404 message, if its already occupied, next
+function isTableIdOccupied(req, res, next) {
+  // console.log(res.locals.table, "check if table id exists");
+  const { isOccupied } = res.locals.table;
+  if (isOccupied == false) {
+    return next({
+      status: 400,
+      message: "table is not occupied",
+    });
+  }
   next();
 }
+
+// DELETE changes status in reservations
+// async function changeReserveStatusToFinished(req, res, next) {
+//   console.log(res.locals.table, "00000000000000000");
+
+//   const reservation = await reservationsService.read(
+//     res.locals.table.reservation_id
+//   );
+//   reservationsService.update({ ...reservation, status: "finished" });
+//   next();
+// }
 
 async function list(req, res) {
   const data = await tablesService.list();
@@ -171,6 +176,8 @@ async function update(req, res) {
 }
 
 async function destroy(req, res, next) {
+  console.log("in final destroy in controller");
+
   tablesService
     .delete(res.locals.table.table_id)
     .then(() => res.sendStatus(200))
@@ -199,7 +206,7 @@ module.exports = {
     asyncErrorBoundary(tableIdExists),
     asyncErrorBoundary(tableExists),
     isTableIdOccupied,
-    asyncErrorBoundary(changeReserveStatusToFinished),
+    // asyncErrorBoundary(changeReserveStatusToFinished),
     destroy,
   ],
 };
