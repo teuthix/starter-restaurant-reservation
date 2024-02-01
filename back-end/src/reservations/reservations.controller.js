@@ -10,8 +10,8 @@ const hasRequiredProperties = hasProperties(
   "mobile_number",
   "reservation_date",
   "reservation_time",
-  "people",
-  "status"
+  "people"
+  // "status"
 );
 
 const VALID_PROPERTIES = [
@@ -21,7 +21,7 @@ const VALID_PROPERTIES = [
   "reservation_date",
   "reservation_time",
   "people",
-  "status",
+  // "status",
 ];
 
 function hasOnlyValidProperties(req, res, next) {
@@ -173,16 +173,16 @@ function duringOpenHours(req, res, next) {
 }
 
 // used in CREATE / POST
-function status(req, res, next) {
-  const { status } = req.body.data;
-  if (status === "seated" || status === "finished") {
-    return next({
-      status: 400,
-      message: `Status is ${status}`,
-    });
-  }
-  next();
-}
+// function status(req, res, next) {
+//   const { status } = req.body.data;
+//   if (status === "seated" || status === "finished") {
+//     return next({
+//       status: 400,
+//       message: `Status is ${status}`,
+//     });
+//   }
+//   next();
+// }
 
 // used in UPDATE / PUT
 function statusIsKnown(req, res, next) {
@@ -251,7 +251,7 @@ async function update(req, res) {
 module.exports = {
   list: [hasDate, excludeFinished, asyncErrorBoundary(list)],
   create: [
-    hasOnlyValidProperties,
+    // hasOnlyValidProperties,
     hasRequiredProperties,
     isValidDate,
     isValidTime,
@@ -259,7 +259,7 @@ module.exports = {
     nonPastNonTues,
     nonPast,
     duringOpenHours,
-    status,
+    // status, somehow set default to "booked"
     asyncErrorBoundary(create),
   ],
   read: [asyncErrorBoundary(idExists), read],

@@ -25,12 +25,12 @@ function TableList({ tables, setTables }) {
       <div key={table.table_id} className="mb-4">
         <h5>{table.table_name}</h5>
         <p>Capacity: {table.capacity}</p>
-        {table && table.isOccupied ? (
+        {table && table.reservation_id ? (
           <p data-table-id-status={table.table_id}>Occupied</p>
         ) : (
           <p data-table-id-status={table.table_id}>Free</p>
         )}
-        {table && table.isOccupied ? (
+        {table && table.reservation_id ? (
           <button
             data-table-id-finish={table.table_id}
             className="btn btn-primary"

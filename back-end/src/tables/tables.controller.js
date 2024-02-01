@@ -4,25 +4,25 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const hasProperties = require("../errors/hasProperties");
 const hasRequiredProperties = hasProperties("table_name", "capacity");
 
-const VALID_PROPERTIES = ["table_name", "capacity"];
+// const VALID_PROPERTIES = ["table_name", "capacity"];
 
-function hasOnlyValidProperties(req, res, next) {
-  const { data = {} } = req.body;
+// function hasOnlyValidProperties(req, res, next) {
+//   const { data = {} } = req.body;
 
-  const invalidFields = Object.keys(data).filter(
-    (field) => !VALID_PROPERTIES.includes(field)
-  );
+//   const invalidFields = Object.keys(data).filter(
+//     (field) => !VALID_PROPERTIES.includes(field)
+//   );
 
-  if (invalidFields.length) {
-    return next({
-      status: 400,
-      message: `Invalid field(s): ${invalidFields.join(", ")}`,
-    });
-  }
-  next();
-}
+//   if (invalidFields.length) {
+//     return next({
+//       status: 400,
+//       message: `Invalid field(s): ${invalidFields.join(", ")}`,
+//     });
+//   }
+//   next();
+// }
 
-// used in create
+// CREATE
 function isValidTableName(req, res, next) {
   const { table_name } = req.body.data;
 
@@ -35,7 +35,7 @@ function isValidTableName(req, res, next) {
   next();
 }
 
-// used in create
+// CREATE
 function isValidCapacity(req, res, next) {
   const { capacity } = req.body.data;
 
@@ -89,8 +89,6 @@ async function tableIdExists(req, res, next) {
 }
 
 function enoughCapacity(req, res, next) {
-  // if people > capacity, 400
-  // how do i get people
   const { capacity } = res.locals.table;
   const { people } = res.locals.reservation;
   if (capacity < people) {
@@ -132,7 +130,6 @@ async function seatReservation(req, res, next) {
 
 // DELETE ::  if table is not occupied, return 404 message, if its already occupied, next
 function isTableIdOccupied(req, res, next) {
-  // console.log(res.locals.table, "check if table id exists");
   const { isOccupied } = res.locals.table;
   if (isOccupied == false) {
     return next({
@@ -159,6 +156,7 @@ async function list(req, res) {
 
 async function create(req, res) {
   const data = await tablesService.create(req.body.data);
+  // console.log(data);
   res.status(201).json({ data });
 }
 
@@ -184,7 +182,7 @@ module.exports = {
   list: [asyncErrorBoundary(list)],
   create: [
     hasRequiredProperties,
-    hasOnlyValidProperties,
+    // hasOnlyValidProperties,
     isValidTableName,
     isValidCapacity,
     asyncErrorBoundary(create),
