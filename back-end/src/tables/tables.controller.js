@@ -102,8 +102,8 @@ function enoughCapacity(req, res, next) {
 
 // for update
 function isTableOccupied(req, res, next) {
-  const { isOccupied } = res.locals.table;
-  if (isOccupied == true) {
+  const { reservation_id } = res.locals.table;
+  if (reservation_id) {
     return next({
       status: 400,
       message: "table is already occupied",
@@ -130,8 +130,8 @@ async function seatReservation(req, res, next) {
 
 // DELETE ::  if table is not occupied, return 404 message, if its already occupied, next
 function isTableIdOccupied(req, res, next) {
-  const { isOccupied } = res.locals.table;
-  if (isOccupied == false) {
+  const { reservation_id } = res.locals.table;
+  if (!reservation_id) {
     return next({
       status: 400,
       message: "table is not occupied",
@@ -165,7 +165,6 @@ async function update(req, res) {
     ...res.locals.table,
     ...req.body.data,
     table_id: res.locals.table.table_id,
-    isOccupied: "true",
   };
   const data = await tablesService.update(updatedSeat);
   res.status(200).json({ data });
@@ -193,7 +192,7 @@ module.exports = {
     asyncErrorBoundary(tableExists),
     enoughCapacity,
     isTableOccupied,
-    asyncErrorBoundary(seatReservation),
+    // asyncErrorBoundary(seatReservation),
     asyncErrorBoundary(update),
   ],
   destroy: [

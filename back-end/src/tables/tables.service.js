@@ -24,7 +24,7 @@ async function update(tableUpdate) {
 }
 
 async function destroy(table_id) {
-  return knex("tables").where({ table_id }).del();
+  return knex("tables").where({ table_id }).update("reservation_id", null);
 }
 
 module.exports = {
