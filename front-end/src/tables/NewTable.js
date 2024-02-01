@@ -25,9 +25,8 @@ function NewTable({ tables, setTables, date }) {
       const newTable = await createTable(formData);
       console.log("new table is", newTable);
       setTables([...tables, newTable]);
-      history.push(`/dashboard?date=${date}`);
+      history.push(`/dashboard`);
     } catch (error) {
-      // setShowError(error);
       console.log("error----> ", error);
     }
   };

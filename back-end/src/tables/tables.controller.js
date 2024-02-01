@@ -176,11 +176,9 @@ async function update(req, res) {
 }
 
 async function destroy(req, res, next) {
-  console.log("in final destroy in controller");
-
   tablesService
     .delete(res.locals.table.table_id)
-    .then(() => res.sendStatus(200))
+    .then(() => res.sendStatus(200).json({ success: true }))
     .catch(next);
 }
 

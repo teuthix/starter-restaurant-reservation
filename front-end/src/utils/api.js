@@ -110,9 +110,16 @@ export async function updateTable(reservationId, tableId, signal) {
   return await fetchJson(url, options, {});
 }
 
-export async function deleteTable(table_id, signal) {
-  // console.log();
+// export async function finishTable(table_id, signal) {
+//   const url = `${API_BASE_URL}/tables/${table_id}/seat`;
+//   const options = { method: "DELETE", signal };
+//   return await fetchJson(url, options, {});
+// }
+
+export async function finishTable(table_id) {
   const url = `${API_BASE_URL}/tables/${table_id}/seat`;
-  const options = { method: "DELETE", signal };
-  return await fetchJson(url, options);
+  const options = { method: "DELETE", headers };
+  const finished = await fetchJson(url, options, {});
+  console.log(finished, "00000000000000");
+  return finished;
 }

@@ -1,9 +1,9 @@
 import React from "react";
-// import { useHistory } from "react-router-dom";
-import { deleteTable } from "../utils/api";
+import { useHistory } from "react-router-dom";
+import { finishTable } from "../utils/api";
 
 function TableList({ tables, setTables }) {
-  // const history = useHistory();
+  const history = useHistory();
 
   const handleFinish = async (e) => {
     const text =
@@ -11,12 +11,12 @@ function TableList({ tables, setTables }) {
     const deleteId = e.target.value;
 
     if (window.confirm(text)) {
-      await deleteTable(deleteId);
+      await finishTable(deleteId);
       console.log("deleted");
       setTables((currentTables) =>
         currentTables.filter((table) => table.table_id !== deleteId)
       );
-      // history.go(0);
+      history.go(0);
     }
   };
 
