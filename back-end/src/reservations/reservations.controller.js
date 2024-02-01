@@ -11,7 +11,6 @@ const hasRequiredProperties = hasProperties(
   "reservation_date",
   "reservation_time",
   "people"
-  // "status"
 );
 
 const VALID_PROPERTIES = [
@@ -21,24 +20,7 @@ const VALID_PROPERTIES = [
   "reservation_date",
   "reservation_time",
   "people",
-  // "status",
 ];
-
-function hasOnlyValidProperties(req, res, next) {
-  const { data = {} } = req.body;
-
-  const invalidFields = Object.keys(data).filter(
-    (field) => !VALID_PROPERTIES.includes(field)
-  );
-
-  if (invalidFields.length) {
-    return next({
-      status: 400,
-      message: `Invalid field(s): ${invalidFields.join(", ")}`,
-    });
-  }
-  next();
-}
 
 // used in CREATE / POST
 function isValidDate(req, res, next) {
@@ -220,7 +202,13 @@ async function idExists(req, res, next) {
   });
 }
 
-function excludeFinished(req, res, next) {
+function searchNumber(req, res, next) {
+  const mobileNumberParam = req.query.mobile_number;
+  if (mobileNumberParam) {
+    res.locals.mobile_number = mobileNumberParam;
+    // console.log(res.locals.mobile_number, "00000000000");
+  }
+
   next();
 }
 
@@ -232,6 +220,14 @@ async function read(req, res) {
 async function list(req, res) {
   const data = await reservationsService.list(res.locals.date);
   res.json({ data });
+}
+
+async function search(req, res) {
+  if (res.locals.mobile_number) {
+    const data = await reservationsService.search(res.locals.mobile_number);
+    res.json({ data });
+  }
+  next();
 }
 
 async function create(req, res) {
@@ -249,9 +245,13 @@ async function update(req, res) {
 }
 
 module.exports = {
-  list: [hasDate, excludeFinished, asyncErrorBoundary(list)],
+  list: [
+    hasDate,
+    searchNumber,
+    asyncErrorBoundary(search),
+    asyncErrorBoundary(list),
+  ],
   create: [
-    // hasOnlyValidProperties,
     hasRequiredProperties,
     isValidDate,
     isValidTime,
