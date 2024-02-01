@@ -117,6 +117,7 @@ async function seatReservation(req, res, next) {
   const reservation = await reservationsService.read(
     req.body.data.reservation_id
   );
+
   if (reservation.status == "seated") {
     return next({
       status: 400,
@@ -191,7 +192,7 @@ module.exports = {
     asyncErrorBoundary(tableExists),
     enoughCapacity,
     isTableOccupied,
-    // asyncErrorBoundary(seatReservation),
+    asyncErrorBoundary(seatReservation),
     asyncErrorBoundary(update),
   ],
   destroy: [

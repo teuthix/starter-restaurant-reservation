@@ -172,17 +172,17 @@ function duringOpenHours(req, res, next) {
   }
 }
 
-// used in CREATE / POST
-// function status(req, res, next) {
-//   const { status } = req.body.data;
-//   if (status === "seated" || status === "finished") {
-//     return next({
-//       status: 400,
-//       message: `Status is ${status}`,
-//     });
-//   }
-//   next();
-// }
+// CREATE
+function status(req, res, next) {
+  const { status } = req.body.data;
+  if (status === "seated" || status === "finished") {
+    return next({
+      status: 400,
+      message: `Status is ${status}`,
+    });
+  }
+  next();
+}
 
 // used in UPDATE / PUT
 function statusIsKnown(req, res, next) {
@@ -259,7 +259,7 @@ module.exports = {
     nonPastNonTues,
     nonPast,
     duringOpenHours,
-    // status, somehow set default to "booked"
+    status,
     asyncErrorBoundary(create),
   ],
   read: [asyncErrorBoundary(idExists), read],
