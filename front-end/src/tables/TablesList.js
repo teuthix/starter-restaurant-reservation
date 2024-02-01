@@ -6,9 +6,9 @@ function TableList({ tables, setTables }) {
   const history = useHistory();
 
   const handleFinish = async (e) => {
+    const deleteId = e.target.value;
     const text =
       "Is this table ready to seat new guests? This cannot be undone.";
-    const deleteId = e.target.value;
 
     if (window.confirm(text)) {
       await finishTable(deleteId);

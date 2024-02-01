@@ -145,8 +145,6 @@ function isTableIdOccupied(req, res, next) {
 
 // DELETE changes status in reservations
 async function changeReserveStatusToFinished(req, res, next) {
-  console.log(res.locals.table, "00000000000000000");
-
   const reservation = await reservationsService.read(
     res.locals.table.reservation_id
   );
@@ -178,7 +176,7 @@ async function update(req, res) {
 async function destroy(req, res, next) {
   tablesService
     .delete(res.locals.table.table_id)
-    .then(() => res.sendStatus(200).json({ success: true }))
+    .then(() => res.status(200).json({ success: true }))
     .catch(next);
 }
 
