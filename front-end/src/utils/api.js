@@ -106,14 +106,18 @@ export async function updateTable(reservationId, tableId, signal) {
   return await fetchJson(url, options, {});
 }
 
-// export async function finishTable(table_id, signal) {
-//   const url = `${API_BASE_URL}/tables/${table_id}/seat`;
-//   const options = { method: "DELETE", signal };
-//   return await fetchJson(url, options, {});
-// }
-
 export async function finishTable(table_id) {
   const url = `${API_BASE_URL}/tables/${table_id}/seat`;
   const options = { method: "DELETE" };
   return await fetchJson(url, options, {});
+}
+
+export async function searchByMobile(numbers, signal) {
+  const url = new URL(`${API_BASE_URL}/reservations`);
+  Object.entries(numbers).forEach(([key, value]) =>
+    url.searchParams.append(key, value.toString())
+  );
+  const fetching = await fetchJson(url, { headers, signal }, []);
+  // console.log(fetching);
+  return fetching;
 }

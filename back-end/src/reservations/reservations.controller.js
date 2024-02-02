@@ -219,6 +219,7 @@ async function read(req, res) {
 async function list(req, res) {
   if (res.locals.mobile_number) {
     const data = await reservationsService.search(res.locals.mobile_number);
+    console.log(data);
     res.json({ data });
   } else {
     const data = await reservationsService.list(res.locals.date);
