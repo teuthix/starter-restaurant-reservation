@@ -41,10 +41,19 @@ function search(mobile_number) {
     .orderBy("reservation_date");
 }
 
+function cancel(cancelRequest) {
+  return knex("reservations")
+    .select("*")
+    .where({ reservation_id: cancelRequest.reservation_id })
+    .update(cancelRequest, "*")
+    .then((updatedStatus) => updatedStatus[0]);
+}
+
 module.exports = {
   list,
   create,
   read,
   update,
   search,
+  cancel,
 };

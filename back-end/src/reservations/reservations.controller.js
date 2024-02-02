@@ -239,6 +239,16 @@ async function update(req, res) {
   res.status(200).json({ data });
 }
 
+async function cancel(req, res) {
+  // console.log(req.body.data, req.params.reservation_id);
+  const cancelRequest = {
+    ...req.body.data,
+    reservation_id: req.params.reservation_id,
+  };
+  const data = await reservationsService.cancel(cancelRequest);
+  res.status(200).json({ data });
+}
+
 module.exports = {
   list: [hasDate, searchNumber, asyncErrorBoundary(list)],
   create: [
@@ -264,10 +274,10 @@ module.exports = {
   edit: [
     asyncErrorBoundary(idExists),
     hasRequiredProperties,
-
     isValidDate,
     isValidTime,
     isValidPeople,
     asyncErrorBoundary(update),
   ],
+  cancel,
 };
