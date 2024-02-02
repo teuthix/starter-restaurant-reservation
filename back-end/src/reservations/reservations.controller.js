@@ -206,7 +206,6 @@ function searchNumber(req, res, next) {
   const mobileNumberParam = req.query.mobile_number;
   if (mobileNumberParam) {
     res.locals.mobile_number = mobileNumberParam;
-    // console.log(res.locals.mobile_number, "00000000000");
   }
   next();
 }
@@ -219,7 +218,6 @@ async function read(req, res) {
 async function list(req, res) {
   if (res.locals.mobile_number) {
     const data = await reservationsService.search(res.locals.mobile_number);
-    console.log(data);
     res.json({ data });
   } else {
     const data = await reservationsService.list(res.locals.date);

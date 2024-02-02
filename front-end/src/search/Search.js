@@ -18,7 +18,6 @@ function Search() {
   const submitHandler = async (e) => {
     e.preventDefault();
     results = await searchByMobile(formData);
-    // console.log(results);
     if (results.length === 0) {
       setShowResults(false);
 
@@ -27,7 +26,6 @@ function Search() {
       setShowResults(true);
       setNoResultsToggle(false);
       setFoundMatches(results);
-      //   console.log(results);
     }
   };
 
@@ -42,7 +40,9 @@ function Search() {
           placeholder="Enter a customer's phone number"
           onChange={changeHandler}
         />
-        <button className="btn btn-primary">Find</button>
+        <button type="submit" className="btn btn-primary">
+          Find
+        </button>
       </form>
       {showResults ? <FoundMatches foundMatches={foundMatches} /> : ""}
       {noResultsToggle ? <p>No reservations found</p> : ""}
