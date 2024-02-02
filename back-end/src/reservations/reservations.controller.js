@@ -259,4 +259,15 @@ module.exports = {
     asyncErrorBoundary(isStatusCurrentlyFinished),
     asyncErrorBoundary(update),
   ],
+  hasRequiredProperties,
+  isValidDate,
+  edit: [
+    asyncErrorBoundary(idExists),
+    hasRequiredProperties,
+
+    isValidDate,
+    isValidTime,
+    isValidPeople,
+    asyncErrorBoundary(update),
+  ],
 };
