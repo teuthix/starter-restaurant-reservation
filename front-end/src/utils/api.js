@@ -68,6 +68,11 @@ export async function listReservations(params, signal) {
     .then(formatReservationTime);
 }
 
+export async function getSingleReservation(reservation_id, signal) {
+  const url = new URL(`${API_BASE_URL}/reservations/${reservation_id}`);
+  return await fetchJson(url, { signal }, {});
+}
+
 export async function createReservation(reservation, signal) {
   const url = `${API_BASE_URL}/reservations`;
   const options = {
@@ -128,6 +133,21 @@ export async function cancelReservation(reservation_id, signal) {
     method: "PUT",
     headers,
     body: JSON.stringify({ data: { status: "cancelled" } }),
+    signal,
+  };
+  return await fetchJson(url, options, {});
+}
+
+export async function editReservation(
+  editedReservation,
+  reservation_id,
+  signal
+) {
+  const url = new URL(`${API_BASE_URL}/reservations/${reservation_id}`);
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: editedReservation }),
     signal,
   };
   return await fetchJson(url, options, {});
