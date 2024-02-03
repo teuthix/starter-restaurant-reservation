@@ -130,8 +130,5 @@ export async function cancelReservation(reservation_id, signal) {
     body: JSON.stringify({ data: { status: "cancelled" } }),
     signal,
   };
-  console.log(options);
-  const response = await fetchJson(url, options, {});
-  console.log(response);
-  return response;
+  return await fetchJson(url, options, {});
 }

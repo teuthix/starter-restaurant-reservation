@@ -5,6 +5,7 @@ import ErrorAlert from "../layout/ErrorAlert";
 
 function ListReservations({
   reservations,
+  setReservations,
   date,
   setDate,
   reservationsError,
@@ -31,7 +32,7 @@ function ListReservations({
         <h4 className="mb-0">Reservations for {date}</h4>
       </div>
       <ErrorAlert error={reservationsError} />
-      <DashList reservations={reservations} />
+      <DashList reservations={reservations} setReservations={setReservations} />
       {/* {JSON.stringify(reservations)} */}
       <div>
         <button className="btn btn-secondary" onClick={handlePrevious}>

@@ -83,6 +83,7 @@ function Dashboard({
         <div className="mx-5">
           <ListReservations
             reservations={reservations}
+            setReservations={setReservations}
             date={date}
             setDate={setDate}
             reservationsError={reservationsError}

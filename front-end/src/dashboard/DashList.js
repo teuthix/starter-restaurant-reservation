@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { cancelReservation } from "../utils/api";
 
-function DashList({ reservations }) {
+function DashList({ reservations, setReservations }) {
+  const history = useHistory();
+
   const eachReservation = reservations.map((reservation) => {
     const { reservation_id } = reservation;
     const seatButton = (
@@ -25,11 +27,16 @@ function DashList({ reservations }) {
       if (window.confirm(text)) {
         console.log(cancelId, "from DashList");
         await cancelReservation(reservation_id);
-        // history.go(0);
+        setReservations((currentReservations) =>
+          currentReservations.filter(
+            (reservation) => reservation.reservation_id !== cancelId
+          )
+        );
+        history.go(0);
       }
     };
 
-    return (
+    const formattedReservation = (
       <div key={reservation_id}>
         <h5>
           {reservation.first_name} {reservation.last_name}
@@ -64,7 +71,12 @@ function DashList({ reservations }) {
         {reservation.status === "booked" ? seatButton : ""}
       </div>
     );
+
+    if (reservation.status !== "cancelled") {
+      return formattedReservation;
+    }
   });
+
   return eachReservation;
 }
 
