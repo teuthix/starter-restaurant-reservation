@@ -121,3 +121,17 @@ export async function searchByMobile(numbers, signal) {
   // console.log(fetching);
   return fetching;
 }
+
+export async function cancelReservation(reservation_id, signal) {
+  const url = new URL(`${API_BASE_URL}/reservations/${reservation_id}/status`);
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: { status: "cancelled" } }),
+    signal,
+  };
+  console.log(options);
+  const response = await fetchJson(url, options, {});
+  console.log(response);
+  return response;
+}

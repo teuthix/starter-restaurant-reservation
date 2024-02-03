@@ -240,12 +240,13 @@ async function update(req, res) {
 }
 
 async function cancel(req, res) {
-  // console.log(req.body.data, req.params.reservation_id);
+  console.log("in backend", req.body.data);
   const cancelRequest = {
     ...req.body.data,
     reservation_id: req.params.reservation_id,
   };
   const data = await reservationsService.cancel(cancelRequest);
+  console.log(data);
   res.status(200).json({ data });
 }
 
@@ -279,5 +280,5 @@ module.exports = {
     isValidPeople,
     asyncErrorBoundary(update),
   ],
-  cancel,
+  cancel: [asyncErrorBoundary(cancel)],
 };
