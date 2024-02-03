@@ -44,7 +44,14 @@ function Search() {
           Find
         </button>
       </form>
-      {showResults ? <FoundMatches foundMatches={foundMatches} /> : ""}
+      {showResults ? (
+        <FoundMatches
+          foundMatches={foundMatches}
+          setFoundMatches={setFoundMatches}
+        />
+      ) : (
+        ""
+      )}
       {noResultsToggle ? <p>No reservations found</p> : ""}
     </div>
   );

@@ -74,6 +74,8 @@ function DashList({ reservations, setReservations }) {
 
     if (reservation.status !== "cancelled") {
       return formattedReservation;
+    } else {
+      return null;
     }
   });
 
