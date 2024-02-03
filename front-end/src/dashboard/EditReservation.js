@@ -39,7 +39,8 @@ function EditReservation() {
     console.log("in submithandler");
     e.preventDefault();
     try {
-      await editReservation(formData);
+      await editReservation(formData, param.reservation_id);
+      history.goBack();
     } catch (error) {
       console.error(error);
     }

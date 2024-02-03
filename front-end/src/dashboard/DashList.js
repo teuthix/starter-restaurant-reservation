@@ -7,6 +7,17 @@ function DashList({ reservations, setReservations }) {
 
   const eachReservation = reservations.map((reservation) => {
     const { reservation_id } = reservation;
+    const editButton = (
+      <Link to={`/reservations/${reservation.reservation_id}/edit`}>
+        <button
+          href={`/reservations/${reservation.reservation_id}/seat`}
+          className="btn btn-secondary"
+        >
+          Edit
+        </button>
+      </Link>
+    );
+
     const seatButton = (
       <Link to={`/reservations/${reservation.reservation_id}/seat`}>
         <button
@@ -52,14 +63,7 @@ function DashList({ reservations, setReservations }) {
             Status: {reservation.status}
           </p>
         </div>
-        <Link to={`/reservations/${reservation.reservation_id}/edit`}>
-          <button
-            href={`/reservations/${reservation.reservation_id}/seat`}
-            className="btn btn-secondary"
-          >
-            Edit
-          </button>
-        </Link>
+        {reservation.status === "booked" ? editButton : ""}
         <button
           data-reservation-id-cancel={reservation.reservation_id}
           className="btn btn-danger"
