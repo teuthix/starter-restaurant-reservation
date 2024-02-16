@@ -36,11 +36,13 @@ function EditReservation() {
   //   console.log("after await", formData);
 
   const submitHandler = async (e) => {
-    console.log("in submithandler");
     e.preventDefault();
     try {
       await editReservation(formData, param.reservation_id);
-      history.goBack();
+      console.log("in update");
+      history.push(`/dashboard?date=${formData.reservation_date}`);
+
+      // history.goBack();
     } catch (error) {
       console.error(error);
     }
