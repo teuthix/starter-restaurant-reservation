@@ -1,16 +1,13 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { cancelReservation } from "../utils/api";
+import { Link } from "react-router-dom";
 
-function DashList({ reservations, setReservations }) {
-  const history = useHistory();
-
+function DashList({ reservations, setReservations, handleCancel }) {
   const eachReservation = reservations.map((reservation) => {
     const { reservation_id } = reservation;
     const editButton = (
-      <Link to={`/reservations/${reservation.reservation_id}/edit`}>
+      <Link to={`/reservations/${reservation_id}/edit`}>
         <button
-          href={`/reservations/${reservation.reservation_id}/seat`}
+          href={`/reservations/${reservation_id}/seat`}
           className="btn btn-secondary"
         >
           Edit
@@ -19,9 +16,9 @@ function DashList({ reservations, setReservations }) {
     );
 
     const seatButton = (
-      <Link to={`/reservations/${reservation.reservation_id}/seat`}>
+      <Link to={`/reservations/${reservation_id}/seat`}>
         <button
-          href={`/reservations/${reservation.reservation_id}/seat`}
+          href={`/reservations/${reservation_id}/seat`}
           type="button"
           className="btn btn-primary"
         >
@@ -30,22 +27,22 @@ function DashList({ reservations, setReservations }) {
       </Link>
     );
 
-    const handleCancel = async (e) => {
-      const cancelId = e.target.value;
-      const text =
-        "Do you want to cancel this reservation? This cannot be undone.";
+    // const handleCancel = async (e) => {
+    //   const cancelId = e.target.value;
+    //   const text =
+    //     "Do you want to cancel this reservation? This cannot be undone.";
 
-      if (window.confirm(text)) {
-        console.log(cancelId, "from DashList");
-        await cancelReservation(reservation_id);
-        setReservations((currentReservations) =>
-          currentReservations.filter(
-            (reservation) => reservation.reservation_id !== cancelId
-          )
-        );
-        history.go(0);
-      }
-    };
+    //   if (window.confirm(text)) {
+    //     console.log(cancelId, "from DashList");
+    //     await cancelReservation(reservation_id);
+    //     setReservations((currentReservations) =>
+    //       currentReservations.filter(
+    //         (reservation) => reservation.reservation_id !== cancelId
+    //       )
+    //     );
+    //     history.go(0);
+    //   }
+    // };
 
     const formattedReservation = (
       <div key={reservation_id}>
