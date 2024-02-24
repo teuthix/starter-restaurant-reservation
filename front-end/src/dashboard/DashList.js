@@ -4,15 +4,19 @@ import { Link } from "react-router-dom";
 function DashList({ reservations, setReservations, handleCancel }) {
   const eachReservation = reservations.map((reservation) => {
     const { reservation_id } = reservation;
+    console.log(
+      `/reservations/${reservation_id}/seat`,
+      "-------------------------"
+    );
     const editButton = (
-      <Link to={`/reservations/${reservation_id}/edit`}>
-        <button
-          href={`/reservations/${reservation_id}/seat`}
-          className="btn btn-secondary"
-        >
-          Edit
-        </button>
-      </Link>
+      // <Link to={`/reservations/${reservation_id}/edit`}>
+      <button
+        href={`/reservations/${reservation_id}/seat`}
+        className="btn btn-secondary"
+      >
+        Edit
+      </button>
+      // </Link>
     );
 
     const seatButton = (

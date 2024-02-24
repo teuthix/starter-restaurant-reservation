@@ -157,6 +157,7 @@ function duringOpenHours(req, res, next) {
 // CREATE
 function status(req, res, next) {
   const { status } = req.body.data;
+  // console.log(status);
   if (status === "seated" || status === "finished") {
     return next({
       status: 400,
