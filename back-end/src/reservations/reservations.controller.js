@@ -170,7 +170,13 @@ function status(req, res, next) {
 // used in UPDATE / PUT
 function statusIsKnown(req, res, next) {
   const { status } = req.body.data;
-  if (status !== "booked" && status !== "seated" && status !== "finished") {
+  // console.log(status);
+  if (
+    status !== "booked" &&
+    status !== "seated" &&
+    status !== "finished" &&
+    status !== "cancelled"
+  ) {
     return next({
       status: 400,
       message: `Status ${status}`,
@@ -240,16 +246,16 @@ async function update(req, res) {
   res.status(200).json({ data });
 }
 
-async function cancel(req, res) {
-  // console.log("in backend", req.body.data);
-  const cancelRequest = {
-    ...req.body.data,
-    reservation_id: req.params.reservation_id,
-  };
-  const data = await reservationsService.cancel(cancelRequest);
-  // console.log(data);
-  res.status(200).json({ data });
-}
+// async function cancel(req, res) {
+//   // console.log("in backend", req.body.data);
+//   const cancelRequest = {
+//     ...req.body.data,
+//     reservation_id: req.params.reservation_id,
+//   };
+//   const data = await reservationsService.cancel(cancelRequest);
+//   // console.log(data);
+//   res.status(200).json({ data });
+// }
 
 module.exports = {
   list: [hasDate, searchNumber, asyncErrorBoundary(list)],
@@ -272,8 +278,8 @@ module.exports = {
     asyncErrorBoundary(isStatusCurrentlyFinished),
     asyncErrorBoundary(update),
   ],
-  hasRequiredProperties,
-  isValidDate,
+  // hasRequiredProperties,
+  // isValidDate,
   edit: [
     asyncErrorBoundary(idExists),
     hasRequiredProperties,
@@ -282,5 +288,5 @@ module.exports = {
     isValidPeople,
     asyncErrorBoundary(update),
   ],
-  cancel: [asyncErrorBoundary(cancel)],
+  // cancel: [asyncErrorBoundary(cancel)],
 };
