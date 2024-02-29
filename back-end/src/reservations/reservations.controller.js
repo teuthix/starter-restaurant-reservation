@@ -157,7 +157,6 @@ function duringOpenHours(req, res, next) {
 // CREATE
 function status(req, res, next) {
   const { status } = req.body.data;
-  // console.log(status);
   if (status === "seated" || status === "finished") {
     return next({
       status: 400,
@@ -170,7 +169,6 @@ function status(req, res, next) {
 // used in UPDATE / PUT
 function statusIsKnown(req, res, next) {
   const { status } = req.body.data;
-  // console.log(status);
   if (
     status !== "booked" &&
     status !== "seated" &&
@@ -246,17 +244,6 @@ async function update(req, res) {
   res.status(200).json({ data });
 }
 
-// async function cancel(req, res) {
-//   // console.log("in backend", req.body.data);
-//   const cancelRequest = {
-//     ...req.body.data,
-//     reservation_id: req.params.reservation_id,
-//   };
-//   const data = await reservationsService.cancel(cancelRequest);
-//   // console.log(data);
-//   res.status(200).json({ data });
-// }
-
 module.exports = {
   list: [hasDate, searchNumber, asyncErrorBoundary(list)],
   create: [
@@ -278,8 +265,6 @@ module.exports = {
     asyncErrorBoundary(isStatusCurrentlyFinished),
     asyncErrorBoundary(update),
   ],
-  // hasRequiredProperties,
-  // isValidDate,
   edit: [
     asyncErrorBoundary(idExists),
     hasRequiredProperties,
@@ -288,5 +273,4 @@ module.exports = {
     isValidPeople,
     asyncErrorBoundary(update),
   ],
-  // cancel: [asyncErrorBoundary(cancel)],
 };

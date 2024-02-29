@@ -30,9 +30,9 @@ function ListReservations({
     handleDateChange(today(date));
   };
 
-  const handleEdit = async (e) => {
-    //
-  };
+  // const handleEdit = async (e) => {
+  //   history.push()
+  // };
 
   const handleCancel = async (e) => {
     const cancelId = e.target.value;
