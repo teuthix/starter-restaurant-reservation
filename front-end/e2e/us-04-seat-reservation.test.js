@@ -253,14 +253,21 @@ describe("US-04 - Seat reservation - E2E", () => {
       });
 
       const hrefSelector = `[href="/reservations/${reservation.reservation_id}/seat"]`;
-
+      console.log(reservation.reservation_id, "inside test");
       await page.waitForSelector(hrefSelector);
-      console.log("made it past waitForSelector");
 
-      await page.screenshot({
-        path: ".screenshots/us-04-dashboard-seat-button-after.png",
-        fullPage: true,
-      });
+      console.log("aaaaaaaaaaaaaaa");
+      // works up until this console log
+      await page.screenshot(
+        {
+          path: ".screenshots/us-04-dashboard-seat-button-after.png",
+          fullPage: true,
+        }
+        // console.log("0000000000000000")
+        // logs 000s
+      );
+      console.log("*************************");
+      // doesnt log ***s
 
       const containsSeat = await page.evaluate((hrefSelector) => {
         return document
@@ -268,6 +275,8 @@ describe("US-04 - Seat reservation - E2E", () => {
           .innerText.toLowerCase()
           .includes("seat");
       }, hrefSelector);
+
+      console.log("contains seat 9999999999999999", containsSeat);
 
       expect(containsSeat).toBe(true);
     });

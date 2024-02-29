@@ -8,6 +8,16 @@ function DashList({ reservations, setReservations, handleCancel }) {
     //   `/reservations/${reservation_id}/seat`,
     //   "-------------------------"
     // );
+    const cancelButton = (
+      <button
+        data-reservation-id-cancel={reservation.reservation_id}
+        className="btn btn-danger"
+        value={reservation_id}
+        onClick={handleCancel}
+      >
+        Cancel
+      </button>
+    );
     const editButton = (
       <Link to={`/reservations/${reservation_id}/edit`}>
         <button
@@ -18,35 +28,18 @@ function DashList({ reservations, setReservations, handleCancel }) {
         </button>
       </Link>
     );
-
+    // console.log(reservation_id, "*************");
     const seatButton = (
-      <Link to={`/reservations/${reservation_id}/seat`}>
-        <button
-          href={`/reservations/${reservation_id}/seat`}
-          type="button"
-          className="btn btn-primary"
-        >
-          Seat
-        </button>
-      </Link>
+      // <Link to={`/reservations/${reservation_id}/seat`}>
+      <button
+        href={`/reservations/${reservation_id}/seat`}
+        // type="button"
+        className="btn btn-primary"
+      >
+        Seat
+      </button>
+      // </Link>
     );
-
-    // const handleCancel = async (e) => {
-    //   const cancelId = e.target.value;
-    //   const text =
-    //     "Do you want to cancel this reservation? This cannot be undone.";
-
-    //   if (window.confirm(text)) {
-    //     console.log(cancelId, "from DashList");
-    //     await cancelReservation(reservation_id);
-    //     setReservations((currentReservations) =>
-    //       currentReservations.filter(
-    //         (reservation) => reservation.reservation_id !== cancelId
-    //       )
-    //     );
-    //     history.go(0);
-    //   }
-    // };
 
     const formattedReservation = (
       <div key={reservation_id}>
@@ -65,15 +58,8 @@ function DashList({ reservations, setReservations, handleCancel }) {
           </p>
         </div>
         {reservation.status === "booked" ? editButton : ""}
-        <button
-          data-reservation-id-cancel={reservation.reservation_id}
-          className="btn btn-danger"
-          value={reservation_id}
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
         {reservation.status === "booked" ? seatButton : ""}
+        {cancelButton}
       </div>
     );
 
