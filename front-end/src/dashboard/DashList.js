@@ -29,16 +29,28 @@ function DashList({ reservations, setReservations, handleCancel }) {
       </Link>
     );
     // console.log(reservation_id, "*************");
+    // const seatButton = (
+    //   <Link to={`/reservations/${reservation_id}/seat`}>
+    //     <button
+    //       href={`/reservations/${reservation_id}/seat`}
+    //       // type="button"
+    //       className="btn btn-primary"
+    //     >
+    //       Seat
+    //     </button>
+    //   </Link>
+    // );
+
     const seatButton = (
-      // <Link to={`/reservations/${reservation_id}/seat`}>
-      <button
-        href={`/reservations/${reservation_id}/seat`}
-        // type="button"
-        className="btn btn-primary"
-      >
-        Seat
-      </button>
-      // </Link>
+      <Link to={`/reservations/${reservation.reservation_id}/seat`}>
+        <button
+          href={`/reservations/${reservation.reservation_id}/seat`}
+          type="button"
+          className="btn btn-primary"
+        >
+          Seat
+        </button>
+      </Link>
     );
 
     const formattedReservation = (
@@ -57,8 +69,8 @@ function DashList({ reservations, setReservations, handleCancel }) {
             Status: {reservation.status}
           </p>
         </div>
-        {reservation.status === "booked" ? editButton : ""}
         {reservation.status === "booked" ? seatButton : ""}
+        {reservation.status === "booked" ? editButton : ""}
         {cancelButton}
       </div>
     );
