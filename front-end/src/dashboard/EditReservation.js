@@ -6,7 +6,6 @@ import ReservationForm from "./ReservationForm";
 function EditReservation() {
   const param = useParams();
   const history = useHistory();
-  const [showError, setShowError] = useState("");
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -30,7 +29,7 @@ function EditReservation() {
           people: reservation.people,
         });
       } catch (error) {
-        setShowError(error);
+        console.error(error);
       }
     }
     fetchReservations();

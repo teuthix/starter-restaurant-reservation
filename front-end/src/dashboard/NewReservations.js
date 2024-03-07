@@ -49,6 +49,7 @@ function NewReservations({ setDate, reservations, setReservations }) {
         submitHandler={submitHandler}
         handleChange={handleChange}
         handleNumberChange={handleNumberChange}
+        showError={showError}
         history={history}
       />
     </>

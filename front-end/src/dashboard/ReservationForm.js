@@ -3,6 +3,7 @@ function ReservationForm({
   submitHandler,
   handleChange,
   handleNumberChange,
+  showError,
   history,
 }) {
   return (
@@ -84,6 +85,13 @@ function ReservationForm({
           required
         />
       </>
+      {showError ? (
+        <div className="alert alert-danger">
+          <p>{showError.message}</p>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="d-flex">
         <div>
           <button type="submit" className="btn btn-primary">
