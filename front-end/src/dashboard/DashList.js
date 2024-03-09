@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function DashList({ reservations, setReservations, handleCancel }) {
-  const eachReservation = reservations.map((reservation) => {
+  const eachReservation = reservations.map((reservation, index) => {
     const { reservation_id } = reservation;
     // console.log(
     //   `/reservations/${reservation_id}/seat`,
@@ -28,18 +28,6 @@ function DashList({ reservations, setReservations, handleCancel }) {
         </button>
       </Link>
     );
-    // console.log(reservation_id, "*************");
-    // const seatButton = (
-    //   <Link to={`/reservations/${reservation_id}/seat`}>
-    //     <button
-    //       href={`/reservations/${reservation_id}/seat`}
-    //       // type="button"
-    //       className="btn btn-primary"
-    //     >
-    //       Seat
-    //     </button>
-    //   </Link>
-    // );
 
     const seatButton = (
       <Link to={`/reservations/${reservation.reservation_id}/seat`}>
@@ -54,7 +42,7 @@ function DashList({ reservations, setReservations, handleCancel }) {
     );
 
     const formattedReservation = (
-      <div key={reservation_id}>
+      <div key={index}>
         <h5>
           {reservation.first_name} {reservation.last_name}
         </h5>

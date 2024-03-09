@@ -5,7 +5,7 @@ import { cancelReservation } from "../utils/api";
 function FoundMatches({ foundMatches, setFoundMatches }) {
   // const history = useHistory();
 
-  const formatMatches = foundMatches.map((reservation) => {
+  const formatMatches = foundMatches.map((reservation, index) => {
     const handleCancel = async (e) => {
       const cancelId = e.target.value;
       const text =
@@ -20,12 +20,11 @@ function FoundMatches({ foundMatches, setFoundMatches }) {
           )
         );
         setFoundMatches();
-        // history.go(0);
       }
     };
 
     return (
-      <div key={reservation.reservation_id}>
+      <div key={index}>
         <h4>
           {reservation.first_name} {reservation.last_name}
         </h4>

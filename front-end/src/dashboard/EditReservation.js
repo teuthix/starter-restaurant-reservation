@@ -6,6 +6,7 @@ import ReservationForm from "./ReservationForm";
 function EditReservation() {
   const param = useParams();
   const history = useHistory();
+  const [showError, setShowError] = useState("");
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -29,7 +30,7 @@ function EditReservation() {
           people: reservation.people,
         });
       } catch (error) {
-        console.error(error);
+        setShowError(error);
       }
     }
     fetchReservations();
@@ -42,7 +43,7 @@ function EditReservation() {
       // console.log("in update");
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
-      console.error(error);
+      console.error();
     }
   };
 
@@ -62,6 +63,7 @@ function EditReservation() {
         submitHandler={submitHandler}
         handleChange={handleChange}
         handleNumberChange={handleNumberChange}
+        // showError={showError}
         history={history}
       />
     </>

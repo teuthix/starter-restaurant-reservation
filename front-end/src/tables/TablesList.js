@@ -21,7 +21,7 @@ function TableList({ tables, setTables }) {
 
   const eachTable = tables.map((table, index) => {
     return (
-      <div key={table.table_id} className="mb-4">
+      <div key={index} className="mb-4">
         <h5>{table.table_name}</h5>
         <p>Capacity: {table.capacity}</p>
         {table && table.reservation_id ? (
