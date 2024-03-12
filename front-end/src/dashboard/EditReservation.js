@@ -43,7 +43,7 @@ function EditReservation() {
       // console.log("in update");
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
-      console.error();
+      setShowError(error);
     }
   };
 
@@ -63,7 +63,7 @@ function EditReservation() {
         submitHandler={submitHandler}
         handleChange={handleChange}
         handleNumberChange={handleNumberChange}
-        // showError={showError}
+        showError={showError}
         history={history}
       />
     </>

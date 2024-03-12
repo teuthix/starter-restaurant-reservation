@@ -97,7 +97,7 @@ function hasDate(req, res, next) {
   next();
 }
 
-// used in CREATE / POST
+// used in CREATE / POST / reservation_id PUT
 function nonPastNonTues(req, res, next) {
   const { reservation_date } = req.body.data;
   const reservedDate = new Date(reservation_date);
@@ -121,7 +121,7 @@ function nonPastNonTues(req, res, next) {
   next();
 }
 
-// used in CREATE / POST
+// used in CREATE / POST / reservation_id PUT
 function nonPast(req, res, next) {
   const { reservation_date, reservation_time } = req.body.data;
   const reservation = new Date(`${reservation_date} EST`).setHours(
@@ -271,6 +271,9 @@ module.exports = {
     isValidDate,
     isValidTime,
     isValidPeople,
+    nonPastNonTues,
+    nonPast,
+    duringOpenHours,
     asyncErrorBoundary(update),
   ],
 };
