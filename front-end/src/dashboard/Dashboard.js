@@ -47,9 +47,14 @@ function Dashboard({
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function fetchReservations() {
       try {
-        const response = await listReservations({ date });
+        const response = await listReservations(
+          { date },
+          abortController.signal
+        );
         setReservations(response);
         setReservationsError(null);
       } catch (error) {
@@ -57,6 +62,9 @@ function Dashboard({
       }
     }
     fetchReservations();
+    return () => {
+      abortController.abort();
+    };
   }, [date, setReservations]);
 
   useEffect(() => {
