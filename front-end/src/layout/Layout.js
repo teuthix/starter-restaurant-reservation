@@ -13,10 +13,14 @@ import "./Layout.css";
  */
 function Layout() {
   return (
-    <div className="">
+    <div>
       <div className="column">
-        <div className="top-bar">
-          <h1 className="p-5 text-white">Reservations</h1>
+        <div className="p-4 top-bar">
+          <div className="big-border">
+            <h1 className="px-4 pt-4 text-white oleo-script-bold">
+              Reservations
+            </h1>
+          </div>
         </div>
         <div className="row h-100">
           <div className="col-md-2 side-bar">

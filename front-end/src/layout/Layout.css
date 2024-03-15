@@ -7,3 +7,45 @@
   background-color: #0f2d8b;
   min-height: 200px;
 }
+
+.big-border {
+  border-color: white;
+  border-width: 10px;
+  border-style: double;
+}
+
+.blue {
+  color:#0f2d8b
+}
+
+h4 {
+  color:#0f2d8b
+}
+
+h3 {
+  color:#0f2d8b
+}
+
+h5 {
+  color:#0f2d8b
+
+}
+
+p {
+  color:#0f2d8b
+}
+
+.oleo-script-regular {
+  font-family: "Oleo Script", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.oleo-script-bold {
+  font-family: "Oleo Script", system-ui;
+  font-weight: 700;
+  font-size: 150px;
+  text-align: center;
+  font-style: normal;
+}
+
