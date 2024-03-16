@@ -43,7 +43,7 @@ function NewReservations({ setDate, reservations, setReservations }) {
 
   return (
     <>
-      <h2 className="px-4 pt-4">New Reservation</h2>
+      <h2 className="mx-5 my-3">New Reservation</h2>
       {/* <div className="d-flex flex-row justify-content-center"> */}
       {/* <hr className="mx-5" /> */}
       <div className="mx-5 mb-5">

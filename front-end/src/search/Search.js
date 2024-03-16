@@ -31,18 +31,21 @@ function Search() {
 
   return (
     <div>
-      <h3>Search by Mobile Number</h3>
-      <form onSubmit={submitHandler}>
+      <h2 className="mx-5 my-3">Search by Mobile Number</h2>
+      <form onSubmit={submitHandler} className="mx-5 d-flex flex-column">
         <input
           name="mobile_number"
           type="text"
           id="mobile_number"
           placeholder="Enter a customer's phone number"
           onChange={changeHandler}
+          className="mb-3"
         />
-        <button type="submit" className="btn btn-primary">
-          Find
-        </button>
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Find
+          </button>
+        </div>
       </form>
       {showResults ? (
         <FoundMatches

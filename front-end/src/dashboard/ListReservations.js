@@ -54,9 +54,9 @@ function ListReservations({
   return (
     <main>
       <div className="d-md-flex mb-3">
-        <h3 className="mb-0">
+        <h2 className="mb-0">
           Reservations for <span className="red-text">{date}</span>
-        </h3>
+        </h2>
       </div>
       <ErrorAlert error={reservationsError} />
       <DashList

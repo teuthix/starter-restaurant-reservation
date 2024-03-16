@@ -1,25 +1,16 @@
-h2 {
+h2, h3 {
   color:#0f2d8b;
-  font-family: "Oleo Script", system-ui;
+  font-family: "Oleo Script", Tahoma, serif;
 }
 
-h4 {
+h4, h5, p, input, label {
   color:#0f2d8b;
-  font-family: "Oleo Script", system-ui;
+  font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
 }
 
-h3 {
-  color:#0f2d8b;
-  font-family: "Oleo Script", system-ui;
-}
-
-h5 {
-  color:#0f2d8b
-  
-}
-
-p {
-  color:#0f2d8b
+button {
+  font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
+  margin-right: 10px;
 }
 
 .red-text {
