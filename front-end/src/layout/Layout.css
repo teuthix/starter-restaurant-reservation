@@ -1,5 +1,48 @@
+h2 {
+  color:#0f2d8b;
+  font-family: "Oleo Script", system-ui;
+}
+
+h4 {
+  color:#0f2d8b;
+  font-family: "Oleo Script", system-ui;
+}
+
+h3 {
+  color:#0f2d8b;
+  font-family: "Oleo Script", system-ui;
+}
+
+h5 {
+  color:#0f2d8b
+  
+}
+
+p {
+  color:#0f2d8b
+}
+
+.red-text {
+  color: red
+}
+
+.oleo-script-regular {
+  font-family: "Oleo Script", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  /* font-size: 30px; */
+}
+
+.oleo-script-bold {
+  font-family: "Oleo Script", system-ui;
+  font-weight: 700;
+  font-size: 150px;
+  text-align: center;
+  font-style: normal;
+}
+
 .side-bar {
-  background-color: #393a44;
+  background-color: #838385;
   min-width: 200px;
 }
 
@@ -17,35 +60,3 @@
 .blue {
   color:#0f2d8b
 }
-
-h4 {
-  color:#0f2d8b
-}
-
-h3 {
-  color:#0f2d8b
-}
-
-h5 {
-  color:#0f2d8b
-
-}
-
-p {
-  color:#0f2d8b
-}
-
-.oleo-script-regular {
-  font-family: "Oleo Script", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.oleo-script-bold {
-  font-family: "Oleo Script", system-ui;
-  font-weight: 700;
-  font-size: 150px;
-  text-align: center;
-  font-style: normal;
-}
-

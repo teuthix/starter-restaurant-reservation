@@ -33,7 +33,7 @@ function NewTable({ tables, setTables, date }) {
 
   return (
     <>
-      <h4>Create New Table</h4>
+      <h3>Create New Table</h3>
       <form onSubmit={submitHandler} className="d-flex flex-column mx-4 pt-4">
         <>
           <label htmlFor="table_name">Table Name:</label>

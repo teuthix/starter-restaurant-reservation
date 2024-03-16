@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 function DashList({ reservations, setReservations, handleCancel }) {
   const eachReservation = reservations.map((reservation, index) => {
     const { reservation_id } = reservation;
-    // console.log(
-    //   `/reservations/${reservation_id}/seat`,
-    //   "-------------------------"
-    // );
     const cancelButton = (
       <button
         data-reservation-id-cancel={reservation.reservation_id}
@@ -42,7 +38,7 @@ function DashList({ reservations, setReservations, handleCancel }) {
     );
 
     const formattedReservation = (
-      <div key={index}>
+      <div key={index} className="mb-4">
         <h5>
           {reservation.first_name} {reservation.last_name}
         </h5>
@@ -60,6 +56,7 @@ function DashList({ reservations, setReservations, handleCancel }) {
         {reservation.status === "booked" ? seatButton : ""}
         {reservation.status === "booked" ? editButton : ""}
         {cancelButton}
+        <hr />
       </div>
     );
 

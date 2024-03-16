@@ -57,15 +57,17 @@ function EditReservation() {
 
   return (
     <>
-      <h3>Edit Reservation</h3>
-      <ReservationForm
-        formData={formData}
-        submitHandler={submitHandler}
-        handleChange={handleChange}
-        handleNumberChange={handleNumberChange}
-        showError={showError}
-        history={history}
-      />
+      <h3 className="px-4 pt-4">Edit Reservation</h3>
+      <div className="mx-5 mb-5">
+        <ReservationForm
+          formData={formData}
+          submitHandler={submitHandler}
+          handleChange={handleChange}
+          handleNumberChange={handleNumberChange}
+          showError={showError}
+          history={history}
+        />
+      </div>
     </>
   );
 }

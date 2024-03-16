@@ -87,7 +87,7 @@ function Dashboard({
     <>
       {/* <h1>Dashboard</h1> */}
 
-      <div className="d-flex flex-row pt-4">
+      <div className="d-flex justify-content-center pt-4">
         <div className="mx-5">
           <ListReservations
             reservations={reservations}
@@ -98,6 +98,7 @@ function Dashboard({
             handleDateChange={handleDateChange}
           />
         </div>
+        <hr className="mx-3" />
         <div className="mx-5">
           <h4>Tables</h4>
           <TableList tables={tables} setTables={setTables} />

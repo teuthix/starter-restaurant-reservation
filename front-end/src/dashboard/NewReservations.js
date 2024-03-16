@@ -43,15 +43,21 @@ function NewReservations({ setDate, reservations, setReservations }) {
 
   return (
     <>
-      <h4 className="mt-4">New Reservation</h4>
-      <ReservationForm
-        formData={formData}
-        submitHandler={submitHandler}
-        handleChange={handleChange}
-        handleNumberChange={handleNumberChange}
-        showError={showError}
-        history={history}
-      />
+      <h2 className="px-4 pt-4">New Reservation</h2>
+      {/* <div className="d-flex flex-row justify-content-center"> */}
+      {/* <hr className="mx-5" /> */}
+      <div className="mx-5 mb-5">
+        <ReservationForm
+          formData={formData}
+          submitHandler={submitHandler}
+          handleChange={handleChange}
+          handleNumberChange={handleNumberChange}
+          showError={showError}
+          history={history}
+        />
+        {/* </div> */}
+        {/* <hr className="mx-5" /> */}
+      </div>
     </>
   );
 }

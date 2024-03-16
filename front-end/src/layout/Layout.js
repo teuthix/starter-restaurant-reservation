@@ -22,10 +22,10 @@ function Layout() {
             </h1>
           </div>
         </div>
+        <div className="side-bar">
+          <Menu />
+        </div>
         <div className="row h-100">
-          <div className="col-md-2 side-bar">
-            <Menu />
-          </div>
           <div className="col">
             <Routes />
           </div>
