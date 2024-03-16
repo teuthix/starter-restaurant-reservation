@@ -34,14 +34,14 @@ function NewTable({ tables, setTables, date }) {
   return (
     <>
       <h2 className="mx-5 my-3">Create New Table</h2>
-      <form onSubmit={submitHandler} className="d-flex flex-column mx-4 pt-4">
+      <form onSubmit={submitHandler} className="mx-5 d-flex flex-column">
         <>
           <label htmlFor="table_name">Table Name:</label>
           <input
             name="table_name"
             type="text"
             minLength="2"
-            className="mb-4"
+            className="mb-4 col-4"
             onChange={handleChange}
             required
           />
@@ -53,7 +53,7 @@ function NewTable({ tables, setTables, date }) {
             name="capacity"
             type="number"
             min="1"
-            className="mb-4"
+            className="mb-4 col-4"
             onChange={handleNumberChange}
             required
           />

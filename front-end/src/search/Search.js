@@ -30,16 +30,16 @@ function Search() {
   };
 
   return (
-    <div>
-      <h2 className="mx-5 my-3">Search by Mobile Number</h2>
-      <form onSubmit={submitHandler} className="mx-5 d-flex flex-column">
+    <div className="mx-5">
+      <h2 className="my-3">Search by Mobile Number</h2>
+      <form onSubmit={submitHandler} className="d-flex flex-column">
         <input
           name="mobile_number"
           type="text"
           id="mobile_number"
           placeholder="Enter a customer's phone number"
           onChange={changeHandler}
-          className="mb-3"
+          className="mb-3 col-4"
         />
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
