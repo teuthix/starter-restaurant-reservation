@@ -41,6 +41,7 @@ function NewTable({ tables, setTables, date }) {
             name="table_name"
             type="text"
             minLength="2"
+            className="mb-4"
             onChange={handleChange}
             required
           />
@@ -52,6 +53,7 @@ function NewTable({ tables, setTables, date }) {
             name="capacity"
             type="number"
             min="1"
+            className="mb-4"
             onChange={handleNumberChange}
             required
           />
