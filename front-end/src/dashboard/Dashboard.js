@@ -85,10 +85,11 @@ function Dashboard({
 
   return (
     <>
-      {/* <h1>Dashboard</h1> */}
-
       <div className="d-flex justify-content-center pt-4">
         <div className="mx-5">
+          <h2 className="mb-0">
+            Reservations for <span className="red-text">{date}</span>
+          </h2>
           <ListReservations
             reservations={reservations}
             setReservations={setReservations}

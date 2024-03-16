@@ -53,18 +53,13 @@ function ListReservations({
 
   return (
     <main>
-      <div className="d-md-flex mb-3">
-        <h2 className="mb-0">
-          Reservations for <span className="red-text">{date}</span>
-        </h2>
-      </div>
+      <hr className="blue" />
       <ErrorAlert error={reservationsError} />
       <DashList
         reservations={reservations}
         setReservations={setReservations}
         handleCancel={handleCancel}
       />
-      {/* {JSON.stringify(reservations)} */}
       <div>
         <button className="btn btn-secondary" onClick={handlePrevious}>
           previous
