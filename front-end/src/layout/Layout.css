@@ -1,10 +1,10 @@
 h2, h3 {
-  color:#0f2d8b;
+  color: #201c6b;
   font-family: "Oleo Script", Tahoma, serif;
 }
 
 h4, h5, p, input, label {
-  color:#0f2d8b;
+  color: #201c6b;
   font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
 }
 
@@ -13,8 +13,14 @@ button {
   margin-right: 10px;
 }
 
+
+
 .red-text {
   color: red
+}
+
+.tint {
+  background-color: rgb(250, 235, 233);
 }
 
 .oleo-script-regular {
@@ -29,25 +35,26 @@ button {
   font-weight: 700;
   font-size: 150px;
   text-align: center;
+  color: rgb(250, 235, 233);
   font-style: normal;
 }
 
 .side-bar {
-  background-color: #e0aaaa;
+  background-color: #f47061;
   min-width: 200px;
 }
 
 .top-bar {
-  background-color: #0f2d8b;
+  background-color: #6a8c9b;
   min-height: 200px;
 }
 
 .big-border {
-  border-color: white;
+  border-color: rgb(250, 235, 233);
   border-width: 10px;
   border-style: double;
 }
 
 .blue {
-  color:#0f2d8b
+  color:#1e44b7
 }

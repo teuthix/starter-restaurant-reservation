@@ -13,22 +13,18 @@ import "./Layout.css";
  */
 function Layout() {
   return (
-    <div>
-      <div className="column">
-        <div className="p-4 top-bar">
-          <div className="big-border">
-            <h1 className="px-4 pt-4 text-white oleo-script-bold">
-              Reservations
-            </h1>
-          </div>
+    <div className="column tint">
+      <div className="p-4 top-bar">
+        <div className="big-border">
+          <h1 className="px-4 pt-4  oleo-script-bold">Reservations</h1>
         </div>
-        <div className="side-bar">
-          <Menu />
-        </div>
-        <div className="row h-100">
-          <div className="col">
-            <Routes />
-          </div>
+      </div>
+      <div className="side-bar">
+        <Menu />
+      </div>
+      <div className="row h-100">
+        <div className="col">
+          <Routes />
         </div>
       </div>
     </div>
