@@ -10,6 +10,7 @@ function NewTable({ tables, setTables, date }) {
 
   const history = useHistory();
   const [formData, setFormData] = useState({ ...initialForm });
+  const [showError, setShowError] = useState("");
 
   const handleChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
@@ -27,7 +28,8 @@ function NewTable({ tables, setTables, date }) {
       setTables([...tables, newTable]);
       history.push(`/dashboard`);
     } catch (error) {
-      console.log("error----> ", error);
+      // console.log("error----> ", error);
+      setShowError(error);
     }
   };
 
@@ -58,6 +60,14 @@ function NewTable({ tables, setTables, date }) {
             required
           />
         </>
+
+        {showError ? (
+          <div className="alert alert-danger">
+            <p>{showError.message}</p>
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className="d-flex">
           <div>
