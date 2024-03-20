@@ -26,11 +26,15 @@ function Dashboard({
   // if no search in url, make it today's date
   useEffect(() => {
     if (!location.search) {
+      console.log("no date given");
       history.push({
         pathname: location.pathname,
         search: `?date=${today()}`,
       });
-    } else if (location.search.includes("?date=")) {
+    } else {
+      console.log(
+        "we made it inside this second if condition of our Dashboard component"
+      );
       const queryDate = new URLSearchParams(location.search).get("date");
       setDate(queryDate);
     }
