@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { listReservations, listTables } from "../utils/api";
 import ListReservations from "./ListReservations";
 import TableList from "../tables/TablesList";
+import { finishTable } from "../utils/api";
 import { today } from "../utils/date-time";
 
 /**
@@ -76,6 +77,7 @@ function Dashboard({
       const abortController = new AbortController();
       try {
         const response = await listTables();
+        console.log("loadingTables");
         setTables(response);
       } catch (error) {
         console.error(error);
@@ -83,9 +85,22 @@ function Dashboard({
         abortController.abort();
       }
     }
-
     loadTables();
   }, [date, setTables]);
+
+  const handleFinish = async (e) => {
+    const deleteId = e.target.value;
+    const text =
+      "Is this table ready to seat new guests? This cannot be undone.";
+
+    if (window.confirm(text)) {
+      await finishTable(deleteId);
+      setTables((currentTables) =>
+        currentTables.filter((table) => table.table_id !== deleteId)
+      );
+      history.push("/");
+    }
+  };
 
   return (
     <>
@@ -106,7 +121,7 @@ function Dashboard({
         <hr className="mx-3" />
         <div className="mx-5">
           <h4>Tables</h4>
-          <TableList tables={tables} setTables={setTables} />
+          <TableList tables={tables} handleFinish={handleFinish} />
         </div>
       </div>
     </>

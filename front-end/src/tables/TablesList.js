@@ -1,24 +1,6 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { finishTable } from "../utils/api";
 
-function TableList({ tables, setTables }) {
-  const history = useHistory();
-
-  const handleFinish = async (e) => {
-    const deleteId = e.target.value;
-    const text =
-      "Is this table ready to seat new guests? This cannot be undone.";
-
-    if (window.confirm(text)) {
-      await finishTable(deleteId);
-      setTables((currentTables) =>
-        currentTables.filter((table) => table.table_id !== deleteId)
-      );
-      // history.go(0);
-    }
-  };
-
+function TableList({ tables, handleFinish }) {
   const eachTable = tables.map((table, index) => {
     return (
       <div key={index} className="mb-4">
