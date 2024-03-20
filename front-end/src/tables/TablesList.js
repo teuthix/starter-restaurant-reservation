@@ -15,7 +15,7 @@ function TableList({ tables, setTables }) {
       setTables((currentTables) =>
         currentTables.filter((table) => table.table_id !== deleteId)
       );
-      history.go(0);
+      // history.go(0);
     }
   };
 
