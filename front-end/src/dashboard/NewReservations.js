@@ -20,7 +20,6 @@ function NewReservations({ setDate, reservations, setReservations }) {
 
   const handleChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
-    // console.log(formData);
   };
 
   const handleNumberChange = ({ target }) => {

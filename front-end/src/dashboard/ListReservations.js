@@ -47,7 +47,7 @@ function ListReservations({
           (reservation) => reservation.reservation_id !== cancelId
         )
       );
-      history.go(0);
+      history.push("/");
     }
   };
 
