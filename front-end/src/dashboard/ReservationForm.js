@@ -38,8 +38,10 @@ function ReservationForm({
           <label htmlFor="mobile_number">mobile number:</label>
           <input
             name="mobile_number"
-            type="text"
+            type="tel"
             id="mobile_number"
+            pattern="([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{10})"
+            placeholder="format 123-456-7890"
             className="mb-4 col-4"
             value={formData.mobile_number}
             onChange={handleChange}
