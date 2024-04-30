@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
  */
 
 function Menu() {
+  // return <p>menu</p>;
   return (
     <nav className="navbar navbar-dark align-items-start p-0">
       <div className="container-fluid d-flex">

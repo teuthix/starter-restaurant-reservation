@@ -1,3 +1,9 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 h2, h3 {
   color: #201c6b;
   font-family: "Oleo Script", Tahoma, serif;
@@ -13,7 +19,15 @@ button {
   margin-right: 10px;
 }
 
-
+/* hr {
+  width: 5px;
+  color: #f47061;
+} */
+.rotate {
+  transform: rotate(-90deg);
+  position: absolute;
+      top: 40%;
+}
 
 .red-text {
   color: red
@@ -41,12 +55,21 @@ button {
 
 .side-bar {
   background-color: #f47061;
-  min-width: 200px;
+  /* min-width: 200px; */
+  /* width: 100%; */
+  /* width: 80vw; */
+  height: 10%;
+  width: 100%;
+  /* justify-content: end;  */
+  align-content: center;
 }
 
 .top-bar {
   background-color: #6a8c9b;
-  min-height: 200px;
+  height: 100vh;
+  display: flex;
+  justify-content: center; 
+  /* align-items: center; */
 }
 
 .big-border {
@@ -57,4 +80,8 @@ button {
 
 .blue {
   color:#1e44b7
+}
+
+.col {
+  height: 200%;
 }

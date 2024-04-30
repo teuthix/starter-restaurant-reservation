@@ -118,7 +118,7 @@ function Dashboard({
             handleDateChange={handleDateChange}
           />
         </div>
-        <hr className="mx-3" />
+        <hr className="mx-5" />
         <div className="mx-5">
           <h4>Tables</h4>
           <TableList tables={tables} handleFinish={handleFinish} />
