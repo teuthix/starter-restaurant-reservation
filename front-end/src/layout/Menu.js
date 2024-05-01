@@ -9,12 +9,11 @@ import { Link } from "react-router-dom";
  */
 
 function Menu() {
-  // return <p>menu</p>;
   return (
-    <nav className="navbar navbar-dark align-items-start p-0">
-      <div className="container-fluid d-flex">
+    <nav className="navbar navbar-dark">
+      <div className="container-fluid d-flex justify-content-end">
         <Link className="navbar-brand d-flex sidebar-brand" to="/">
-          <div className="sidebar-brand-text mx-5 my-2">
+          <div className="sidebar-brand-text my-2">
             <span>Periodic Tables</span>
           </div>
         </Link>
@@ -22,25 +21,25 @@ function Menu() {
           className="nav navbar-nav flex-row text-light"
           id="accordionSidebar"
         >
-          <li className="nav-item mx-5">
+          <li className="nav-item mx-4">
             <Link className="nav-link" to="/dashboard">
               <span className="oi oi-dashboard" />
               &nbsp;Dashboard
             </Link>
           </li>
-          <li className="nav-item mx-5">
+          <li className="nav-item mx-4">
             <Link className="nav-link" to="/search">
               <span className="oi oi-magnifying-glass" />
               &nbsp;Search
             </Link>
           </li>
-          <li className="nav-item  mx-5">
+          <li className="nav-item mx-4">
             <Link className="nav-link" to="/reservations/new">
               <span className="oi oi-plus" />
               &nbsp;New Reservation
             </Link>
           </li>
-          <li className="nav-item  mx-5">
+          <li className="nav-item mx-4">
             <Link className="nav-link" to="/tables/new">
               <span className="oi oi-layers" />
               &nbsp;New Table
