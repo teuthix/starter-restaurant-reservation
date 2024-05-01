@@ -27,6 +27,7 @@ button {
   transform: rotate(-90deg);
   position: absolute;
       top: 40%;
+      margin: 0;
 }
 
 .red-text {
@@ -56,10 +57,9 @@ button {
 .side-bar {
   background-color: #f47061;
   /* min-width: 200px; */
-  /* width: 100%; */
-  /* width: 80vw; */
+  /* 84vw mostly works until it gets less than 1427px */
+  /* width: 84vw; */
   height: 10%;
-  width: 100%;
   /* justify-content: end;  */
   align-content: center;
 }
@@ -69,6 +69,7 @@ button {
   height: 100vh;
   display: flex;
   justify-content: center; 
+  margin: 0;
   /* align-items: center; */
 }
 
