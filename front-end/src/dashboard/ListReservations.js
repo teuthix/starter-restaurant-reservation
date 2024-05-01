@@ -30,10 +30,6 @@ function ListReservations({
     handleDateChange(today(date));
   };
 
-  // const handleEdit = async (e) => {
-  //   history.push()
-  // };
-
   const handleCancel = async (e) => {
     const cancelId = e.target.value;
     const text =
@@ -53,7 +49,7 @@ function ListReservations({
 
   return (
     <main>
-      <hr className="blue" />
+      {/* <hr className="blue" /> */}
       <ErrorAlert error={reservationsError} />
       <DashList
         reservations={reservations}

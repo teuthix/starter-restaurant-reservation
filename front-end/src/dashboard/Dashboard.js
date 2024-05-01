@@ -106,7 +106,7 @@ function Dashboard({
     <>
       <div className="d-flex justify-content-center pt-4">
         <div className="mx-5">
-          <h2 className="mb-0">
+          <h2 className="mb-4">
             Reservations for <span className="red-text">{date}</span>
           </h2>
           <ListReservations
