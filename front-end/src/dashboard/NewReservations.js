@@ -41,7 +41,7 @@ function NewReservations({ setDate, reservations, setReservations }) {
   };
 
   return (
-    <div className="mb-5">
+    <div className="d-flex justify-content-center">
       <ReservationForm
         formData={formData}
         submitHandler={submitHandler}
