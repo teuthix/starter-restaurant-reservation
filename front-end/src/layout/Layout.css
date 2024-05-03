@@ -19,13 +19,17 @@ button {
   margin-right: 10px;
 }
 
+/* h1 {
+  position: fixed;
+} */
+
 /* hr {
   width: 5px;
   color: #f47061;
 } */
 .rotate {
   transform: rotate(-90deg);
-  position: absolute;
+  position: fixed;
       top: 40%;
       margin: 0;
 }
@@ -62,11 +66,18 @@ button {
 
 .top-bar {
   background-color: #6a8c9b;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
   height: 100vh;
   display: flex;
   justify-content: center; 
   margin: 0;
-  /* align-items: center; */
+  align-items: center;
+  width: 18%;
+  z-index: 999;
 }
 
 .big-border {
