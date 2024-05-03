@@ -12,7 +12,7 @@ function ReservationForm({
       <div className="mx-5" style={{ minWidth: "500px" }}>
         <form onSubmit={submitHandler} className="d-flex flex-column">
           <>
-            <label htmlFor="first_name">first name:</label>
+            <label htmlFor="first_name">First name:</label>
             <input
               id="first_name"
               type="text"
@@ -24,7 +24,7 @@ function ReservationForm({
             />
           </>
           <>
-            <label htmlFor="last_name">last name:</label>
+            <label htmlFor="last_name">Last name:</label>
             <input
               id="last_name"
               type="text"
@@ -36,7 +36,7 @@ function ReservationForm({
             />
           </>
           <>
-            <label htmlFor="mobile_number">mobile number:</label>
+            <label htmlFor="mobile_number">Mobile Number:</label>
             <input
               name="mobile_number"
               type="tel"
@@ -50,7 +50,7 @@ function ReservationForm({
             />
           </>
           <>
-            <label htmlFor="reservation_date">reservation date:</label>
+            <label htmlFor="reservation_date">Reservation Date:</label>
             <input
               name="reservation_date"
               id="reservation_date"
@@ -64,7 +64,7 @@ function ReservationForm({
             />
           </>
           <>
-            <label htmlFor="reservation_time">reservation time:</label>
+            <label htmlFor="reservation_time">Reservation Time:</label>
             <input
               name="reservation_time"
               type="time"
@@ -78,7 +78,7 @@ function ReservationForm({
             />
           </>
           <>
-            <label htmlFor="people">number of people:</label>
+            <label htmlFor="people">Number of People:</label>
             <input
               name="people"
               type="number"
