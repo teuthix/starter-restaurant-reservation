@@ -30,23 +30,28 @@ function Search() {
   };
 
   return (
-    <div className="mx-5">
-      <h2 className="my-3">Search by Mobile Number</h2>
-      <form onSubmit={submitHandler} className="d-flex flex-column">
-        <input
-          name="mobile_number"
-          type="text"
-          id="mobile_number"
-          placeholder="Enter a customer's phone number"
-          onChange={changeHandler}
-          className="mb-3 col-4"
-        />
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+    <div className="container mx-5">
+      <div className="">
+        <h2 className="text-center my-3 mb-4">Search by Mobile Number</h2>
+      </div>
+      <div>
+        <form
+          onSubmit={submitHandler}
+          className="d-flex text-center align-items-baseline flex-row mb-4"
+        >
+          <input
+            name="mobile_number"
+            type="text"
+            id="mobile_number"
+            placeholder="Enter a customer's phone number"
+            onChange={changeHandler}
+            className="mb-3 col-8"
+          />
+          <button type="submit" className="btn btn-primary mx-3">
             Find
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
       {showResults ? (
         <FoundMatches
           foundMatches={foundMatches}

@@ -82,3 +82,10 @@ button {
 .col {
   height: 200%;
 }
+
+.item {
+  width: 30%;
+  /* padding-bottom: 32%; */
+  margin-bottom: 2%; 
+  position: relative;
+}
