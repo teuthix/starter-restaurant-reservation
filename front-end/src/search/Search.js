@@ -37,7 +37,7 @@ function Search() {
       <div>
         <form
           onSubmit={submitHandler}
-          className="d-flex text-center align-items-baseline flex-row mb-4"
+          className="d-flex mx-5 text-center align-items-baseline flex-row mb-4"
         >
           <input
             name="mobile_number"
@@ -45,7 +45,7 @@ function Search() {
             id="mobile_number"
             placeholder="Enter a customer's phone number"
             onChange={changeHandler}
-            className="mb-3 col-8"
+            className="mb-3 col-11"
           />
           <button type="submit" className="btn btn-primary mx-3">
             Find
