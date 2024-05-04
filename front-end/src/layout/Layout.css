@@ -5,12 +5,12 @@ body, html {
 }
 
 h2, h3 {
-  color: #201c6b;
+  /* color: #201c6b; */
   font-family: "Oleo Script", Tahoma, serif;
 }
 
 h4, h5, p, input, label {
-  color: #201c6b;
+  /* color: #201c6b; */
   font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
 }
 
@@ -22,8 +22,12 @@ button {
 .rotate {
   transform: rotate(-90deg);
   position: fixed;
-      top: 40%;
-      margin: 0;
+  top: 40%;
+  margin: 0;
+}
+
+.thin-red-line {
+  color: #8b2317;
 }
 
 .red-text {
@@ -38,7 +42,6 @@ button {
   font-family: "Oleo Script", system-ui;
   font-weight: 400;
   font-style: normal;
-  /* font-size: 30px; */
 }
 
 .oleo-script-bold {
@@ -51,20 +54,18 @@ button {
 }
 
 .side-bar {
-  /* background-color: #8b2317; */
   background-color: white;
   height: 10%;
   align-content: center;
+  position: relative;
 }
 
-.top-bar {
+.top-bar { 
   background-color: #8b2317;
-  /* background-color: white; */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
   height: 100vh;
   display: flex;
   justify-content: center; 
@@ -74,16 +75,16 @@ button {
   z-index: 999;
 }
 
-.big-border {
-  border-color: rgb(250, 235, 233);
-  border-width: 10px;
-  border-style: double;
-}
-
 .bottom-border {
   border-color: #8b2317;
   border-width: 10px;
   border-bottom-style: solid;
+}
+
+.right-border {
+  border-color: #8b2317;
+  border-width: 10px;
+  border-right-style: solid;
 }
 
 .blue {
@@ -96,7 +97,6 @@ button {
 
 .item {
   width: 30%;
-  /* padding-bottom: 32%; */
   margin-bottom: 2%; 
   position: relative;
 }

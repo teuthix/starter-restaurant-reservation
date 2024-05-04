@@ -105,7 +105,7 @@ function Dashboard({
   return (
     <>
       <div className="d-flex justify-content-center">
-        <div className="mx-5">
+        <div className="mx-5 p-5">
           <h2 className="mb-4">
             Reservations for <span className="red-text">{date}</span>
           </h2>
@@ -118,8 +118,8 @@ function Dashboard({
             handleDateChange={handleDateChange}
           />
         </div>
-        <hr className="mx-5" />
-        <div className="mx-5">
+        <vr className="mx-5 right-border" />
+        <div className="mx-4 py-5">
           <h4>Tables</h4>
           <TableList tables={tables} handleFinish={handleFinish} />
         </div>
