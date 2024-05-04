@@ -31,12 +31,14 @@ function FoundMatches({ foundMatches, setFoundMatches }) {
         <div className="px-3">
           <div className="d-flex justify-content-between">
             <p>Mobile Number</p>
-            <p>.....................</p>
+            <hr className="flex-grow-1 mx-2" />
+
             <p> {reservation.mobile_number}</p>
           </div>
           <div className="d-flex justify-content-between">
             <p>Date</p>
-            <p>................................</p>
+            <hr className="flex-grow-1 mx-2" />
+
             <p>
               {reservation.reservation_date.slice(0, 9)}
               {" at "}
@@ -45,12 +47,14 @@ function FoundMatches({ foundMatches, setFoundMatches }) {
           </div>
           <div className="d-flex justify-content-between">
             <p>Guests</p>
-            <p>............................................................</p>
+            <hr className="flex-grow-1 mx-2" />
+
             <p>{reservation.people}</p>
           </div>
           <div className="d-flex justify-content-between">
             <p>Status</p>
-            <p>...................................................</p>
+            <hr className="flex-grow-1 mx-2" />
+
             <p> {reservation.status}</p>
           </div>
         </div>

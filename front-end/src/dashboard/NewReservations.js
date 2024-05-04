@@ -42,14 +42,17 @@ function NewReservations({ setDate, reservations, setReservations }) {
 
   return (
     <div className="d-flex justify-content-center">
-      <ReservationForm
-        formData={formData}
-        submitHandler={submitHandler}
-        handleChange={handleChange}
-        handleNumberChange={handleNumberChange}
-        showError={showError}
-        history={history}
-      />
+      <div className="mt-5">
+        <h2 className="text-center my-3">New Reservation</h2>
+        <ReservationForm
+          formData={formData}
+          submitHandler={submitHandler}
+          handleChange={handleChange}
+          handleNumberChange={handleNumberChange}
+          showError={showError}
+          history={history}
+        />
+      </div>
     </div>
   );
 }

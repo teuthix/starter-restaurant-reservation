@@ -7,8 +7,7 @@ function ReservationForm({
   history,
 }) {
   return (
-    <div className="mx-5">
-      <h2 className="text-center my-3 mb-4">New Reservation</h2>
+    <div>
       <div className="mx-5" style={{ minWidth: "500px" }}>
         <form onSubmit={submitHandler} className="d-flex flex-column">
           <>

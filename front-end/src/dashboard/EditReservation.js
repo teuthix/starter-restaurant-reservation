@@ -56,19 +56,21 @@ function EditReservation() {
   };
 
   return (
-    <>
-      <h3 className="px-4 pt-4">Edit Reservation</h3>
-      <div className="mx-5 mb-5">
-        <ReservationForm
-          formData={formData}
-          submitHandler={submitHandler}
-          handleChange={handleChange}
-          handleNumberChange={handleNumberChange}
-          showError={showError}
-          history={history}
-        />
+    <div className="d-flex justify-content-center">
+      <div className="mt-5">
+        <h2 className="text-center my-3">Edit Reservation</h2>
+        <div className="mx-5 mb-5">
+          <ReservationForm
+            formData={formData}
+            submitHandler={submitHandler}
+            handleChange={handleChange}
+            handleNumberChange={handleNumberChange}
+            showError={showError}
+            history={history}
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

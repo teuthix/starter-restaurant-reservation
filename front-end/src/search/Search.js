@@ -30,7 +30,7 @@ function Search() {
   };
 
   return (
-    <div>
+    <div className="mt-5">
       <div className="d-flex justify-content-center mb-5">
         <h2>Search by Mobile Number</h2>
         <div className="mx-5">
