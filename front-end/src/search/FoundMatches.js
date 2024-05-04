@@ -24,47 +24,53 @@ function FoundMatches({ foundMatches, setFoundMatches }) {
     };
 
     return (
-      <div key={index} className="col mb-5">
-        <div className="card">
-          <h4 className="card-header">
-            {reservation.first_name} {reservation.last_name}
-          </h4>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item border-0 d-flex justify-content-between">
-              <p>Mobile Number: {reservation.mobile_number}</p>
-            </li>
-            <li className="list-group-item border-0 d-flex justify-content-between">
-              <p>
-                Date: {reservation.reservation_date.slice(0, 9)}
-                {" at "}
-                {reservation.reservation_time.slice(0, 5)}
-              </p>
-            </li>
-            <li className="list-group-item border-0 d-flex justify-content-between">
-              <p>Guests: {reservation.people}</p>
-            </li>
-            <li className="list-group-item border-0 d-flex justify-content-between">
-              <p>Status: {reservation.status}</p>
-            </li>
-            <li className="list-group-item border-0">
-              <Link to={`/reservations/${reservation.reservation_id}/edit`}>
-                <button
-                  href={`/reservations/${reservation.reservation_id}/seat`}
-                  className="btn btn-secondary"
-                >
-                  Edit
-                </button>
-              </Link>
-              <button
-                data-reservation-id-cancel={reservation.reservation_id}
-                className="btn btn-danger"
-                value={reservation.reservation_id}
-                onClick={handleCancel}
-              >
-                Cancel
-              </button>
-            </li>
-          </ul>
+      <div key={index} className="col mb-5 px-4">
+        <h4>
+          {reservation.first_name} {reservation.last_name}
+        </h4>
+        <div className="px-3">
+          <div className="d-flex justify-content-between">
+            <p>Mobile Number</p>
+            <p>.....................</p>
+            <p> {reservation.mobile_number}</p>
+          </div>
+          <div className="d-flex justify-content-between">
+            <p>Date</p>
+            <p>................................</p>
+            <p>
+              {reservation.reservation_date.slice(0, 9)}
+              {" at "}
+              {reservation.reservation_time.slice(0, 5)}
+            </p>
+          </div>
+          <div className="d-flex justify-content-between">
+            <p>Guests</p>
+            <p>............................................................</p>
+            <p>{reservation.people}</p>
+          </div>
+          <div className="d-flex justify-content-between">
+            <p>Status</p>
+            <p>...................................................</p>
+            <p> {reservation.status}</p>
+          </div>
+        </div>
+        <div className="d-flex justify-content-center mb-4">
+          <Link to={`/reservations/${reservation.reservation_id}/edit`}>
+            <button
+              href={`/reservations/${reservation.reservation_id}/seat`}
+              className="btn btn-secondary"
+            >
+              Edit
+            </button>
+          </Link>
+          <button
+            data-reservation-id-cancel={reservation.reservation_id}
+            className="btn btn-danger"
+            value={reservation.reservation_id}
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     );

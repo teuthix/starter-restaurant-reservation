@@ -31,7 +31,7 @@ function Search() {
 
   return (
     <div>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center mb-5">
         <h2>Search by Mobile Number</h2>
         <div className="mx-5">
           <form onSubmit={submitHandler} className="d-flex flex-row">
