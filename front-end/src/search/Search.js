@@ -32,7 +32,7 @@ function Search() {
   return (
     <div className="mt-5">
       <div className="d-flex justify-content-center mb-5">
-        <h2>Search by Mobile Number</h2>
+        <h2 className="platypi-subtitle">Search by Mobile Number</h2>
         <div className="mx-5">
           <form onSubmit={submitHandler} className="d-flex flex-row">
             <input

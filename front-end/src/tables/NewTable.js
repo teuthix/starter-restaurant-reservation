@@ -35,7 +35,9 @@ function NewTable({ tables, setTables, date }) {
   return (
     <div className="d-flex justify-content-center">
       <div className="mt-5">
-        <h2 className="text-center mx-5 my-3">Create New Table</h2>
+        <h2 className="text-center mx-5 my-3 platypi-subtitle">
+          Create New Table
+        </h2>
         <div className="mx-5" style={{ minWidth: "500px" }}>
           <form onSubmit={submitHandler} className="d-flex flex-column">
             <>

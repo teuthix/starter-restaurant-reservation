@@ -5,12 +5,15 @@ body, html {
 }
 
 h2, h3 {
-  /* color: #201c6b; */
-  font-family: "Oleo Script", Tahoma, serif;
+  font-family: "Platypi", Tahoma, serif;
 }
 
-h4, h5, p, input, label {
-  /* color: #201c6b; */
+h4, h5 {
+  font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
+  font-style: italic;
+}
+
+p, input, label {
   font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
 }
 
@@ -53,6 +56,24 @@ button {
   font-style: normal;
 }
 
+.platypi-title {
+  font-family: "Platypi", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 140px;
+  color: rgb(250, 235, 233);
+}
+
+.platypi-subtitle {
+  font-family: "Platypi", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  /* font-size: 140px; */
+  /* color: rgb(250, 235, 233); */
+}
+
 .side-bar {
   background-color: white;
   height: 10%;
@@ -79,6 +100,7 @@ button {
   border-color: #8b2317;
   border-width: 10px;
   border-bottom-style: solid;
+  border-top-style: solid;
 }
 
 .right-border {
