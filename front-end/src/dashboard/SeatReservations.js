@@ -39,21 +39,24 @@ function SeatReservation({ tables, setTables }) {
   };
 
   return (
-    <>
-      <h4>Seat reservation</h4>
-      <form onSubmit={submitHandler}>
-        <select
-          name="table_id"
-          onChange={(e) => setSelectedTable(e.target.value)}
-        >
-          <option value="">--- Please Select Option ---</option>
-          {tableOptions}
-        </select>
-        <button type="submit" className="btn btn-primary mx-4">
-          Submit
-        </button>
-      </form>
-    </>
+    <div className="mt-5">
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <h2 className="platypi-subtitle">Seat reservation</h2>
+        <form onSubmit={submitHandler}>
+          <select
+            name="table_id"
+            onChange={(e) => setSelectedTable(e.target.value)}
+            className="p-1"
+          >
+            <option value="">--- Please Select Option ---</option>
+            {tableOptions}
+          </select>
+          <button type="submit" className="btn btn-primary mx-4">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

@@ -13,7 +13,7 @@ h4, h5 {
   font-style: italic;
 }
 
-p, input, label {
+p, input, label, select, option {
   font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
 }
 
