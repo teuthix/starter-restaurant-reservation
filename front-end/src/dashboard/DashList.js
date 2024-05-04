@@ -38,45 +38,47 @@ function DashList({ reservations, setReservations, handleCancel }) {
     );
 
     const formattedReservation = (
-      <div key={index} className="card mb-4">
-        <h5 className="card-header">
+      <div key={index} className="mb-4">
+        <h4>
           {reservation.first_name} {reservation.last_name}
-        </h5>
-
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item border-0 d-flex justify-content-between">
+        </h4>
+        <div className="px-4">
+          <div className="d-flex justify-content-between">
             <p>Reservation</p>
-            <p>...........................</p>
+            <p>....................................</p>
             <p>
               {reservation.reservation_date} at {reservation.reservation_time}
             </p>
-          </li>
-          <li className="list-group-item border-0 d-flex justify-content-between">
+          </div>
+          <div className="d-flex justify-content-between">
             <p>Contact:</p>
-            <p>.................................................</p>
+            <p>.......................................................</p>
             <p>{reservation.mobile_number}</p>
-          </li>
-          <li className="list-group-item border-0 d-flex justify-content-between">
+          </div>
+          <div className="d-flex justify-content-between">
             <p>Guests:</p>
             <p>
-              .......................................................................
+              .................................................................................
             </p>
             <p>{reservation.people}</p>
-          </li>
-          <li
-            className="list-group-item border-0  d-flex justify-content-between"
+          </div>
+          <div
+            className="d-flex justify-content-between"
             data-reservation-id-status={reservation.reservation_id}
           >
             <p>Status:</p>
-            <p>.............................................................</p>
+            <p>
+              ......................................................................
+            </p>
             <p>{reservation.status}</p>
-          </li>
-        </ul>
-        <li className="list-group-item border-0">
+          </div>
+        </div>
+        <div className="d-flex justify-content-center mb-4">
           {reservation.status === "booked" ? seatButton : ""}
           {reservation.status === "booked" ? editButton : ""}
           {cancelButton}
-        </li>
+        </div>
+        <hr />
       </div>
     );
 
