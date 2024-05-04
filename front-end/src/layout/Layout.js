@@ -21,7 +21,7 @@ function Layout() {
           </div>
         </div>
         <div className="col" style={{ paddingLeft: 0 }}>
-          <div className="side-bar">
+          <div className="side-bar bottom-border">
             <Menu />
           </div>
           <div className="col mt-5">

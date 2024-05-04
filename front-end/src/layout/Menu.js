@@ -17,30 +17,43 @@ function Menu() {
             <span>Periodic Tables</span>
           </div>
         </Link>
-        <ul
-          className="nav navbar-nav flex-row text-light"
-          id="accordionSidebar"
-        >
+        <ul className="nav navbar-nav flex-row" id="accordionSidebar">
           <li className="nav-item mx-4">
-            <Link className="nav-link" to="/dashboard">
+            <Link
+              className="nav-link"
+              style={{ color: "#8b2317" }}
+              to="/dashboard"
+            >
               <span className="oi oi-dashboard" />
               &nbsp;Dashboard
             </Link>
           </li>
           <li className="nav-item mx-4">
-            <Link className="nav-link" to="/search">
+            <Link
+              className="nav-link"
+              style={{ color: "#8b2317" }}
+              to="/search"
+            >
               <span className="oi oi-magnifying-glass" />
               &nbsp;Search
             </Link>
           </li>
           <li className="nav-item mx-4">
-            <Link className="nav-link" to="/reservations/new">
+            <Link
+              className="nav-link"
+              style={{ color: "#8b2317" }}
+              to="/reservations/new"
+            >
               <span className="oi oi-plus" />
               &nbsp;New Reservation
             </Link>
           </li>
-          <li className="nav-item mx-4">
-            <Link className="nav-link" to="/tables/new">
+          <li className="nav-item mx-4 ">
+            <Link
+              className="nav-link"
+              style={{ color: "#8b2317" }}
+              to="/tables/new"
+            >
               <span className="oi oi-layers" />
               &nbsp;New Table
             </Link>
