@@ -13,7 +13,7 @@ function Menu() {
     <nav className="navbar navbar-dark">
       <div className="container-fluid d-flex justify-content-end">
         <Link className="navbar-brand d-flex sidebar-brand" to="/">
-          <div className="sidebar-brand-text my-2">
+          <div className="sidebar-brand-text my-3">
             <span>Periodic Tables</span>
           </div>
         </Link>

@@ -38,28 +38,26 @@ function DashList({ reservations, setReservations, handleCancel }) {
     );
 
     const formattedReservation = (
-      <div key={index} className="mb-4">
-        <h4>
+      <div key={index} className="my-4 mx-3 px-5">
+        <h4 className="mb-4">
           {reservation.first_name} {reservation.last_name}
         </h4>
         <div className="px-4">
           <div className="d-flex justify-content-between">
             <p>Reservation</p>
-            <p>....................................</p>
+            <hr className="flex-grow-1 mx-2" />
             <p>
               {reservation.reservation_date} at {reservation.reservation_time}
             </p>
           </div>
           <div className="d-flex justify-content-between">
             <p>Contact:</p>
-            <p>.......................................................</p>
+            <hr className="flex-grow-1 mx-2" />
             <p>{reservation.mobile_number}</p>
           </div>
           <div className="d-flex justify-content-between">
             <p>Guests:</p>
-            <p>
-              .................................................................................
-            </p>
+            <hr className="flex-grow-1 mx-2" />
             <p>{reservation.people}</p>
           </div>
           <div
@@ -67,9 +65,7 @@ function DashList({ reservations, setReservations, handleCancel }) {
             data-reservation-id-status={reservation.reservation_id}
           >
             <p>Status:</p>
-            <p>
-              ......................................................................
-            </p>
+            <hr className="flex-grow-1 mx-2" />
             <p>{reservation.status}</p>
           </div>
         </div>

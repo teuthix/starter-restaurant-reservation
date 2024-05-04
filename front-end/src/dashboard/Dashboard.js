@@ -105,8 +105,8 @@ function Dashboard({
   return (
     <>
       <div className="d-flex justify-content-center">
-        <div className="mx-5 p-5">
-          <h2 className="mb-4">
+        <div className="mx-5 p-5 w-50">
+          <h2 className="mb-4 mt-3 text-center">
             Reservations for <span className="red-text">{date}</span>
           </h2>
           <ListReservations
@@ -120,7 +120,7 @@ function Dashboard({
         </div>
         <vr className="mx-5 right-border" />
         <div className="mx-4 py-5">
-          <h4>Tables</h4>
+          <h4 className="mt-3">Tables</h4>
           <TableList tables={tables} handleFinish={handleFinish} />
         </div>
       </div>
