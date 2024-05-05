@@ -20,6 +20,8 @@ function Dashboard({
   tables,
   setTables,
 }) {
+  // Returns dashboard page
+
   const [reservationsError, setReservationsError] = useState(null);
   const history = useHistory();
   const location = useLocation();
@@ -40,13 +42,13 @@ function Dashboard({
   // handleDateChange changes date in the url, passed into ListReservations
   const handleDateChange = (newDate) => {
     setDate(newDate);
-
     history.push({
       pathname: location.pathname,
       search: `?date=${newDate}`,
     });
   };
 
+  // gets reservations from the date
   useEffect(() => {
     const abortController = new AbortController();
 
@@ -68,6 +70,7 @@ function Dashboard({
     };
   }, [date, setReservations]);
 
+  // gets all tables
   useEffect(() => {
     async function loadTables() {
       const abortController = new AbortController();
@@ -83,6 +86,7 @@ function Dashboard({
     loadTables();
   }, [date, setTables]);
 
+  // deletes table, button available after seating reservation at said table
   const handleFinish = async (e) => {
     const deleteId = e.target.value;
     const text =

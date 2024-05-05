@@ -17,6 +17,7 @@ function EditReservation() {
     people: "",
   });
 
+  // gets information of reservation being edited
   useEffect(() => {
     async function fetchReservations() {
       try {
@@ -46,10 +47,12 @@ function EditReservation() {
     }
   };
 
+  // handles changes of the form that aren't strictly numbers
   const handleChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
   };
 
+  // handles changes of the form that are only numbers
   const handleNumberChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: Number(target.value) });
   };

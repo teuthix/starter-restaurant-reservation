@@ -1,6 +1,7 @@
 import React from "react";
 
 function TableList({ tables, handleFinish }) {
+  // formats each table for the Dashboard
   const eachTable = tables.map((table, index) => {
     return (
       <div key={index} className="mb-4">

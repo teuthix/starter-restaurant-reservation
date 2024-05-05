@@ -34,34 +34,27 @@ function NewTable({ tables, setTables, date }) {
   return (
     <div className="d-flex justify-content-center">
       <div className="mt-4">
-        <h2 className="text-center mx-5 my-3 platypi-subtitle">
-          Create New Table
-        </h2>
-        <div className="mx-5" style={{ minWidth: "500px" }}>
+        <h2 className="text-center my-3 platypi-subtitle">Create New Table</h2>
+        <div style={{ minWidth: "500px" }}>
           <form onSubmit={submitHandler} className="d-flex flex-column">
-            <>
-              <label htmlFor="table_name">Table Name:</label>
-              <input
-                name="table_name"
-                type="text"
-                minLength="2"
-                className="mb-4"
-                onChange={handleChange}
-                required
-              />
-            </>
-
-            <>
-              <label htmlFor="capacity">Capacity:</label>
-              <input
-                name="capacity"
-                type="number"
-                min="1"
-                className="mb-4"
-                onChange={handleNumberChange}
-                required
-              />
-            </>
+            <label htmlFor="table_name">Table Name:</label>
+            <input
+              name="table_name"
+              type="text"
+              minLength="2"
+              className="mb-4"
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="capacity">Capacity:</label>
+            <input
+              name="capacity"
+              type="number"
+              min="1"
+              className="mb-4"
+              onChange={handleNumberChange}
+              required
+            />
 
             {showError ? (
               <div className="alert alert-danger">
@@ -71,19 +64,17 @@ function NewTable({ tables, setTables, date }) {
               ""
             )}
 
-            <div className="d-flex">
-              <div>
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => history.goBack()}
-                >
-                  Cancel
-                </button>
-              </div>
+            <div>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => history.goBack()}
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </div>

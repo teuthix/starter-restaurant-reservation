@@ -14,14 +14,14 @@ import "./Layout.css";
 function Layout() {
   return (
     <div>
-      <div className="d-flex row g-0">
-        <div className="col-2 p-0">
+      <div className="d-flex row">
+        <div className="col-2">
           <div className="top-bar">
-            <h1 className="oleo-script-bold rotate">Reservations</h1>
+            <h1 className="platypi-title rotate">Reservations</h1>
           </div>
         </div>
-        <div className="col" style={{ paddingLeft: 0 }}>
-          <div className="side-bar bottom-border">
+        <div className="col">
+          <div className="side-bar side-border">
             <Menu />
           </div>
           <div className="col">

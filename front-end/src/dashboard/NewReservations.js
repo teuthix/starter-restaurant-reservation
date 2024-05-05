@@ -18,10 +18,12 @@ function NewReservations({ setDate, reservations, setReservations }) {
   const [formData, setFormData] = useState({ ...initialForm });
   const [showError, setShowError] = useState("");
 
+  // handles changes of the form that aren't strictly numbers
   const handleChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
   };
 
+  // handles changes of the form that are only numbers
   const handleNumberChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: Number(target.value) });
   };

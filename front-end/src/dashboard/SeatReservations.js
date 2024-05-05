@@ -66,50 +66,48 @@ function SeatReservation({ tables, setTables }) {
   };
 
   return (
-    <div className="my-4">
-      <div className="d-flex flex-column justify-content-center align-items-center">
-        <h2 className="platypi-subtitle">Seat reservation</h2>
-        <h4 className="mt-3">Reservation Info</h4>
-        <div className="px-4 mb-3" style={{ minWidth: "24%" }}>
-          <div className="d-flex justify-content-between">
-            <p>Name</p>
-            <hr className="flex-grow-1 mx-2" />
-            <p>
-              {seating.first_name} {seating.last_name}
-            </p>
-          </div>
-          <div className="d-flex justify-content-between">
-            <p>Date/Time</p>
-            <hr className="flex-grow-1 mx-2" />
-            <p>
-              {seating.reservation_date} at {seating.reservation_time}
-            </p>
-          </div>
-          <div className="d-flex justify-content-between">
-            <p>Contact:</p>
-            <hr className="flex-grow-1 mx-2" />
-            <p>{seating.mobile_number}</p>
-          </div>
-          <div className="d-flex justify-content-between">
-            <p>Guests:</p>
-            <hr className="flex-grow-1 mx-2" />
-            <p>{seating.people}</p>
-          </div>
+    <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+      <h2 className="platypi-subtitle">Seat reservation</h2>
+      <h4 className="mt-3">Reservation Info</h4>
+      <div className="mb-4" style={{ minWidth: "20%" }}>
+        <div className="d-flex justify-content-between">
+          <p>Name</p>
+          <hr className="flex-grow-1 mx-2" />
+          <p>
+            {seating.first_name} {seating.last_name}
+          </p>
         </div>
-        <form onSubmit={submitHandler}>
-          <select
-            name="table_id"
-            onChange={(e) => setSelectedTable(e.target.value)}
-            className="p-1"
-          >
-            <option value="">--- Please Select Option ---</option>
-            {tableOptions}
-          </select>
-          <button type="submit" className="btn btn-primary mx-4">
-            Submit
-          </button>
-        </form>
+        <div className="d-flex justify-content-between">
+          <p>Date/Time</p>
+          <hr className="flex-grow-1 mx-2" />
+          <p>
+            {seating.reservation_date} at {seating.reservation_time}
+          </p>
+        </div>
+        <div className="d-flex justify-content-between">
+          <p>Contact:</p>
+          <hr className="flex-grow-1 mx-2" />
+          <p>{seating.mobile_number}</p>
+        </div>
+        <div className="d-flex justify-content-between">
+          <p>Guests:</p>
+          <hr className="flex-grow-1 mx-2" />
+          <p>{seating.people}</p>
+        </div>
       </div>
+      <form onSubmit={submitHandler}>
+        <select
+          name="table_id"
+          onChange={(e) => setSelectedTable(e.target.value)}
+          className="p-1"
+        >
+          <option value="">--- Please Select Option ---</option>
+          {tableOptions}
+        </select>
+        <button type="submit" className="btn btn-primary mx-4">
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
