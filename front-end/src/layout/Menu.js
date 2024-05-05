@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 
 function Menu() {
   // returns menu at the top of the page
-
   return (
     <nav className="navbar navbar-dark">
       <div className="container-fluid d-flex justify-content-end">

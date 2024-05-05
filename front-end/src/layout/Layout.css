@@ -29,31 +29,8 @@ button {
   margin: 0;
 }
 
-.thin-red-line {
-  color: #8b2317;
-}
-
 .red-text {
   color: #8b2317
-}
-
-.tint {
-  background-color: rgb(250, 235, 233);
-}
-
-.oleo-script-regular {
-  font-family: "Oleo Script", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.oleo-script-bold {
-  font-family: "Oleo Script", system-ui;
-  font-weight: 700;
-  font-size: 150px;
-  text-align: center;
-  color: rgb(250, 235, 233);
-  font-style: normal;
 }
 
 .platypi-title {
@@ -70,18 +47,16 @@ button {
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
-  /* font-size: 140px; */
-  /* color: rgb(250, 235, 233); */
 }
 
-.side-bar {
+.menu-bar {
   background-color: white;
   height: 10%;
   align-content: center;
-  position: relative;
+  /* position: relative; */
 }
 
-.top-bar { 
+.title-bar { 
   background-color: #8b2317;
   position: fixed;
   top: 0;
@@ -90,13 +65,12 @@ button {
   height: 100vh;
   display: flex;
   justify-content: center; 
-  margin: 0;
   align-items: center;
   width: 18%;
   z-index: 999;
 }
 
-.side-border {
+.menu-border {
   border-color: #8b2317;
   border-width: 10px;
   border-bottom-style: solid;
@@ -110,16 +84,6 @@ button {
   min-height: 100vh;
 }
 
-.blue {
-  color:#1e44b7
-}
-
 .col {
   height: 200%;
-}
-
-.item {
-  width: 30%;
-  margin-bottom: 2%; 
-  position: relative;
 }

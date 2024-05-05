@@ -15,13 +15,13 @@ function Layout() {
   return (
     <div>
       <div className="d-flex row">
-        <div className="col-2">
-          <div className="top-bar">
+        <div className="">
+          <div className="title-bar">
             <h1 className="platypi-title rotate">Reservations</h1>
           </div>
         </div>
-        <div className="col">
-          <div className="side-bar side-border">
+        <div className="col p-0" style={{ marginLeft: "18.5%" }}>
+          <div className="menu-bar menu-border">
             <Menu />
           </div>
           <div className="col">
