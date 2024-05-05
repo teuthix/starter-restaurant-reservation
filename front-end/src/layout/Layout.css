@@ -2,19 +2,25 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
+  background-color: ivory;
 }
 
 h2, h3 {
   font-family: "Platypi", Tahoma, serif;
+  color: #2e5397;
+  
 }
 
 h4, h5 {
   font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
   font-style: italic;
+  color: #2e5397;
 }
 
 p, input, label, select, option {
   font-family: 'Gill Sans', 'Trebuchet MS', sans-serif;
+  color: #2e5397;
+
 }
 
 button {
@@ -30,20 +36,31 @@ button {
 }
 
 .red-text {
-  color: #8b2317;
+  color: #c9520d;
 }
 
 .btn-primary, .btn-primary:active {
-  background-color: #8b2317;
+  background-color: #2e5397;
   color: white;
-  border: #8b2317;
-
+  border: #2e5397;
 }
 
 .btn-primary:hover {
-  background-color: #731b11;
+  background-color: #1b386f;
   color: white;
-  border: #731b11;
+  border: #1b386f;
+}
+
+.btn-secondary, .btn-secondary:focus {
+  background-color: #c9520d;
+  color: white;
+  border: #c9520d;
+}
+
+.btn-secondary:hover, .btn-secondary:active {
+  background-color: #a13d03;
+  color: white;
+  border: #a13d03;
 }
 
 .platypi-title {
@@ -52,7 +69,7 @@ button {
   font-weight: 800;
   font-style: normal;
   font-size: 140px;
-  color: rgb(250, 235, 233);
+  color: ivory;
 }
 
 .platypi-subtitle {
@@ -62,15 +79,9 @@ button {
   font-style: normal;
 }
 
-.menu-bar {
-  background-color: white;
-  height: 10%;
-  align-content: center;
-  /* position: relative; */
-}
 
 .title-bar { 
-  background-color: #8b2317;
+  background-color: #c9520d;
   position: fixed;
   top: 0;
   left: 0;
@@ -83,15 +94,21 @@ button {
   z-index: 999;
 }
 
+.menu-bar {
+  background-color: ivory;
+  height: 10%;
+  align-content: center;
+}
+
 .menu-border {
-  border-color: #8b2317;
+  border-color: #2e5397;
   border-width: 10px;
   border-bottom-style: solid;
   border-top-style: solid;
 }
 
 .right-border {
-  border-color: #8b2317;
+  border-color: #2e5397;
   border-width: 10px;
   border-right-style: solid;
   min-height: 100vh;

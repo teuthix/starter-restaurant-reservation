@@ -59,14 +59,14 @@ function FoundMatches({ foundMatches, setFoundMatches }) {
           <Link to={`/reservations/${reservation.reservation_id}/edit`}>
             <button
               href={`/reservations/${reservation.reservation_id}/seat`}
-              className="btn btn-secondary"
+              className="btn btn-primary"
             >
               Edit
             </button>
           </Link>
           <button
             data-reservation-id-cancel={reservation.reservation_id}
-            className="btn btn-danger"
+            className="btn btn-secondary"
             value={reservation.reservation_id}
             onClick={handleCancel}
           >

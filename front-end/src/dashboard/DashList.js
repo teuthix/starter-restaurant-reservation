@@ -39,7 +39,7 @@ function DashList({ reservations, setReservations, handleCancel }) {
 
     const formattedReservation = (
       <div key={index} className="my-4 mx-3 px-5">
-        <h4 className="mb-4">
+        <h4 className="mb-4 red-text">
           {reservation.first_name} {reservation.last_name}
         </h4>
         <div className="px-4">

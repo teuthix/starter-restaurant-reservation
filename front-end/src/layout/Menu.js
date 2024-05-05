@@ -22,7 +22,7 @@ function Menu() {
           <li className="nav-item mx-4">
             <Link
               className="nav-link"
-              style={{ color: "#8b2317" }}
+              style={{ color: "#c9520d" }}
               to="/dashboard"
             >
               <span className="oi oi-dashboard" />
@@ -32,7 +32,7 @@ function Menu() {
           <li className="nav-item mx-4">
             <Link
               className="nav-link"
-              style={{ color: "#8b2317" }}
+              style={{ color: "#c9520d" }}
               to="/search"
             >
               <span className="oi oi-magnifying-glass" />
@@ -42,7 +42,7 @@ function Menu() {
           <li className="nav-item mx-4">
             <Link
               className="nav-link"
-              style={{ color: "#8b2317" }}
+              style={{ color: "#c9520d" }}
               to="/reservations/new"
             >
               <span className="oi oi-plus" />
@@ -52,7 +52,7 @@ function Menu() {
           <li className="nav-item mx-4 ">
             <Link
               className="nav-link"
-              style={{ color: "#8b2317" }}
+              style={{ color: "#c9520d" }}
               to="/tables/new"
             >
               <span className="oi oi-layers" />

@@ -6,7 +6,7 @@ function TableList({ tables, handleFinish }) {
     return (
       <div key={index} className="mb-4">
         <hr />
-        <h5>{table.table_name}</h5>
+        <h5 className="red-text">{table.table_name}</h5>
         <div className="px-4">
           <p>Capacity: {table.capacity}</p>
           {table && table.reservation_id ? (
@@ -17,7 +17,7 @@ function TableList({ tables, handleFinish }) {
           {table && table.reservation_id ? (
             <button
               data-table-id-finish={table.table_id}
-              className="btn btn-primary"
+              className="btn btn-secondary"
               value={table.table_id}
               onClick={handleFinish}
             >
