@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { cancelReservation } from "../utils/api";
 
 function FoundMatches({ foundMatches, setFoundMatches }) {
-  // const history = useHistory();
-
   const formatMatches = foundMatches.map((reservation, index) => {
     const handleCancel = async (e) => {
       const cancelId = e.target.value;

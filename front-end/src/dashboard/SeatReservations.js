@@ -66,11 +66,11 @@ function SeatReservation({ tables, setTables }) {
   };
 
   return (
-    <div className="mt-5">
+    <div className="my-4">
       <div className="d-flex flex-column justify-content-center align-items-center">
         <h2 className="platypi-subtitle">Seat reservation</h2>
-        <h4>Reservation Info</h4>
-        <div className="px-4 mb-">
+        <h4 className="mt-3">Reservation Info</h4>
+        <div className="px-4 mb-3" style={{ minWidth: "24%" }}>
           <div className="d-flex justify-content-between">
             <p>Name</p>
             <hr className="flex-grow-1 mx-2" />
@@ -79,7 +79,7 @@ function SeatReservation({ tables, setTables }) {
             </p>
           </div>
           <div className="d-flex justify-content-between">
-            <p>Reservation</p>
+            <p>Date/Time</p>
             <hr className="flex-grow-1 mx-2" />
             <p>
               {seating.reservation_date} at {seating.reservation_time}

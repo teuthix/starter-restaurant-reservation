@@ -56,7 +56,7 @@ function EditReservation() {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="mt-5">
+      <div className="mt-4">
         <h2 className="text-center my-3 platypi-subtitle">Edit Reservation</h2>
         <div className="mx-5 mb-5">
           <ReservationForm

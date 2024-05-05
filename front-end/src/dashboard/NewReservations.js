@@ -40,7 +40,7 @@ function NewReservations({ setDate, reservations, setReservations }) {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="mt-5">
+      <div className="mt-4">
         <h2 className="text-center my-3 platypi-subtitle">New Reservation</h2>
         <ReservationForm
           formData={formData}

@@ -33,7 +33,7 @@ function NewTable({ tables, setTables, date }) {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="mt-5">
+      <div className="mt-4">
         <h2 className="text-center mx-5 my-3 platypi-subtitle">
           Create New Table
         </h2>
