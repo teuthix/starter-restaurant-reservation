@@ -1,10 +1,101 @@
 # Capstone: Restaurant Reservation System
 
+Capstone project for Chegg Skills, software used by a restaurant's personnel when a customer calls to request a reservation. Built using HTML, CSS, React, Node.js, Express, Knex and PostgreSQL.
+
+| Page             | Path                               |
+| ---------------- | ---------------------------------- |
+| Dashboard        | /dashboard                         |
+| New Reservation  | /reservations/new                  |
+| New Table        | /tables/new                        |
+| Edit Reservation | /reservations/:reservation_id/edit |
+| Seat Reservation | /reservations/:reservation_id/seat |
+| Search           | /search                            |
+
+---
+
+### Dashboard
+
+![](images/home.png)
+
+Home page that displays Reservations for the day and all table. Menu at the top allows for navigation to other pages. Each Reservation is diplayed with the name it is made under, date and time of the reservation, mobile number, number of guests, and status of the reservation.
+
+- `Edit` will take user to `/reservations/:reservationId/edit`
+- `Cancel` button the reservation will bring up a pop up to confirm the action.
+- Buttons `Previous`, `Next`, and `Today` change the date.
+
+![](images/cancel-reservation.png)
+Pop up when canceling reservation.
+
+### New Reservation
+
+![](images/new-reservation.png)
+
+Form for creating new reservation. All form items are required.
+
+- `Mobile Number` must have numbers.
+- `Reservation Date` must not be on a Tuesday and must be at a future date.
+- `Reservation Time` must be before 10:30 AM or after 9:30 PM.
+- `Number of People` must be greater that 0.
+- `Submit` will create the reservation and take the user to the date of the reservation.
+- `Cancel` button will return user to the previous page.
+
+### New Table
+
+![](images/new-table.png)
+
+Form for creating new reservation. Both form items are required.
+
+- `Table Name` is required.
+- `Capacity` is required and must be greater than 1.
+- `Submit` creates a new table and redirects to `/dashboard`
+- `Cancel` button will return user to the previous page.
+
+### Edit Reservation
+
+![](images/edit-reservation.png)
+
+Form to edit an existing reservation. Information of reservation being edited is loaded into form. All form items are required.
+
+- `Mobile Number` must have numbers.
+- `Reservation Date` must not be on a Tuesday and must be at a future date.
+- `Reservation Time` must be before 10:30 AM or after 9:30 PM.
+- `Number of People` must be greater that 0.
+- `Submit` will create the reservation and take the user to the date of the reservation.
+- `Cancel` button will return user to the previous page.
+
+### Seat Reservation
+
+![](images/seat-reservation.png)
+Displays reservation to be seated for reference. Below is a drop down menu to select which table the reservation will be seated at.
+
+- `Submit` button will assign the reservation to the selected table and redirect the user to `/dashboard`
+
+![](images/home-seated.png)
+Dashboard once reservation is seated.
+
+- `Finish` button appears for when the reservation is done and the table is ready for new guests.
+
+![](images/finish-seating.png)
+Pop up that appears to confirm the reservation is finished. Currently assigned reservation will be removed.
+
+### Search
+
+![](images/search.png)
+Search for reservations by mobile number. Found matches will display with the name it is made under, mobile number, date and time of the reservation, number of guests, and status of the reservation.
+
+- `Edit` will take the user to `/reservations/:reservationId/edit`
+- `Cancel` will trigger the same cancel pop up as `/dashboard` to confirm the action.
+
+![](images/search-cancel.png)
+Pop up when canceling reservation.
+
+---
+
+## Below is the original readme from the forked repository
+
 > You have been hired as a full stack developer at _Periodic Tables_, a startup that is creating a reservation system for fine dining restaurants.
 > The software is used only by restaurant personnel when a customer calls to request a reservation.
 > At this point, the customers will not access the system online.
-
---------------> visit it here: https://restaurant-reservation-t9zs.onrender.com/
 
 There are no user stories for deployment: it is expected that you will deploy the application to production after you finish a user story.
 
@@ -12,7 +103,7 @@ There are no user stories for logging: it is expected that you will add logging 
 
 ## Existing files
 
-This repository is set up as a *monorepo*, meaning that the frontend and backend projects are in one repository. This allows you to open both projects in the same editor.
+This repository is set up as a _monorepo_, meaning that the frontend and backend projects are in one repository. This allows you to open both projects in the same editor.
 
 As you work through the user stories listed later in this document, you will be writing code that allows your frontend and backend applications to talk to each other. You will also write code to allow your controllers and services to connect to, and query, your PostgreSQL database via [Knex](http://knexjs.org/).
 
@@ -218,8 +309,8 @@ Use in controllers as part of `module.exports`. For example:
 
 ```javascript
 module.exports = {
-	create: asyncErrorBoundary(create)
-}
+  create: asyncErrorBoundary(create),
+};
 ```
 
 ### US-02 Create reservation on a future, working date
@@ -340,7 +431,7 @@ so that I can see which reservation parties are seated, and finished reservation
    - clicking the Finish button associated with the table changes the reservation status to "finished" and removes the reservation from the dashboard.
    - to set the status, PUT to `/reservations/:reservation_id/status` with a body of `{data: { status: "<new-status>" } }` where `<new-status>` is one of booked, seated, or finished. Please note that this is only tested in the back-end for now.
 
-> **Hint** You can add a field to a table in a migration `up` method by defining a new column. E.g. `table.string("last_name", null).notNullable();` will create a new last_name column.  Be sure to remove the column in the `down` function using `dropColumn()`. E.g. `table.dropColumn("last_name");`
+> **Hint** You can add a field to a table in a migration `up` method by defining a new column. E.g. `table.string("last_name", null).notNullable();` will create a new last_name column. Be sure to remove the column in the `down` function using `dropColumn()`. E.g. `table.dropColumn("last_name");`
 
 > **Hint** Use [`Knex.transaction()`](http://knexjs.org/#Transactions) to make sure the `tables` and `reservations` records are always in sync with each other.
 
