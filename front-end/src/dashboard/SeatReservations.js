@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { listTables, updateTable } from "../utils/api";
+import { listTables, updateTable, getSingleReservation } from "../utils/api";
 
 function SeatReservation({ tables, setTables }) {
   const param = useParams();
   const history = useHistory();
   const [selectedTable, setSelectedTable] = useState("");
+  const [seating, setSeating] = useState({
+    first_name: "",
+    last_name: "",
+    mobile_number: "",
+    reservation_date: "",
+    reservation_time: "",
+    people: "",
+  });
 
   useEffect(() => {
     async function loadTables() {
@@ -18,6 +26,25 @@ function SeatReservation({ tables, setTables }) {
     }
     loadTables();
   }, [setTables]);
+
+  useEffect(() => {
+    async function fetchReservations() {
+      try {
+        const reservation = await getSingleReservation(param.reservation_id);
+        setSeating({
+          first_name: reservation.first_name,
+          last_name: reservation.last_name,
+          mobile_number: reservation.mobile_number,
+          reservation_date: reservation.reservation_date.slice(0, 10),
+          reservation_time: reservation.reservation_time,
+          people: reservation.people,
+        });
+      } catch (error) {
+        // setShowError(error);
+      }
+    }
+    fetchReservations();
+  }, [param, param.reservation_id]);
 
   const tableOptions = tables.map((table, index) => {
     return (
@@ -42,6 +69,33 @@ function SeatReservation({ tables, setTables }) {
     <div className="mt-5">
       <div className="d-flex flex-column justify-content-center align-items-center">
         <h2 className="platypi-subtitle">Seat reservation</h2>
+        <h4>Reservation Info</h4>
+        <div className="px-4 mb-">
+          <div className="d-flex justify-content-between">
+            <p>Name</p>
+            <hr className="flex-grow-1 mx-2" />
+            <p>
+              {seating.first_name} {seating.last_name}
+            </p>
+          </div>
+          <div className="d-flex justify-content-between">
+            <p>Reservation</p>
+            <hr className="flex-grow-1 mx-2" />
+            <p>
+              {seating.reservation_date} at {seating.reservation_time}
+            </p>
+          </div>
+          <div className="d-flex justify-content-between">
+            <p>Contact:</p>
+            <hr className="flex-grow-1 mx-2" />
+            <p>{seating.mobile_number}</p>
+          </div>
+          <div className="d-flex justify-content-between">
+            <p>Guests:</p>
+            <hr className="flex-grow-1 mx-2" />
+            <p>{seating.people}</p>
+          </div>
+        </div>
         <form onSubmit={submitHandler}>
           <select
             name="table_id"
