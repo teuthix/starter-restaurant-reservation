@@ -7,7 +7,7 @@ function DashList({ reservations, setReservations, handleCancel }) {
     const cancelButton = (
       <button
         data-reservation-id-cancel={reservation.reservation_id}
-        className="btn btn-danger"
+        className="btn btn-secondary"
         value={reservation_id}
         onClick={handleCancel}
       >
@@ -18,7 +18,7 @@ function DashList({ reservations, setReservations, handleCancel }) {
       <Link to={`/reservations/${reservation_id}/edit`}>
         <button
           href={`/reservations/${reservation_id}/seat`}
-          className="btn btn-secondary"
+          className="btn btn-primary"
         >
           Edit
         </button>

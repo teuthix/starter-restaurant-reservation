@@ -30,7 +30,20 @@ button {
 }
 
 .red-text {
-  color: #8b2317
+  color: #8b2317;
+}
+
+.btn-primary, .btn-primary:active {
+  background-color: #8b2317;
+  color: white;
+  border: #8b2317;
+
+}
+
+.btn-primary:hover {
+  background-color: #731b11;
+  color: white;
+  border: #731b11;
 }
 
 .platypi-title {
