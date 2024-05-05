@@ -9,22 +9,22 @@ function ReservationForm({
   return (
     <div className="mx-5" style={{ minWidth: "500px" }}>
       <form onSubmit={submitHandler} className="d-flex flex-column">
-        <label htmlFor="first_name">First name:</label>
+        <label htmlFor="first_name">First Name:</label>
         <input
           id="first_name"
           type="text"
           name="first_name"
-          className="mb-4 col"
+          className="mb-4 px-2"
           value={formData.first_name}
           onChange={handleChange}
           required
         />
-        <label htmlFor="last_name">Last name:</label>
+        <label htmlFor="last_name">Last Name:</label>
         <input
           id="last_name"
           type="text"
           name="last_name"
-          className="mb-4 col"
+          className="mb-4 px-2"
           value={formData.last_name}
           onChange={handleChange}
           required
@@ -36,7 +36,7 @@ function ReservationForm({
           id="mobile_number"
           pattern="([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{10})"
           placeholder="format 123-456-7890"
-          className="mb-4 col"
+          className="mb-4 px-2"
           value={formData.mobile_number}
           onChange={handleChange}
           required
@@ -48,7 +48,7 @@ function ReservationForm({
           type="date"
           placeholder="YYYY-MM-DD"
           pattern="\d{4}-\d{2}-\d{2}"
-          className="mb-4 col"
+          className="mb-4 px-2"
           value={formData.reservation_date}
           onChange={handleChange}
           required
@@ -60,7 +60,7 @@ function ReservationForm({
           id="reservation_time"
           placeholder="HH:MM"
           pattern="[0-9]{2}:[0-9]{2}"
-          className="mb-4 col"
+          className="mb-4 px-2"
           value={formData.reservation_time}
           onChange={handleChange}
           required
@@ -71,7 +71,7 @@ function ReservationForm({
           type="number"
           min="1"
           id="people"
-          className="mb-4 col"
+          className="mb-4 px-2"
           value={formData.people}
           onChange={handleNumberChange}
           required

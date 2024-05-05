@@ -41,7 +41,7 @@ function Search() {
               id="mobile_number"
               placeholder="Enter a customer's phone number"
               onChange={changeHandler}
-              className="my-2"
+              className="my-2 px-2"
               style={{ minWidth: "500px" }}
             />
             <button type="submit" className="btn btn-primary mx-3 my-1">
