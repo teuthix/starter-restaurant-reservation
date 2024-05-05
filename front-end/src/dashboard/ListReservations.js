@@ -54,7 +54,7 @@ function ListReservations({
         setReservations={setReservations}
         handleCancel={handleCancel}
       />
-      <div className="mx-5">
+      <div className="mx-5 d-flex justify-content-center">
         <button className="btn btn-secondary" onClick={handlePrevious}>
           previous
         </button>
