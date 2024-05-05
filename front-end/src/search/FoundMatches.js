@@ -12,7 +12,6 @@ function FoundMatches({ foundMatches, setFoundMatches }) {
         "Do you want to cancel this reservation? This cannot be undone.";
 
       if (window.confirm(text)) {
-        console.log(cancelId, "from DashList");
         await cancelReservation(reservation.reservation_id);
         setFoundMatches((currentMatches) =>
           currentMatches.filter(

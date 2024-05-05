@@ -36,7 +36,6 @@ function ListReservations({
       "Do you want to cancel this reservation? This cannot be undone.";
 
     if (window.confirm(text)) {
-      console.log(cancelId, "from DashList");
       await cancelReservation(cancelId);
       setReservations((currentReservations) =>
         currentReservations.filter(
@@ -49,14 +48,13 @@ function ListReservations({
 
   return (
     <main>
-      {/* <hr className="blue" /> */}
       <ErrorAlert error={reservationsError} />
       <DashList
         reservations={reservations}
         setReservations={setReservations}
         handleCancel={handleCancel}
       />
-      <div>
+      <div className="mx-5">
         <button className="btn btn-secondary" onClick={handlePrevious}>
           previous
         </button>

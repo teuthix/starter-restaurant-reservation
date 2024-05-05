@@ -27,15 +27,11 @@ function Dashboard({
   // if no search in url, make it today's date
   useEffect(() => {
     if (!location.search) {
-      console.log("no date given");
       history.push({
         pathname: location.pathname,
         search: `?date=${today()}`,
       });
     } else {
-      console.log(
-        "we made it inside this second if condition of our Dashboard component"
-      );
       const queryDate = new URLSearchParams(location.search).get("date");
       setDate(queryDate);
     }
@@ -77,7 +73,6 @@ function Dashboard({
       const abortController = new AbortController();
       try {
         const response = await listTables();
-        console.log("loadingTables");
         setTables(response);
       } catch (error) {
         console.error(error);
@@ -118,7 +113,7 @@ function Dashboard({
             handleDateChange={handleDateChange}
           />
         </div>
-        <vr className="mx-5 right-border" />
+        <div className="mx-5 right-border" />
         <div className="mx-4 py-5">
           <h4 className="mt-3 platypi-subtitle">Tables</h4>
           <TableList tables={tables} handleFinish={handleFinish} />
